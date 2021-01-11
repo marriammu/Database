@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: url('../img/Hospital6.jpg') fixed;
+    background: url(../img/Hospital6.jpg) fixed;
     background-size: cover;
 }
 
