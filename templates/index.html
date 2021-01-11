@@ -12,66 +12,66 @@
             }
         }
     </style>
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/css/style2.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/css/bootstrap.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
 
-    <link rel="stylesheet" href="../static/css/style2.css" />
+    <!-- <link rel="stylesheet" href="../static/css/style2.css" />
 
-    <link rel="stylesheet" href="../static/css/css/bootstrap.css" /> </head>
-
-
+    <link rel="stylesheet" href="../static/css/css/bootstrap.css" /> </head> -->
 
 
 
-<div class="container bg">
 
-    <body>
-        <div class="myNav">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="img/logo.svg">HIS</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <div class="container bg">
+
+        <body>
+            <div class="myNav">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="img/logo.svg">HIS</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Sign in
-                            </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">patient</a>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
-                                </ul>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Sign up
+                              Sign in
                             </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignUp">Patient</a></li>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignUp">Doctor</a></li>
-
+                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">patient</a>
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
                                     </ul>
-                                </li>
+                                    </li>
+
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Sign up
+                            </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignUp">Patient</a></li>
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignUp">Doctor</a></li>
+
+                                        </ul>
+                                    </li>
 
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </div>
+                </nav>
+            </div>
 
 
-        <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-        <!-- <script src="{{ url_for('static', filename='java/js/bootstrap.js') }}"></script> -->
-        <script src="../static/java/js/bootstrap.js "></script>
-    </body>
+            <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
+            <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
+            <!-- <script src="../static/java/js/bootstrap.js "></script> -->
+        </body>
 
 </html>
