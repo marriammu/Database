@@ -1,17 +1,13 @@
 body {
-    background: url({{url_for('static',filename='../img/Hospital6.jpg')
+    background: url(../img/Hospital6.jpg) fixed;
+    background-size: cover;
 }
 
-
-}
-) fixed;
-background-size: cover;
-
-}
 .myNav .navbar {
     background-color: #f2f2f2 !important;
     opacity: 0.85 !important;
 }
+
 .form-container {
     max-width: 530px;
     padding: 15px;
@@ -21,12 +17,13 @@ background-size: cover;
     opacity: 0.83;
     box-shadow: 0px 0px 10px 0px #000;
 }
+
 .nav-item .navbar-nav .nav-link {
     color: wheat !important;
 }
+
 h2 {
-    font-family: 'Open Sans',
-    sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 40px;
     font-weight: 600;
     color: #000000;
@@ -36,6 +33,7 @@ h2 {
     letter-spacing: 4px;
     font-weight: bold !important;
 }
+
 *[role="form"] {
     max-width: 530px;
     padding: 15px;
@@ -45,9 +43,9 @@ h2 {
     opacity: 0.83;
     box-shadow: 0px 0px 10px 0px #000;
 }
+
 *[role="form"] h2 {
-    font-family: 'Open Sans',
-    sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 40px;
     font-weight: 600;
     color: #000000;
@@ -56,19 +54,21 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 4px;
 }
+
 .control-label {
     text-align: left !important;
 }
+
 .required {
-    color: rgb(117,
-    0,
-    0)
+    color: rgb(117, 0, 0)
 }
+
 @media only screen and (min-width: 768px) {
     .dropdown:hover .dropdown-menu {
         display: block !important;
     }
 }
+
 .center {
     display: block;
     margin-left: auto;
