@@ -18,6 +18,16 @@ body {
     box-shadow: 0px 0px 10px 0px #000;
 }
 
+.form-container1 {
+    max-width: 1000px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
 .nav-item .navbar-nav .nav-link {
     color: wheat !important;
 }
@@ -74,4 +84,41 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+fieldset {
+    overflow: hidden
+}
+
+.some-class {
+    float: left;
+    clear: none;
+}
+
+label {
+    float: left;
+    clear: none;
+    display: block;
+    padding: 0px 1em 0px 8px;
+}
+
+input[type=radio],
+input.radio {
+    float: left;
+    clear: none;
+    margin: 2px 0 0 2px;
+}
+
+.selectbox {
+    -webkit-appearance: menulist-button;
+    height: 50px;
+}
+
+.wrapper3 {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
 }

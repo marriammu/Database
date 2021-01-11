@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HIS</title>
     <style type="text/css">
         @media only screen and (min-width: 768px) {
             .dropdown:hover .dropdown-menu {
@@ -13,9 +13,12 @@
         }
     </style>
 
+    <!-- <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="../static/css/css/bootstrap.css"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
+
+
 
 
 
@@ -30,35 +33,28 @@
                     <div class="container-fluid">
                         <a class="navbar-brand" href="img/logo.svg">HIS</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
                                 </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Sign in
-                            </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">Patient</a></li>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/PatientSignUp">Sign up</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Sign up
-                            </a>
+                                  Sign in
+                                </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignUp">Patient</a></li>
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignUp">Doctor</a></li>
-
+                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">patient</a>
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
+                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
                                     </ul>
-                                </li>
+                                    </li>
+
 
 
                             </ul>
@@ -66,38 +62,43 @@
                     </div>
                 </nav>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-3">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
-                    <form class="form-container">
-                        <h2>Sign In</h2>
-                        <img src="{{url_for('static', filename='img/Patient.svg')}}" alt="Patient" class="center" height="90" width="105" />
-                        <div class="mb-3 ">
-                            <label for="SignInpatientUsername " class="form-label ">User Name</label>
-                            <input type="email " class="form-control " name="SignInpatientUsername " id="SignInpatientUsername " aria-describedby="emailHelp " placeholder="Enter User Name ">
+                <form class="form-container">
+                    <h2>Sign In</h2>
+                    <!-- <img src="../static/img/Patient.svg" alt="Patient" class="center" height="90" width="105" /> -->
+                    <img src="{{url_for('static', filename='img/Patient.svg')}}" alt="Doctor" class="center" height="90" width="105" />
 
-                        </div>
-                        <div class="mb-3 ">
-                            <label for="SignInPatientPassword " class="form-label ">Password</label>
-                            <input type="password " class="form-control " name="SignInPatientPassword " id="SignInPatientPassword " placeholder="Enter password ">
-                        </div>
+                    <div class="mb-3 ">
+                        <label for="SignInpatientUsername " class="form-label ">User Name</label>
+                        <input type="email " class="form-control " name="SignInpatientUsername " id="SignInpatientUsername " aria-describedby="emailHelp " placeholder="Enter User Name ">
 
-                        <button type="submit " class="btn btn-primary col-12 ">Submit</button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="SignInPatientPassword " class="form-label ">Password</label>
+                        <input type="password " class="form-control " name="SignInPatientPassword " id="SignInPatientPassword " placeholder="Enter password ">
+                    </div>
+
+                    <button type="submit " class="btn btn-primary col-12 ">Submit</button>
+                </form>
             </div>
+        </div>
         </div>
 
 
 
 
         <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
+        <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
         <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
+
     </body>
 
 </html>
