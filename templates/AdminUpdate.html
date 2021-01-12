@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="../static/css/style2.css" rel="stylesheet">
 
 
 
@@ -59,9 +59,6 @@
                         <li>
                             <a href="127.0.0.1:5000/AddDevice">Add Device</a>
                         </li>
-                        <li>
-                            <a href="127.0.0.1:5000/index">Sign Out</a>
-                        </li>
 
 
                     </ul>
@@ -74,6 +71,9 @@
                 </li>
                 <li>
                     <a href="#">Statistical Analysis</a>
+                </li>
+                <li>
+                    <a href="127.0.0.1:5000/index">Sign Out</a>
                 </li>
 
 
@@ -104,45 +104,39 @@
 
 
 
-                    <h2>Add Device</h2>
+                    <h2>Update Device</h2>
 
-                    <img src="../static/img/device.svg" alt="Doctor" class="center" height="87" width="100" />
+                    <img src="../static/img/update.svg" alt="Doctor" class="center" height="87" width="100" />
                     <!-- <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" /> -->
 
                     <br>
                     <div class="row">
                         <div class="col-lg">
                             <label for="DeviceSerialNo" class="form-label">Serial Number</label>
-                            <input type="number" class="form-control" name="DeviceSerialNo" id="DeviceSerialNo" placeholder="Enter Serial Number" autofocus>
+                            <input type="number" class="form-control" name="DeviceSerialNo" id="DeviceSerialNo" placeholder="Enter Serial Number Of Device" autofocus>
                         </div>
 
                     </div>
                     <br>
 
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DeviceBrand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" name="DeviceBrand" id="DeviceBrand" placeholder="Enter Brand">
 
-                        </div>
-                    </div>
 
                     <br>
                     <div class="row">
                         <div class="col-md">
-                            <label for="TotalDialysis" class="form-label">Total dialysis/day</label>
-                            <input type="text" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Enter dialysis/day">
+                            <label for="TotalDialysis" class="form-label">Update Total dialysis/day</label>
+                            <input type="text" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Update dialysis/day">
 
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md">
-                            <label for="LastMaint" class="form-label">Last MAINT</label>
+                            <label for="LastMaint" class="form-label">Update Last MAINT</label>
                             <input type="date" class="form-control" name="LastMaint" id="LastMaint">
                         </div>
                         <div class="col-md">
-                            <label for="NextMaint" class="form-label">Next MAINT</label>
+                            <label for="NextMaint" class="form-label"> update Next MAINT</label>
                             <input type="date" class="form-control" name="NextMaint" id="NextMaint">
                         </div>
                     </div>
@@ -151,8 +145,8 @@
 
                     <br>
                     <br>
-                    <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a>
-                    <!-- <a href="AddDoctor.html" class="btn btn-primary col-12">Submit</a> -->
+                    <!-- <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a> -->
+                    <a href="AddDoctor.html" class="btn btn-primary col-12">Update</a>
                 </form>
             </div>
         </div>
@@ -167,8 +161,8 @@
 
 
     <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-    <script src="../static/javascript/js/bootstrap.js"></script>
-    <!-- <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script> -->
+    <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
+    <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>

@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style2.css"> -->
 </head>
 
 <body>
 
-   
+
     <div class="wrapper1">
 
         <nav id="sidebar">
@@ -61,6 +63,9 @@
                 <li>
                     <a href="#">Statistical Analysis</a>
                 </li>
+                <li>
+                    <a href="127.0.0.1:5000/index">Sign Out</a>
+                </li>
 
 
 
@@ -77,13 +82,14 @@
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn  btn-secondary">
   			<i class="fas fa-align-left"></i>
-  			<span>Toggle Sidebar</span>
+  			
   			
   		</button>
                 </div>
             </nav>
 
             <br><br>
+<<<<<<< HEAD
             <div class=wrapper2>
                 <h1>Doctor Records</h1>
                 <div class=tablewrap>
@@ -133,6 +139,60 @@
                         </tbody>
                         {% endfor %}
                     </table>
+=======
+            <div class="form-container4">
+                <div class=wrapper2>
+                    <h1>Doctor Records</h1>
+                    <div class=tablewrap>
+                        <table class="table table-stripped table-light table-hover">
+                            <thead>
+                                <tr>
+
+
+                                    <th scope="col">#</th>
+                                    <th scope="col">FirstName</th>
+                                    <th scope="col">MName</th>
+                                    <th scope="col">LastName</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Nationality</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Birthdate</th>
+                                    <th scope="col">SSN</th>
+                                    <th scope="col">MaritalStatue</th>
+                                    <th scope="col">PhoneNumber</th>
+                                    <th scope="col">BankNumber</th>
+                                    <th scope="col">Salary</th>
+                                    <th scope="col">Shift</th>
+                                    <th scope="col">EmploymentDate</th>
+                                    <th scope="col">Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in doctorsdata %}
+                                <tr>
+                                    <th scope="row">{{doctorsdata.index(data)+1}}</th>
+                                    <td>{{data.0}}</td>
+                                    <td>{{data.1}}</td>
+                                    <td>{{data.2}}</td>
+                                    <td>{{data.3}}</td>
+                                    <td>{{data.4}}</td>
+                                    <td>{{data.5}}</td>
+                                    <td>{{data.6}}</td>
+                                    <td>{{data.7}}</td>
+                                    <td>{{data.8}}</td>
+                                    <td>{{data.9}}</td>
+                                    <td>{{data.10}}</td>
+                                    <td>{{data.12}}</td>
+
+
+                                </tr>
+
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+>>>>>>> b868487fde3defb216f7513a15492e7b1989596a
                 </div>
             </div>
 
