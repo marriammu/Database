@@ -89,126 +89,64 @@
             </nav>
 
             <br><br>
-            <div class=wrapper2>
-                <h1>Doctor Records</h1>
-                <div class=tablewrap>
-                    <table class="table table-stripped table-light table-hover">
-                        <thead>
-                            <tr>
+
+            <div class="form-container4">
+                <div class=wrapper2>
+                    <h1>Doctor Records</h1>
+                    <div class=tablewrap>
+                        <table class="table table-stripped table-light table-hover">
+                            <thead>
+                                <tr>
 
 
-                                <th scope="col">#</th>
-                                <th scope="col">FirstName</th>
-                                <th scope="col">MName</th>
-                                <th scope="col">LastName</th>
-                                <th scope="col">Adress</th>
-                                <th scope="col">Nationality</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Birthdate</th>
-                                <th scope="col">SSN</th>
-                                <th scope="col">MaritalStatue</th>
-                                <th scope="col">PhoneNumber</th>
-                                <th scope="col">BankNumber</th>
-                                <th scope="col">Email</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">FirstName</th>
+                                    <th scope="col">MName</th>
+                                    <th scope="col">LastName</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Nationality</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Birthdate</th>
+                                    <th scope="col">SSN</th>
+                                    <th scope="col">MaritalStatue</th>
+                                    <th scope="col">PhoneNumber</th>
+                                    <th scope="col">BankNumber</th>
+                                    <th scope="col">EmploymentDate</th>
+                                    <th scope="col">Salary</th>
+                                    <th scope="col">Shift</th>
+                                    <th scope="col">Email</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for data in doctorsdata %}
-                            <tr>
-                                <th scope="row">{{doctorsdata.index(data)+1}}</th>
-                                <td>{{data.0}}</td>
-                                <td>{{data.1}}</td>
-                                <td>{{data.2}}</td>
-                                <td>{{data.3}}</td>
-                                <td>{{data.4}}</td>
-                                <td>{{data.5}}</td>
-                                <td>{{data.6}}</td>
-                                <td>{{data.7}}</td>
-                                <td>{{data.8}}</td>
-                                <td>{{data.9}}</td>
-                                <td>{{data.10}}</td>
-                                <td>{{data.12}}</td>
-
-
-
-
-                            </tr>
-
-                        </tbody>
-                        {% endfor %}
-                    </table>
-                    <div class="form-container4">
-                        <div class=wrapper2>
-                            <h1>Doctor Records</h1>
-                            <div class=tablewrap>
-                                <table class="table table-stripped table-light table-hover">
-                                    <thead>
-                                        <tr>
-
-
-                                            <th scope="col">#</th>
-                                            <th scope="col">FirstName</th>
-                                            <th scope="col">MName</th>
-                                            <th scope="col">LastName</th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col">Nationality</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Birthdate</th>
-                                            <th scope="col">SSN</th>
-                                            <th scope="col">MaritalStatue</th>
-                                            <th scope="col">PhoneNumber</th>
-                                            <th scope="col">BankNumber</th>
-                                            <th scope="col">Salary</th>
-                                            <th scope="col">Shift</th>
-                                            <th scope="col">EmploymentDate</th>
-                                            <th scope="col">Email</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for data in doctorsdata %}
-                                        <tr>
-                                            <th scope="row">{{doctorsdata.index(data)+1}}</th>
-                                            <td>{{data.0}}</td>
-                                            <td>{{data.1}}</td>
-                                            <td>{{data.2}}</td>
-                                            <td>{{data.3}}</td>
-                                            <td>{{data.4}}</td>
-                                            <td>{{data.5}}</td>
-                                            <td>{{data.6}}</td>
-                                            <td>{{data.7}}</td>
-                                            <td>{{data.8}}</td>
-                                            <td>{{data.9}}</td>
-                                            <td>{{data.10}}</td>
-                                            <td>{{data.12}}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in doctorsdata %}
+                                <tr>
+                                    <th scope="row">{{doctorsdata.index(data)+1}}</th>
+                                    <td>{{data.0}}</td>
+                                    <td>{{data.1}}</td>
+                                    <td>{{data.2}}</td>
+                                    <td>{{data.3}}</td>
+                                    <td>{{data.4}}</td>
+                                    <td>{{data.5}}</td>
+                                    <td>{{data.6}}</td>
+                                    <td>{{data.7}}</td>
+                                    <td>{{data.8}}</td>
+                                    <td>{{data.9}}</td>
+                                    <td>{{data.10}}</td>
+                                    <td>{{data.12}}</td>
 
 
 
-                                        </tr>
+                                </tr>
 
-                                    </tbody>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        </div>
+                            </tbody>
+                            {% endfor %}
+                        </table>
                     </div>
-
-                    <div class="line"></div>
-
-
-
-
-
-
-
-
-
                 </div>
-
-
             </div>
 
+            <div class="line"></div>
 
 
 
@@ -216,17 +154,31 @@
 
 
 
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
 
-            <script>
-                $(document).ready(function() {
-                    $('#sidebarCollapse').on('click', function() {
-                        $('#sidebar').toggleClass('active');
-                    });
-                });
-            </script>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 
 
 </body>
