@@ -29,49 +29,37 @@
         <nav id="sidebar">
 
             <div class="sidebar-header">
-                <h3>Admin panel</h3>
+                <h3>Patient Panel</h3>
             </div>
             <ul class="lisst-unstyled components">
 
 
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="127.0.0.1:5000/PatientRecords">View Profile</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DoctorRecords">Doctor Records</a>
-                        </li>
-                        <li>
-                            <a href="127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="127.0.0.1:5000/DoctorRecords">Update Profile</a>
                         </li>
 
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="127.0.0.1:5000/AddDoctor">Add Appointment</a>
                         </li>
 
                         <li>
-                            <a href="127.0.0.1:5000/AddDevice">Add Device</a>
+                            <a href="127.0.0.1:5000/AddDevice">View Appointments</a>
                         </li>
 
 
 
                     </ul>
-                </li>
-                <li>
-                    <a href="#">Update</a>
-                </li>
-                <li>
-                    <a href="#">Appointments</a>
-                </li>
-                <li>
-                    <a href="#">Statistical Analysis</a>
                 </li>
                 <li>
                     <a href="127.0.0.1:5000/index">Sign Out</a>
@@ -91,7 +79,7 @@
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn  btn-secondary">
   			<i class="fas fa-align-left"></i>
-  			<span>Toggle Sidebar</span>
+  			
   			
   		</button>
                 </div>
@@ -99,62 +87,21 @@
 
 
             <br>
+            <br>
             <div>
-                <form class="form-container2" method="POST" role="form" action="">
+                <div class="form-container5">
 
 
 
 
-                    <h2>Add Device</h2>
-
-                    <img src="../static/img/device.svg" alt="Doctor" class="center" height="87" width="100" />
-                    <!-- <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" /> -->
-
-                    <br>
-                    <div class="row">
-                        <div class="col-lg">
-                            <label for="DeviceSerialNo" class="form-label">Serial Number</label>
-                            <input type="number" class="form-control" name="DeviceSerialNo" id="DeviceSerialNo" placeholder="Enter Serial Number" autofocus>
-                        </div>
-
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DeviceBrand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" name="DeviceBrand" id="DeviceBrand" placeholder="Enter Brand">
-
-                        </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="TotalDialysis" class="form-label">Total dialysis/day</label>
-                            <input type="text" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Enter dialysis/day">
-
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="LastMaint" class="form-label">Last MAINT</label>
-                            <input type="date" class="form-control" name="LastMaint" id="LastMaint">
-                        </div>
-                        <div class="col-md">
-                            <label for="NextMaint" class="form-label">Next MAINT</label>
-                            <input type="date" class="form-control" name="NextMaint" id="NextMaint">
-                        </div>
-                    </div>
-
-
-
+                    <h2>Welcome To Your Profile!</h2>
+                    <img src="{{url_for('static', filename='img/Patient.svg')}}" alt="Doctor" class="center" height="87" width="100" />
+                    <!-- <img src="../static/img/Patient.svg" alt="Doctor" class="center" height="87" width="100" /> -->
                     <br>
                     <br>
-                    <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a>
-                    <!-- <a href="AddDoctor.html" class="btn btn-primary col-12">Submit</a> -->
-                </form>
+
+
+                </div>
             </div>
         </div>
 
