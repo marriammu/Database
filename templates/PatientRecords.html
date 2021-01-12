@@ -61,6 +61,9 @@
                 <li>
                     <a href="#">Statistical Analysis</a>
                 </li>
+                <li>
+                    <a href="127.0.0.1:5000/index">Sign Out</a>
+                </li>
 
 
 
@@ -89,7 +92,7 @@
                     <table class="table table-stripped table-light table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th> 
+                                <th scope="col">#</th>
                                 <th scope="col">FirstName</th>
                                 <th scope="col">LastName</th>
                                 <th scope="col">Gender</th>
@@ -100,14 +103,14 @@
                                 <th scope="col">Wieght</th>
                                 <th scope="col">BloodGroup</th>
                                 <th scope="col">Phone number</th>
-                                <th scope="col">Email</th> 
+                                <th scope="col">Email</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 {% for data in doctorsdata %}
                                 <tr>
-                                    <th scope="row">{{doctorsdata.index(data)+1}}</th> 
+                                    <th scope="row">{{doctorsdata.index(data)+1}}</th>
                                     <td>{{data.0}}</td>
                                     <td>{{data.1}}</td>
                                     <td>{{data.2}}</td>
@@ -118,8 +121,8 @@
                                     <td>{{data.7}}</td>
                                     <td>{{data.8}}</td>
                                     <td>{{data.9}}</td>
-                                    <td>{{data.10}}</td>   
-    
+                                    <td>{{data.10}}</td>
+
                                 </tr>
                             </tr>
                         </tbody>
