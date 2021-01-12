@@ -49,13 +49,13 @@ def PatientSignIn():
         Passwd = request.form['SignInPatientPassword']  
         mycursor.execute("SELECT PatientEmail FROM patients") 
         emails = mycursor.fetchall()
-        print(emails)
+        #print(emails)
         for email in emails:
             if email[0]==UserName:
-                print(UserName,Passwd)
+                #print(UserName,Passwd)
                 mycursor.execute("SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" %(email))
                 password = mycursor.fetchone()
-                print(password[0])
+                #print(password[0])
                 if password[0] == Passwd:
                     return render_template('PatientRecords.html')
         else:
