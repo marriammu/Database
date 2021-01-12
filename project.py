@@ -34,6 +34,15 @@ for x in mycursor:
 if y:
     mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender VARCHAR(50),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat VARCHAR(50),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(50),PatientPhone VARCHAR(50),PatientEmail VARCHAR(50),PatientPass VARCHAR(50))")
 
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('doctors',):
+        y = False
+if y:
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(250),DoctorMName VARCHAR(250),DoctorLName VARCHAR(250),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD DATE,DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone INT,DoctorBankNum INT ,DoctorPass VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE)")
+
+
 app = Flask(__name__)
 
 
@@ -42,20 +51,18 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/PatientSignIn' , methods=["GET", "POST"])
+@app.route('/PatientSignIn', methods=["GET", "POST"])
 def PatientSignIn():
     if request.method == "POST":
         UserName = request.form['SignInPatientUsername']
-        Passwd = request.form['SignInPatientPassword']  
-        mycursor.execute("SELECT PatientEmail FROM patients") 
+        Passwd = request.form['SignInPatientPassword']
+        mycursor.execute("SELECT PatientEmail FROM patients")
         emails = mycursor.fetchall()
-        #print(emails)
         for email in emails:
-            if email[0]==UserName:
-                #print(UserName,Passwd)
-                mycursor.execute("SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" %(email))
+            if email[0] == UserName:
+                mycursor.execute(
+                    "SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" % (email))
                 password = mycursor.fetchone()
-                #print(password[0])
                 if password[0] == Passwd:
                     return render_template('PatientRecords.html')
         else:
@@ -84,7 +91,7 @@ def PatientSignUp():
                PatientHeight, PatientWeight, PatientBloodGrp, PatientPhone, PatientEmail, PatientPass)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('PatientRecords.html')
+        return render_template('index.html')
     else:
         return render_template('PatientSignUp.html')
 
@@ -109,12 +116,38 @@ def AdminPanel():
     return render_template('AdminPanel.html')
 
 
+@app.route('/AdminPanel/AddDoctor', methods=['POST', 'GET'])
+def AddDoctor():
+    if request.method == 'POST':
+        Fname = request.form['DoctorFName']
+        Mname = request.form['DoctorMName']
+        Lname = request.form['DoctorLName']
+        Address = request.form['DoctorAddress']
+        Nationality = request.form['DoctorNationality']
+        Gender = request.form['DoctorGender']
+        BD = request.form['DoctorBD']
+        SSN = request.form['DoctorSSN']
+        MaritalStat = request.form['DoctorMaritalStat']
+        Phone = request.form['DoctorPhone']
+        BankNum = request.form['DoctorBankNum']
+        Pass = request.form['DoctorPass']
+        Email = request.form['DoctorEmail']
+        sql = "INSERT INTO doctors (DoctorFName,DoctorMName,DoctorLName,DoctorAddress,DoctorNationality,DoctorGender,DoctorBD,DoctorSSN,DoctorMaritalStat,DoctorPhone,DoctorBankNum,DoctorPass,DoctorEmail) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = (Fname, Mname, Lname, Address, Nationality, Gender,
+               BD, SSN, MaritalStat, Phone, BankNum, Pass, Email)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('AdminPanel.html')
+    else:
+        return render_template('AddDoctor.html')
+
+
 @app.route('/AdminPanel/DoctorRecords')
 def DoctorRecords():
-    mycursor.execute("SELECT * FROM Patients")
+    mycursor.execute("SELECT * FROM doctors")
     data = mycursor.fetchall()
 
-    return render_template('PatientRecords.html', doctorsdata=data)
+    return render_template('DoctorRecords.html', doctorsdata=data)
 
 
 app.run(port=5000, debug=True)
