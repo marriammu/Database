@@ -42,9 +42,26 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/PatientSignIn')
+@app.route('/PatientSignIn' , methods=["GET", "POST"])
 def PatientSignIn():
-    return render_template('PatientSignIn.html')
+    if request.method == "POST":
+        UserName = request.form['SignInPatientUsername']
+        Passwd = request.form['SignInPatientPassword']  
+        mycursor.execute("SELECT PatientEmail FROM patients") 
+        emails = mycursor.fetchall()
+        print(emails)
+        for email in emails:
+            if email[0]==UserName:
+                print(UserName,Passwd)
+                mycursor.execute("SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" %(email))
+                password = mycursor.fetchone()
+                print(password[0])
+                if password[0] == Passwd:
+                    return render_template('PatientRecords.html')
+        else:
+            return render_template('PatientSignIn.html')
+    else:
+        return render_template('PatientSignIn.html')
 
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
@@ -63,11 +80,10 @@ def PatientSignUp():
         PatientEmail = request.form['PatientEmail']
         PatientPass = request.form['PatientPass']
         sql = "INSERT INTO patients (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = (PatientFname, PatientLname, PatientGender, PatientBD, PatientSSN, PatientMaritalStat,
-               PatientWeight, PatientBloodGrp, PatientHeight, PatientPhone, PatientEmail, PatientPass)
+        val = (PatientFname, PatientLname, PatientGender, PatientBD, PatientSSN, PatientMaritalStat,PatientWeight, PatientBloodGrp, PatientHeight, PatientPhone, PatientEmail, PatientPass)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('index.html')
+        return render_template('PatientRecords.html')
     else:
         return render_template('PatientSignUp.html')
 
