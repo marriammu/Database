@@ -12,7 +12,7 @@
 
 <body>
 
-
+   
     <div class="wrapper1">
 
         <nav id="sidebar">
@@ -27,13 +27,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
                         </li>
 
                     </ul>
@@ -42,7 +42,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
                         </li>
 
                         <li>
@@ -92,162 +92,42 @@
                             <tr>
 
 
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Middle</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Adress</th>
-                                <th scope="col">Nationality</th>
+                                <th scope="col">#</th> 
+                                <th scope="col">FirstName</th>
+                                <th scope="col">LastName</th>
                                 <th scope="col">Gender</th>
                                 <th scope="col">Birthdate</th>
                                 <th scope="col">SSN</th>
-                                <th scope="col">Bank number</th>
-                                <th scope="col">Marital stat</th>
+                                <th scope="col">MaritalStatue</th>
+                                <th scope="col">Hieght</th>
+                                <th scope="col">Wieght</th>
+                                <th scope="col">BloodGroup</th>
                                 <th scope="col">Phone number</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Password</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
+                            {% for data in doctorsdata %}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
+                                <th scope="row">{{doctorsdata.index(data)+1}}</th> 
+                                <td>{{data.0}}</td>
+                                <td>{{data.1}}</td>
+                                <td>{{data.2}}</td>
+                                <td>{{data.3}}</td>
+                                <td>{{data.4}}</td>
+                                <td>{{data.5}}</td>
+                                <td>{{data.6}}</td>
+                                <td>{{data.7}}</td>
+                                <td>{{data.8}}</td>
+                                <td>{{data.9}}</td>
+                                <td>{{data.10}}</td>
+                                
+
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">9</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">11</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">12</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>Jacob</td>
-                                <td>ali</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">13</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">14</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">15</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">16</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">17</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">18</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            
                         </tbody>
+                        {% endfor %}
                     </table>
                 </div>
             </div>

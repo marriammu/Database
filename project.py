@@ -64,7 +64,7 @@ def PatientSignUp():
         PatientPass = request.form['PatientPass']
         sql = "INSERT INTO patients (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         val = (PatientFname, PatientLname, PatientGender, PatientBD, PatientSSN, PatientMaritalStat,
-               PatientWeight, PatientBloodGrp, PatientHeight, PatientPhone, PatientEmail, PatientPass)
+               PatientHeight, PatientWeight, PatientBloodGrp, PatientPhone, PatientEmail, PatientPass)
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('index.html')
@@ -77,19 +77,27 @@ def DoctorSignIn():
     return render_template('DoctorSignIn.html')
 
 
+@app.route('/AdminSignIn', methods=["GET", "POST"])
+def AdminSignIn():
+
+    if request.method == "POST":
+
+        return render_template('AdminPanel.html')
+    else:
+        return render_template('AdminSignIn.html')
+
+
 @app.route('/AdminPanel')
 def AdminPanel():
     return render_template('AdminPanel.html')
 
 
-@app.route('/DoctorSignUp')
-def DoctorSignUp():
-    return render_template('DoctorSignUp.html')
+@app.route('/AdminPanel/DoctorRecords')
+def DoctorRecords():
+    mycursor.execute("SELECT * FROM Patients")
+    data = mycursor.fetchall()
 
-
-@app.route('/AdminSignIn')
-def AdminSignIn():
-    return render_template('AdminSignIn.html')
+    return render_template('PatientRecords.html', doctorsdata=data)
 
 
 app.run(port=5000, debug=True)
