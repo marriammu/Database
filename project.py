@@ -32,7 +32,7 @@ for x in mycursor:
     if x == ('patients',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender VARCHAR(50),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat VARCHAR(50),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(50),PatientPhone VARCHAR(50),PatientEmail VARCHAR(50),PatientPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -40,8 +40,7 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(250),DoctorMName VARCHAR(250),DoctorLName VARCHAR(250),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD DATE,DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone INT,DoctorBankNum INT ,DoctorPass VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE)")
-
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorPass VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -94,6 +93,16 @@ def PatientSignUp():
         return render_template('index.html')
     else:
         return render_template('PatientSignUp.html')
+
+
+@app.route('/PatientRecords', methods=['POST','GET'])
+def ShowDoctors():
+    if request.method == 'GET':
+        mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName FROM doctors")
+        data1 = mycursor.fetchall()
+        mycursor.execute("SELECT Shift from shifts")
+        data2 = mycursor.fetchall()
+        return render_template("PatientRecords", DoctorNames=data1 ,DoctorsShift=data2)
 
 
 @app.route('/DoctorSignIn')
