@@ -95,14 +95,15 @@ def PatientSignUp():
         return render_template('PatientSignUp.html')
 
 
-@app.route('/PatientRecords', methods=['POST','GET'])
+@app.route('/PatientRecords', methods=['POST', 'GET'])
 def ShowDoctors():
     if request.method == 'GET':
-        mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName FROM doctors")
+        mycursor.execute(
+            "SELECT DoctorFName DoctorMName DoctorLName FROM doctors")
         data1 = mycursor.fetchall()
         mycursor.execute("SELECT Shift from shifts")
         data2 = mycursor.fetchall()
-        return render_template("PatientRecords", DoctorNames=data1 ,DoctorsShift=data2)
+        return render_template("PatientRecords", DoctorNames=data1, DoctorsShift=data2)
 
 
 @app.route('/DoctorSignIn')
