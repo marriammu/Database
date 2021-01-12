@@ -85,21 +85,25 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-3">Gender<span class="required">*</span></label>
+            <!-- <label class="control-label col-sm-3">Gender<span class="required">*</span></label>
             <div class="col-sm-6">
                 <div class="row">
                     <div class="radio">
-                        <div class="col-sm-4">
-                            <label><input name="PatientGender" type="radio" id="FemalePatient" checked >Female</label>
+                        <div class="col-sm-4"> -->
+                            <input type="radio" class="radio" name="PatientGender" value="Female" id="Female" />
+                                    <label for="Female">Female</label>
+                                    <input type="radio" class="radio" name="PatientGender" value="Male" id="Male" />
+                                    <label for="Male">Male</label>
+                            <!-- <label><input name="PatientGender" type="radio" id="FemalePatient" checked >Female</label>
                         </div>
                     </div>
                     <div class="radio">
                         <div class="col-sm-4">
-                            <label><input type="radio" name="PatientGender" id="MalePatient">Male</label>
-                        </div>
+                            <label><input type="radio" name="PatientGender" id="MalePatient" checked>Male</label> -->
+                        <!-- </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
             <label for="PatientBD" class="col-sm-3 control-label">Date of Birth<span class="required">*</span></label>

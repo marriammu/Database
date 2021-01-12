@@ -33,7 +33,6 @@ for x in mycursor:
         y = False
 if y:
     mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50))")
-
 mycursor.execute("SHOW TABLES")
 y = True
 for x in mycursor:
@@ -73,21 +72,21 @@ def PatientSignIn():
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
     if request.method == "POST":
-        PatientFname = request.form['PatientFname']
-        PatientLname = request.form['PatientLname']
-        PatientGender = request.form['PatientGender']
-        PatientBD = request.form['PatientBD']
-        PatientSSN = request.form['PatientSSN']
-        PatientMaritalStat = request.form['PatientMaritalStat']
-        PatientHeight = request.form['PatientHeight']
-        PatientWeight = request.form['PatientHeight']
-        PatientBloodGrp = request.form['PatientBloodGrp']
-        PatientPhone = request.form['PatientPhone']
-        PatientEmail = request.form['PatientEmail']
-        PatientPass = request.form['PatientPass']
+        Patientfirstname = request.form['PatientFname']
+        Patientlastname = request.form['PatientLname']
+        Patientgender = request.form['PatientGender']
+        Patientbirthdate = request.form['PatientBD']
+        Patientssn = request.form['PatientSSN']
+        Patientmaritalstat = request.form['PatientMaritalStat']
+        Patientheight = request.form['PatientHeight']
+        Patientweight = request.form['PatientWeight']
+        Patientbloodgrp = request.form['PatientBloodGrp']
+        Patientphone = request.form['PatientPhone']
+        Patientemail = request.form['PatientEmail']
+        Patientpass = request.form['PatientPass']
         sql = "INSERT INTO patients (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = (PatientFname, PatientLname, PatientGender, PatientBD, PatientSSN, PatientMaritalStat,
-               PatientHeight, PatientWeight, PatientBloodGrp, PatientPhone, PatientEmail, PatientPass)
+        val = (Patientfirstname, Patientlastname, Patientgender, Patientbirthdate, Patientssn, Patientmaritalstat,
+               Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('index.html')
