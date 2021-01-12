@@ -72,6 +72,9 @@
                 <li>
                     <a href="#">Statistical Analysis</a>
                 </li>
+                <li>
+                    <a href="http://127.0.0.1:5000/index">Sign Out</a>
+                </li>
 
 
 
@@ -88,7 +91,7 @@
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn  btn-secondary">
   			<i class="fas fa-align-left"></i>
-  			<span>Toggle Sidebar</span>
+  			
   			
   		</button>
                 </div>
@@ -118,6 +121,7 @@
                             <input type="text" class="form-control" name="DoctorMName" id="DoctorMName" placeholder="Enter Middle Name">
                         </div>
                     </div>
+                    <br>
 
                     <div class="row">
                         <div class="col-md">
@@ -129,6 +133,7 @@
                             <input type="text" class="form-control" name="DoctorAddress" id="DoctorAddress" placeholder="Enter Address">
                         </div>
                     </div>
+                    <br>
 
                     <div class="row">
                         <div class="col-md">
@@ -139,7 +144,7 @@
                             <br>
                             <fieldset>
                                 <div class="some-class">
-                                    <label>Gender</label>
+
                                     <input type="radio" class="radio" name="DoctorGender" value="Female" id="Female" />
                                     <label for="Female">Female</label>
                                     <input type="radio" class="radio" name="DoctorGender" value="Male" id="Male" />
@@ -147,7 +152,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                    </div>
+                    </div><br>
                     <div class="row">
                         <div class="col-md">
                             <label for="DoctorBD" class="form-label">Date of Birth</label>
@@ -157,12 +162,12 @@
                             <label for="DoctorSSN" class="form-label">Social security number</label>
                             <input type="number" class="form-control" name="DoctorSSN" id="DoctorSSN" placeholder="Enter SSN">
                         </div>
-                    </div>
+                    </div><br>
                     <div class="row">
                         <div class="col-md">
                             <label for="DoctorMaritalStat" class="form-label">Marital status</label>
 
-                            <div class="col-sm-9">
+                            <div class="col-md">
                                 <select class="form-control  " name="DoctorMaritalStat" id="DoctorMaritalStat">
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -177,6 +182,7 @@
                         </div>
 
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col-md">
                             <label for="DoctorBankNum" class="form-label">Bank Account Number</label>
@@ -187,13 +193,45 @@
                             <input type="password" class="form-control" name="DoctorPass" id="DoctorPass" placeholder="Enter Password">
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-lg">
+                        <div class="col-md">
+                            <label for="DoctorSalary" class="form-label">Salary</label>
+                            <input type="number" class="form-control" name="DoctorSalary" id="DoctorSalary" placeholder="Enter Salary">
+                        </div>
+                        <br>
+                        <div class="col-md">
+                            <label for="DoctorShift" class="form-label">  Shift</label>
+
+                            <div class="col-md">
+                                <select class="form-control selectbox2 " name="DoctorShift" id="DoctorShift">
+                                
+                                    <option value="12 PM">12 PM</option>
+                                    <option value="4 PM">4 PM</option>
+                                    <option value="8 PM">8 PM</option>
+                                    <option value="12 AM">12 AM</option>
+                                    <option value="4 AM">4 AM</option>
+                                    <option value="8 AM">8 AM</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="DoctorEmploymentDate" class="form-label">Date of employment</label>
+                            <input type="date" class="form-control" name="DoctorEmploymentDate" id="DoctorEmploymentDate">
+                        </div>
+
+                        <div class="col-md">
                             <label for="DoctorEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="DoctorEmail" id="DoctorEmail" placeholder="Enter Email">
                         </div>
 
                     </div>
+                    <br>
+
 
                     <br>
                     <br>
