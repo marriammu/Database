@@ -63,9 +63,10 @@ def PatientSignIn():
                     "SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" % (email))
                 password = mycursor.fetchone()
                 if password[0] == Passwd:
-                    return render_template('PatientRecords.html')
+                    data=email[0]
+                    return render_template('PatientRecords.html' , email=data)
         else:
-            return render_template('PatientSignIn.html')
+                return render_template('PatientSignIn.html')
     else:
         return render_template('PatientSignIn.html')
 
@@ -95,14 +96,37 @@ def PatientSignUp():
         return render_template('PatientSignUp.html')
 
 
-@app.route('/PatientRecords', methods=['POST','GET'])
-def ShowDoctors():
+@app.rout('/PatientPanel/##')##
+def PatientViewProfile():
+    mycursor.execute("SELECT *FROM patients WHERE PatientEmail  = '%s'" % (email))
+    data = mycursor.fetchall()
+    return render_template('PatientRecords.html', patientsdata=data)#eb3ty el data hnak fy el html
+
+
+@app.route('/PatientPanel/##') ##
+def PatientUpdateProfile():
+    if request.method == "POST":
+        PatientFname = request.form['PatientFname']
+        PatientLname = request.form['PatientLname']
+        PatientGender = request.form['PatientGender']
+        PatientBD = request.form['PatientBD']
+        PatientSSN = request.form['PatientSSN']
+        PatientMaritalStat = request.form['PatientMaritalStat']
+        PatientHeight = request.form['PatientHeight']
+        PatientWeight = request.form['PatientHeight']
+        PatientBloodGrp = request.form['PatientBloodGrp']
+        PatientPhone = request.form['PatientPhone']
+        PatientEmail = request.form['PatientEmail']
+        PatientPass = request.form['PatientPass']
+
+
+
+@app.route('/PatientPanel/##', methods=['POST','GET']) ##
+def PatientViewApp():
     if request.method == 'GET':
-        mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName FROM doctors")
-        data1 = mycursor.fetchall()
-        mycursor.execute("SELECT Shift from shifts")
-        data2 = mycursor.fetchall()
-        return render_template("PatientRecords", DoctorNames=data1 ,DoctorsShift=data2)
+        mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName DoctorShift FROM doctors")
+        data = mycursor.fetchall()
+        return render_template("DoctosPatientRecords", doctorspatientdata=data)#eb3ty el data hnak fy el html
 
 
 @app.route('/DoctorSignIn')
@@ -114,7 +138,6 @@ def DoctorSignIn():
 def AdminSignIn():
 
     if request.method == "POST":
-
         return render_template('AdminPanel.html')
     else:
         return render_template('AdminSignIn.html')
@@ -155,7 +178,6 @@ def AddDoctor():
 def DoctorRecords():
     mycursor.execute("SELECT * FROM doctors")
     data = mycursor.fetchall()
-
     return render_template('DoctorRecords.html', doctorsdata=data)
 
 

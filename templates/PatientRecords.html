@@ -108,12 +108,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {% for data in doctorsdata %}
+                                {% for data in patientsdata %}
                                 <tr>
                                     <th scope="row">{{doctorsdata.index(data)+1}}</th>
                                     <td>{{data.0}}</td>
                                     <td>{{data.1}}</td>
-                                    <td>{{data.2}}</td>
                                     <td>{{data.3}}</td>
                                     <td>{{data.4}}</td>
                                     <td>{{data.5}}</td>
@@ -122,7 +121,7 @@
                                     <td>{{data.8}}</td>
                                     <td>{{data.9}}</td>
                                     <td>{{data.10}}</td>
-
+                                    <td>{{data.11}}</td>
                                 </tr>
                             </tr>
                         </tbody>
