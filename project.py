@@ -33,13 +33,22 @@ for x in mycursor:
         y = False
 if y:
     mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
+
 mycursor.execute("SHOW TABLES")
 y = True
 for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50), DoctorEmpDate VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('appointments',):
+        y = False
+if y:
+    mycursor.execute("CREATE TABLE appointments (PatientName VARCHAR(50) Appointment VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -90,18 +99,18 @@ def PatientSignUp():
                Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('index.html')
+        return render_template('PatientPanel.html')
     else:
         return render_template('PatientSignUp.html')
 
-'''
-@app.rout('/PatientPanel/##')##
+
+@app.rout('/PatientPanel/PatientViewProfile')##
 def PatientViewProfile():
     mycursor.execute("SELECT *FROM patients WHERE PatientEmail  = '%s'" % (email))
     data = mycursor.fetchall()
     return render_template('PatientRecords.html', patientsdata=data)#eb3ty el data hnak fy el html
 
-
+'''
 @app.route('/PatientPanel/##') ##
 def PatientUpdateProfile():
     if request.method == "POST":
@@ -120,12 +129,23 @@ def PatientUpdateProfile():
 '''
 
 
-@app.route('/PatientPanel/PatientAddAppoint') 
+@app.route('/PatientPanel/PatientViewAppoint') ####error  PatientViewAppoint or PatientAddAppoint?
 def PatientViewAppoint():
     mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName DoctorShift FROM doctors")
     data = mycursor.fetchall()
+    print(data)
     return render_template("PatientAddAppoint.html", appoint=data)
 
+
+@app.route('/PatientPanel/PatientAddAppoint',methods=['POST','GET']) ###shofy 7war el route dh
+def PatientAddAppoint():
+    if method.request == "POST":
+        appointment = form.request['PatientApointDay']
+        sql = "INSERT INTO appointments (PatientName,Appointment) VALUES (%s,%s)"
+        val = (,appointment)##hangeeb el name mneen ?
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('PatientAddAppoint.html')
 
 
 @app.route('/DoctorSignIn', methods=['POST', 'GET'])
@@ -145,15 +165,12 @@ def DoctorSignIn():
                 print(Password)
                 if Passwd == Password[0]:
                     return render_template('DoctorPanel.html')
-
-                else:
+                else: ##eeeishhh hazaa?
                     MSG = "UNCORRECT PASSWORD,PLEASE TRY AGAIN"
                     return render_template('DoctorSignIn.html', MSG=MSG)
             else:
                 continue
-
         return render_template('index.html')
-
     else:
         return render_template('DoctorSignIn.html')
 
