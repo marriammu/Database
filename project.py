@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template
-
+from flask_sqlalchemy import SQLAlchemy
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -48,7 +48,7 @@ for x in mycursor:
     if x == ('appointments',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50), Appointment VARCHAR(50))")
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFname VARCHAR(50),DoctorMname VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -56,6 +56,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+
 
 
 @app.route('/PatientSignIn', methods=["GET", "POST"])
@@ -77,6 +80,9 @@ def PatientSignIn():
     else:
         return render_template('PatientSignIn.html')
 
+# @app.context_processor()
+# def content_procrssor():
+#     return dict(patient_sign_in = PatientSignIn)
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
@@ -102,50 +108,55 @@ def PatientSignUp():
     else:
         return render_template('PatientSignUp.html')
 
-'''
-@app.route('/PatientPanel/PatientViewProfile')##
-def PatientViewProfile():
-    mycursor.execute("SELECT *FROM patients WHERE PatientEmail  = '%s'" % (email))
-    data = mycursor.fetchall()
-    return render_template('PatientRecords.html', patientsdata=data)#eb3ty el data hnak fy el html
-'''
-'''
-@app.route('/PatientPanel/##') ##
-def PatientUpdateProfile():
-    if request.method == "POST":
-        PatientFname = request.form['PatientFname']
-        PatientLname = request.form['PatientLname']
-        PatientGender = request.form['PatientGender']
-        PatientBD = request.form['PatientBD']
-        PatientSSN = request.form['PatientSSN']
-        PatientMaritalStat = request.form['PatientMaritalStat']
-        PatientHeight = request.form['PatientHeight']
-        PatientWeight = request.form['PatientHeight']
-        PatientBloodGrp = request.form['PatientBloodGrp']
-        PatientPhone = request.form['PatientPhone']
-        PatientEmail = request.form['PatientEmail']
-        PatientPass = request.form['PatientPass']
-'''
+
+# @app.route('/PatientPanel/ViwePatientProfile')##
+# def PatientViewProfile():
+#     PatientSignIn()
+#     mycursor.execute("SELECT *FROM patients")
+#     # WHERE PatientEmail  = '%s'" % (email))
+#     data = mycursor.fetchall()
+#     #query.filter_by().first()
+#     return render_template('PatientRecords.html', data=patientdata)#eb3ty el data hnak fy el html
 
 
-@app.route('/PatientPanel/PatientViewAppoint') ####error  PatientViewAppoint or PatientAddAppoint?
+# @app.route('/PatientPanel/##') ##
+# def PatientUpdateProfile():
+#     if request.method == "POST":
+#         PatientFname = request.form['PatientFname']
+#         PatientLname = request.form['PatientLname']
+#         PatientGender = request.form['PatientGender']
+#         PatientBD = request.form['PatientBD']
+#         PatientSSN = request.form['PatientSSN']
+#         PatientMaritalStat = request.form['PatientMaritalStat']
+#         PatientHeight = request.form['PatientHeight']
+#         PatientWeight = request.form['PatientHeight']
+#         PatientBloodGrp = request.form['PatientBloodGrp']
+#         PatientPhone = request.form['PatientPhone']
+#         PatientEmail = request.form['PatientEmail']
+#         PatientPass = request.form['PatientPass']
+
+
+
+@app.route('/PatientPanel/PatientAddAppoint')
 def PatientViewAppoint():
-    mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName DoctorShift FROM doctors")
+    mycursor.execute("SELECT DoctorFName, DoctorMName, DoctorShift FROM doctors")
     data = mycursor.fetchall()
-    print(data)
     return render_template("PatientAddAppoint.html", appoint=data)
 
-'''
-@app.route('/PatientPanel/PatientAddAppoint',methods=['POST','GET']) ###shofy 7war el route dh
+
+@app.route('/PatientPanel/PatientAddAppoint', methods=['POST','GET']) 
 def PatientAddAppoint():
-    if method.request == "POST":
-        appointment = form.request['PatientApointDay']
-        sql = "INSERT INTO appointments (PatientName,Appointment) VALUES (%s,%s)"
-        val = (,appointment)##hangeeb el name mneen ?
+    if request.method == 'POST':
+        AppointmentDate = request.form['PatientApointDay']
+        AppointmentTime = request.form['PatientApointTime']
+        DoctorFname = request.form['PatientApointDoc']
+        #DoctorMname
+        sql = "INSERT INTO appointments (AppointmentDate,AppointmentTime,DoctorFname) VALUES (%s,%s,%s)"
+        val = (AppointmentDate,AppointmentTime,DoctorFname)##hangeeb el name mneen ?
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('PatientAddAppoint.html')
-'''
+
 
 @app.route('/DoctorSignIn', methods=['POST', 'GET'])
 def DoctorSignIn():
@@ -161,8 +172,8 @@ def DoctorSignIn():
                 Password = mycursor.fetchone()
                 if Passwd == Password[0]:
                     return render_template('DoctorPanel.html')
-            else:
-                return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
+        else:
+            return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
     else:
         return render_template('DoctorSignIn.html')
 
