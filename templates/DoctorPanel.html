@@ -73,7 +73,7 @@
                     <a href="#">Statistical Analysis</a>
                 </li>
                 <li>
-                    <a href="127.0.0.1:5000/index">Sign Out</a>
+                    <a href="127.0.0.1:5000/">Sign Out</a>
                 </li>
 
 
@@ -99,110 +99,22 @@
 
             <br>
             <div>
-                <div class="form-container1">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="form-container10">
 
 
 
 
                     <h2>Welcome To Your Profile!</h2>
-                    <!-- <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" /> -->
-                    <img src="../static/img/doctor.svg" alt="Doctor" class="center" height="87" width="100" />
+                    <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" />
+                    <!-- <img src="../static/img/doctor.svg" alt="Doctor" class="center" height="87" width="100" /> -->
                     <br>
                     <br>
 
-                    <!-- <br>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorFName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="DoctorFName" id="DoctorFName" placeholder="Enter First Name" autofocus>
-                        </div>
-                        <div class="col-md">
-                            <label for="DoctorMName" class="form-label">Middle Name</label>
-                            <input type="text" class="form-control" name="DoctorMName" id="DoctorMName" placeholder="Enter Middle Name">
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorLname" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="DoctorLname" id="DoctorLname" placeholder="Enter Last Name">
-                        </div>
-                        <div class="col-md">
-                            <label for="DoctorAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" name="DoctorAddress" id="DoctorAddress" placeholder="Enter Address">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorNationality" class="form-label">Nationality</label>
-                            <input type="text" class="form-control" name="DoctorNationality" id="DoctorNationality" placeholder="Enter Nationality">
-                        </div>
-                        <div class="col-md">
-                            <br>
-                            <fieldset>
-                                <div class="some-class">
-                                    <label>Gender</label>
-                                    <input type="radio" class="radio" name="DoctorGender" value="Female" id="Female" />
-                                    <label for="Female">Female</label>
-                                    <input type="radio" class="radio" name="DoctorGender" value="Male" id="Male" />
-                                    <label for="Male">Male</label>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorBD" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" name="DoctorBD" id="DoctorBD">
-                        </div>
-                        <div class="col-md">
-                            <label for="DoctorSSN" class="form-label">Social security number</label>
-                            <input type="number" class="form-control" name="DoctorSSN" id="DoctorSSN" placeholder="Enter SSN">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorMaritalStat" class="form-label">Marital status</label>
-
-                            <div class="col-sm-9">
-                                <select class="form-control  " name="DoctorMaritalStat" id="DoctorMaritalStat">
-                                    <option value="Single">Single</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Widowed">Widowed</option>
-                                    <option value="Divorced">Divorced</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <label for="DoctorPhone" class="form-label">Phone number</label>
-                            <input type="tel" class="form-control" name="DoctorPhone" id="DoctorPhone" placeholder="Enter Phone No.">
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <label for="DoctorBankNum" class="form-label">Bank Account Number</label>
-                            <input type="number" class="form-control" name="DoctorBankNum" id="DoctorBankNum" placeholder="Enter Bank Account No.">
-                        </div>
-                        <div class="col-md">
-                            <label for="DoctorPass" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="DoctorPass" id="DoctorPass" placeholder="Enter Password">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg">
-                            <label for="DoctorEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="DoctorEmail" id="DoctorEmail" placeholder="Enter Email">
-                        </div>
-
-                    </div>
-
-                    <br>
-                    <br>
-                    <button type="submit" class="btn btn-primary btn-block">Register</button> -->
-                    <!-- <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a> -->
-                    <!-- <a href="AddDoctor.html" class="btn btn-primary col-12">Submit</a> -->
                 </div>
             </div>
         </div>
@@ -217,7 +129,7 @@
 
 
     <!-- <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script> -->
-    <script src="../static/javascript/js/bootstrap.js"></script>
+    <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
     <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>

@@ -81,10 +81,10 @@ body {
 }
 
 .form-container7 {
-    max-width: 500px !important;
+    max-width: 530px !important;
     padding: 5px !important;
     max-height: 620px;
-    /* margin: 0 auto; */
+    margin: 0 auto;
     border-radius: 0.3em;
     background-color: #f2f2f2;
     opacity: 0.83;
@@ -94,6 +94,26 @@ body {
 .form-container8 {
     max-width: 500px;
     height: 620px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+.form-container9 {
+    max-width: 800px;
+    max-height: 600px;
+    margin: auto auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+.form-container10 {
+    max-width: 560px !important;
     padding: 15px;
     margin: 0 auto;
     border-radius: 0.3em;
