@@ -32,14 +32,14 @@ for x in mycursor:
     if x == ('patients',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
 mycursor.execute("SHOW TABLES")
 y = True
 for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorPass VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50), DoctorEmpDate VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -63,8 +63,8 @@ def PatientSignIn():
                 password = mycursor.fetchone()
                 if password[0] == Passwd:
                     data=email[0]
-                    return render_template('PatientRecords.html' , email=data)
-        else:
+                    return render_template('PatientPanel.html', email=data)
+            else:
                 return render_template('PatientSignIn.html')
     else:
         return render_template('PatientSignIn.html')
@@ -120,25 +120,56 @@ def PatientUpdateProfile():
 '''
 
 
-@app.route('/PatientPanel/PatientAddAppoint', methods=['POST','GET']) ##
+@app.route('/PatientPanel/PatientAddAppoint') 
 def PatientViewAppoint():
-    if request.method == 'GET':
-        mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName DoctorShift FROM doctors")
-        data = mycursor.fetchall()
-        return render_template("PatientAddAppoint.html", appoint=data)
+    mycursor.execute("SELECT DoctorFName DoctorMName DoctorLName DoctorShift FROM doctors")
+    data = mycursor.fetchall()
+    return render_template("PatientAddAppoint.html", appoint=data)
 
 
 
-@app.route('/DoctorSignIn')
+@app.route('/DoctorSignIn', methods = ['POST','GET'])
 def DoctorSignIn():
-    return render_template('DoctorSignIn.html')
+    if request.method =='POST':
+        UserName = request.form['SignInDoctorUsername']
+        Passwd=request.form['SignInDoctorPassword']
+        mycursor.execute("SELECT DoctorEmail FROM doctors ")
+        myresult=mycursor.fetchall()
+        Emails = myresult
+        for x in Emails:
+            print(x)
+            if UserName == x[0]:
+                mycursor.execute("SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " %(UserName))
+                Password=mycursor.fetchone()
+                print(Password)
+                if Passwd == Password[0]:
+                    return render_template('DoctorPanel.html')
+                    
+                else:
+                    MSG="UNCORRECT PASSWORD,PLEASE TRY AGAIN"
+                    return render_template('DoctorSignIn.html',MSG=MSG)
+            else:
+                continue
+            
+        return render_template('index.html')
+    
+    else:
+        return render_template('DoctorSignIn.html')
+
+   
 
 
 @app.route('/AdminSignIn', methods=["GET", "POST"])
 def AdminSignIn():
-
     if request.method == "POST":
-        return render_template('AdminPanel.html')
+        UserName = request.form['SignInAdminUsername']
+        Pass = request.form['SignInAdminPassword']
+        print(UserName, Pass)
+        if UserName == 'Admin' and Pass == '1234':
+            print('hello')
+            return render_template('AdminPanel.html')
+        else:
+            return render_template('AdminSignIn.html', error='incorrect email or password')
     else:
         return render_template('AdminSignIn.html')
 
