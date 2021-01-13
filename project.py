@@ -159,4 +159,12 @@ def DoctorRecords():
     return render_template('DoctorRecords.html', doctorsdata=data)
 
 
+@app.route('/AdminPanel/PatientRecords')
+def PatientRecords():
+    mycursor.execute("SELECT * FROM patients")
+    data = mycursor.fetchall()
+
+    return render_template('PatientRecords.html', patientsdata=data)
+
+
 app.run(port=5000, debug=True)

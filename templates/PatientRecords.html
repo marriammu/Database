@@ -29,13 +29,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
                         </li>
 
                     </ul>
@@ -44,7 +44,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
                         </li>
 
                         <li>
@@ -64,7 +64,7 @@
                     <a href="#">Statistical Analysis</a>
                 </li>
                 <li>
-                    <a href="127.0.0.1:5000/index">Sign Out</a>
+                    <a href="127.0.0.1:5000/">Sign Out</a>
                 </li>
 
 
@@ -111,9 +111,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    {% for data in doctorsdata %}
+                                    {% for data in patientsdata %}
                                     <tr>
-                                        <th scope="row">{{doctorsdata.index(data)+1}}</th>
+                                        <th scope="row">{{patientsdata.index(data)+1}}</th>
                                         <td>{{data.0}}</td>
                                         <td>{{data.1}}</td>
                                         <td>{{data.2}}</td>
@@ -127,6 +127,7 @@
                                         <td>{{data.10}}</td>
 
                                     </tr>
+                                    {% endfor %}
                                 </tr>
                             </tbody>
                         </table>
