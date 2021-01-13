@@ -48,7 +48,7 @@ for x in mycursor:
     if x == ('appointments',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE appointments (PatientName VARCHAR(50) Appointment VARCHAR(50))")
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50), Appointment VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -71,10 +71,9 @@ def PatientSignIn():
                     "SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" % (email))
                 password = mycursor.fetchone()
                 if password[0] == Passwd:
-                    data=email[0]
-                    return render_template('PatientPanel.html', email=data)
+                    return render_template('PatientPanel.html')
             else:
-                return render_template('PatientSignIn.html')
+                return render_template('PatientSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('PatientSignIn.html')
 
@@ -103,13 +102,13 @@ def PatientSignUp():
     else:
         return render_template('PatientSignUp.html')
 
-
-@app.rout('/PatientPanel/PatientViewProfile')##
+'''
+@app.route('/PatientPanel/PatientViewProfile')##
 def PatientViewProfile():
     mycursor.execute("SELECT *FROM patients WHERE PatientEmail  = '%s'" % (email))
     data = mycursor.fetchall()
     return render_template('PatientRecords.html', patientsdata=data)#eb3ty el data hnak fy el html
-
+'''
 '''
 @app.route('/PatientPanel/##') ##
 def PatientUpdateProfile():
@@ -136,7 +135,7 @@ def PatientViewAppoint():
     print(data)
     return render_template("PatientAddAppoint.html", appoint=data)
 
-
+'''
 @app.route('/PatientPanel/PatientAddAppoint',methods=['POST','GET']) ###shofy 7war el route dh
 def PatientAddAppoint():
     if method.request == "POST":
@@ -146,31 +145,24 @@ def PatientAddAppoint():
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('PatientAddAppoint.html')
-
+'''
 
 @app.route('/DoctorSignIn', methods=['POST', 'GET'])
 def DoctorSignIn():
     if request.method == 'POST':
         UserName = request.form['SignInDoctorUsername']
         Passwd = request.form['SignInDoctorPassword']
-        mycursor.execute("SELECT DoctorEmail FROM doctors ")
-        myresult = mycursor.fetchall()
-        Emails = myresult
+        mycursor.execute("SELECT DoctorEmail FROM doctors")
+        Emails = mycursor.fetchall()
         for x in Emails:
-            print(x)
             if UserName == x[0]:
                 mycursor.execute(
-                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (UserName))
+                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (x))
                 Password = mycursor.fetchone()
-                print(Password)
                 if Passwd == Password[0]:
                     return render_template('DoctorPanel.html')
-                else: ##eeeishhh hazaa?
-                    MSG = "UNCORRECT PASSWORD,PLEASE TRY AGAIN"
-                    return render_template('DoctorSignIn.html', MSG=MSG)
             else:
-                continue
-        return render_template('index.html')
+                return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
     else:
         return render_template('DoctorSignIn.html')
 
@@ -187,7 +179,7 @@ def AdminSignIn():
             print('hello')
             return render_template('AdminPanel.html')
         else:
-            return render_template('AdminSignIn.html', error='incorrect email or password')
+            return render_template('AdminSignIn.html', error='Incorrect Email or Password')
     else:
         return render_template('AdminSignIn.html')
 

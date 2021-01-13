@@ -38,13 +38,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
                         </li>
 
                     </ul>
@@ -53,11 +53,11 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
                         </li>
 
                         <li>
-                            <a href="127.0.0.1:5000/AddDevice">Add Device</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/AddDevice">Add Device</a>
                         </li>
 
 
@@ -74,7 +74,7 @@
                     <a href="#">Statistical Analysis</a>
                 </li>
                 <li>
-                    <a href="127.0.0.1:5000/index">Sign Out</a>
+                    <a href="http://127.0.0.1:5000/index">Sign Out</a>
                 </li>
 
 
@@ -100,7 +100,7 @@
 
             <br>
             <div>
-                <form class="form-container2" method="POST" role="form" action="">
+                <form class="form-container2" method="POST" role="form" action="http://127.0.0.1:5000/AdminPanel/AddDevice">
 
 
 
@@ -152,7 +152,8 @@
 
                     <br>
                     <br>
-                    <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a>
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <!-- <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a> -->
                     <!-- <a href="AddDoctor.html" class="btn btn-primary col-12">Submit</a> -->
                 </form>
             </div>
