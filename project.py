@@ -67,7 +67,7 @@ def PatientSignIn():
             else:
                 return render_template('PatientSignIn.html')
     else:
-        return render_template('PatientSignIn.html')
+        return render_template('index.html')
 
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
@@ -128,41 +128,42 @@ def PatientViewAppoint():
 
 
 
-@app.route('/DoctorSignIn', methods = ['POST','GET'])
+@app.route('/DoctorSignIn', methods=['POST', 'GET'])
 def DoctorSignIn():
-    if request.method =='POST':
+    if request.method == 'POST':
         UserName = request.form['SignInDoctorUsername']
-        Passwd=request.form['SignInDoctorPassword']
+        Passwd = request.form['SignInDoctorPassword']
         mycursor.execute("SELECT DoctorEmail FROM doctors ")
-        myresult=mycursor.fetchall()
+        myresult = mycursor.fetchall()
         Emails = myresult
         for x in Emails:
             print(x)
             if UserName == x[0]:
-                mycursor.execute("SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " %(UserName))
-                Password=mycursor.fetchone()
+                mycursor.execute(
+                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (UserName))
+                Password = mycursor.fetchone()
                 print(Password)
                 if Passwd == Password[0]:
                     return render_template('DoctorPanel.html')
-                    
+
                 else:
-                    MSG="UNCORRECT PASSWORD,PLEASE TRY AGAIN"
-                    return render_template('DoctorSignIn.html',MSG=MSG)
+                    MSG = "UNCORRECT PASSWORD,PLEASE TRY AGAIN"
+                    return render_template('DoctorSignIn.html', MSG=MSG)
             else:
                 continue
-            
+
         return render_template('index.html')
-    
+
     else:
         return render_template('DoctorSignIn.html')
 
-   
 
-
-@app.route('/AdminSignIn', methods=["GET", "POST"])
+@app.route('/AdminSignIn', methods=['GET', 'POST'])
 def AdminSignIn():
-    if request.method == "POST":
-        UserName = request.form['SignInAdminUsername']
+    if request.method == 'POST':
+        print(request)
+        # print(request.form)
+        UserName = request.form['7mada']
         Pass = request.form['SignInAdminPassword']
         print(UserName, Pass)
         if UserName == 'Admin' and Pass == '1234':
