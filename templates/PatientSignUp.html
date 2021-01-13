@@ -12,10 +12,10 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style2.css"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
+    <link rel="stylesheet" href="../static/css/style2.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}"> -->
+    <link rel="stylesheet" href="../static/css/css/bootstrap.css">
     <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -90,20 +90,34 @@
                 <div class="row">
                     <div class="radio">
                         <div class="col-sm-4"> -->
-                            <input type="radio" class="radio" name="PatientGender" value="Female" id="Female" />
-                                    <label for="Female">Female</label>
-                                    <input type="radio" class="radio" name="PatientGender" value="Male" id="Male" />
-                                    <label for="Male">Male</label>
-                            <!-- <label><input name="PatientGender" type="radio" id="FemalePatient" checked >Female</label>
+
+            <!-- <label><input name="PatientGender" type="radio" id="FemalePatient" checked >Female</label>
                         </div>
                     </div>
                     <div class="radio">
                         <div class="col-sm-4">
                             <label><input type="radio" name="PatientGender" id="MalePatient" checked>Male</label> -->
-                        <!-- </div>
+            <!-- </div>
                     </div>
                 </div>
             </div> -->
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Gender<span class="required">*</span></label>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="radio">
+                        <div class="col-sm-4">
+                            <label><input type="radio" class="radio" name="PatientGender" value="Female" id="Female" >Female</label>
+                        </div>
+                    </div>
+                    <div class="radio">
+                        <div class="col-sm-4">
+                            <label><input type="radio" class="radio" name="PatientGender" value="Male" id="Male">Male</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="PatientBD" class="col-sm-3 control-label">Date of Birth<span class="required">*</span></label>
@@ -175,9 +189,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="PatientPass" class="col-sm-3 control-label">Confirm Password<span class="required">*</span></label>
+            <label for="ConfirmPatientPass" class="col-sm-3 control-label">Confirm Password<span class="required">*</span></label>
             <div class="col-sm-9">
-                <input type="password" name="PatientPass" id="PatientPass" placeholder="Password" class="form-control">
+                <input type="password" name="PatientPass" id="ConrifmPatientPass" placeholder="Password" class="form-control">
             </div>
         </div>
 
