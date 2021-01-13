@@ -50,6 +50,15 @@ for x in mycursor:
 if y:
     mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFname VARCHAR(50),DoctorMname VARCHAR(50))")
 
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('devices',):
+        y = False
+if y:
+    mycursor.execute(
+        "CREATE TABLE devices (DeviceSerialNo INT NOT NULL PRIMARY KEY,DeviceBrand VARCHAR(50),TotalDialysis VARCHAR(50),LastMaint VARCHAR(50),NextMaint VARCHAR(50))")
+
 app = Flask(__name__)
 
 
@@ -181,14 +190,10 @@ def DoctorSignIn():
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
 def AdminSignIn():
     if request.method == 'POST':
-        print(request)
-        # print(request.form)
-        UserName = request.form['7mada']
+        UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
-        print(UserName, Pass)
-        if UserName == 'Admin' and Pass == '1234':
-            print('hello')
-            return render_template('AdminPanel.html')
+        if UserName == 'Admin@hos' and Pass == '1234':
+            return AdminPanel()
         else:
             return render_template('AdminSignIn.html', error='Incorrect Email or Password')
     else:
@@ -224,9 +229,26 @@ def AddDoctor():
                BD, SSN, MaritalStat, Phone, BankNum, Pass, Email,DoctorSalary,DoctorShift,DoctorEmpDate)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('AdminPanel.html')
+        return AdminPanel()
     else:
         return render_template('AddDoctor.html')
+
+
+@app.route('/AdminPanel/AddDevice', methods=['POST', 'GET'])
+def AddDevice():
+    if request.method == 'POST':
+        SerialNumber = request.form['DeviceSerialNo']
+        Brand = request.form['DeviceBrand']
+        DialysisPerDay = request.form['TotalDialysis']
+        LastMent = request.form['LastMaint']
+        UpcomingMent = request.form['NextMaint']
+        sql = "INSERT INTO devices (DeviceSerialNo,DeviceBrand,TotalDialysis,LastMaint,NextMaint) VALUES(%s,%s,%s,%s,%s)"
+        val = (SerialNumber, Brand, DialysisPerDay, LastMent, UpcomingMent)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return AdminPanel()
+    else:
+        return render_template('AddDevice.html')
 
 
 @app.route('/AdminPanel/DoctorRecords')
