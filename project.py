@@ -33,6 +33,7 @@ for x in mycursor:
         y = False
 if y:
     mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
+
 mycursor.execute("SHOW TABLES")
 y = True
 for x in mycursor:
@@ -40,6 +41,15 @@ for x in mycursor:
         y = False
 if y:
     mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50), DoctorEmpDate VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50))")
+
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('devices',):
+        y = False
+if y:
+    mycursor.execute(
+        "CREATE TABLE devices (DeviceSerialNo INT NOT NULL PRIMARY KEY,DeviceBrand VARCHAR(50),TotalDialysis VARCHAR(50),LastMaint VARCHAR(50),NextMaint VARCHAR(50))")
 
 app = Flask(__name__)
 
@@ -138,14 +148,10 @@ def DoctorSignIn():
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
 def AdminSignIn():
     if request.method == 'POST':
-        print(request)
-        # print(request.form)
         UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
-        print(UserName, Pass)
-        if UserName == 'Admin' and Pass == 'admin.123@45':
-            print('hello')
-            return render_template('AdminPanel.html')
+        if UserName == 'Admin@hos' and Pass == '1234':
+            return AdminPanel()
         else:
             return render_template('AdminSignIn.html', error='Incorrect Email or Password')
     else:
@@ -178,9 +184,26 @@ def AddDoctor():
                BD, SSN, MaritalStat, Phone, BankNum, Pass, Email)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('AdminPanel.html')
+        return AdminPanel()
     else:
         return render_template('AddDoctor.html')
+
+
+@app.route('/AdminPanel/AddDevice', methods=['POST', 'GET'])
+def AddDevice():
+    if request.method == 'POST':
+        SerialNumber = request.form['DeviceSerialNo']
+        Brand = request.form['DeviceBrand']
+        DialysisPerDay = request.form['TotalDialysis']
+        LastMent = request.form['LastMaint']
+        UpcomingMent = request.form['NextMaint']
+        sql = "INSERT INTO devices (DeviceSerialNo,DeviceBrand,TotalDialysis,LastMaint,NextMaint) VALUES(%s,%s,%s,%s,%s)"
+        val = (SerialNumber, Brand, DialysisPerDay, LastMent, UpcomingMent)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return AdminPanel()
+    else:
+        return render_template('AddDevice.html')
 
 
 @app.route('/AdminPanel/DoctorRecords')
