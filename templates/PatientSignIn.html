@@ -13,8 +13,8 @@
         }
     </style>
 
-    <!-- <link rel="stylesheet" href="../static/css/style2.css">
-    <link rel="stylesheet" href="../static/css/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style2.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/css/bootstrap.css"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
 
@@ -74,22 +74,22 @@
 
                 <form class="form-container" role="form" method="post" action="http://127.0.0.1:5000/PatientSignIn">
                     <h2>Sign In</h2>
-                    
+
                     <!-- <img src="../static/img/Patient.svg " alt="Patient " class="center " height="90 " width="105 " /> -->
                     <img src="{{url_for( 'static', filename='img/Patient.svg' )}} " alt="Doctor " class="center " height="90 " width="105 " />
 
                     <div class="mb-3 ">
-                        <label for="SignInPatientUsername " class="form-label ">User Name</label>
+                        <label for="SignInPatientUsername" class="form-label ">User Name</label>
                         <input type="email " class="form-control " name="SignInPatientUsername" id="SignInPatientUsername" aria-describedby="emailHelp " placeholder="Enter User Name ">
 
                     </div>
                     <div class="mb-3 ">
                         <label for="SignInPatientPassword" class="form-label ">Password</label>
                         <input type="password " class="form-control " name="SignInPatientPassword" id="SignInPatientPassword" placeholder="Enter password">
-                        {{er}}
                     </div>
-                    
-                    <button type="submit " class="btn btn-primary col-12 ">Submit</button>
+                    <p class="alertMsg">{{er}}</p>
+
+                    <button type="submit " class="btn btn-primary col-12 ">Sign In</button>
                 </form>
             </div>
         </div>
