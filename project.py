@@ -64,7 +64,7 @@ def PatientSignIn():
                 if password[0] == Passwd:
                     return render_template('PatientPanel.html')
         else:
-            return render_template('PatientSignIn.html')
+            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('PatientSignIn.html')
 
@@ -147,7 +147,7 @@ def AdminSignIn():
             print('hello')
             return render_template('AdminPanel.html')
         else:
-            return render_template('AdminSignIn.html', error='incorrect email or password')
+            return render_template('AdminSignIn.html', error='Incorrect Email or Password')
     else:
         return render_template('AdminSignIn.html')
 
