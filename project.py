@@ -67,7 +67,7 @@ def PatientSignIn():
             else:
                 return render_template('PatientSignIn.html')
     else:
-        return render_template('index.html')
+        return render_template('PatientSignIn.html')
 
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
