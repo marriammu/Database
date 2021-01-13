@@ -38,10 +38,10 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/PatientRecords">View Profile</a>
+                            <a href="#">View Profile</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DoctorRecords">Update Profile</a>
+                            <a href="#">Update Profile</a>
                         </li>
 
                     </ul>
@@ -50,11 +50,11 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/AddDoctor">Add Appointment</a>
+                            <a href="127.0.0.1:5000/PatientAddAppoint">Add Appointment</a>
                         </li>
 
                         <li>
-                            <a href="127.0.0.1:5000/AddDevice">View Appointments</a>
+                            <a href="#">View Appointments</a>
                         </li>
 
 
@@ -164,15 +164,16 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {% for data in doctorsdata %}
+                                                {% for data in appoint %}
                                                 <tr>
                                                     <!-- <th scope="row ">{{doctorsdata.index(data)+1}}</th> -->
                                                     <td>{{data.0}}</td>
                                                     <td>{{data.1}} {{data.2}} {{data.3}}</td>
+ 
+            
                                                 </tr>
                                             </tr>
                                         </tbody>
-                                        {% endfor %}
                                     </table>
                                 </div>
                             </div>
