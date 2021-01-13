@@ -14,10 +14,14 @@
     </style>
 
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style2.css" />
-    <link rel="stylesheet" href="../static/css/css/bootstrap.css" /> </head> -->
+
+    <!-- <link rel="stylesheet" href="../static/css/style2.css" /> -->
+    <!-- <link rel="stylesheet" href="../static/css/css/bootstrap.css" /> -->
+</head>
 
 
 
@@ -25,88 +29,91 @@
 
 
 
-    <body>
-        <div class="container-fluid bg">
-            <div class="myNav">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="img/logo.svg">HIS</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+    <div class="container-fluid bg">
+        <div class="myNav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="img/logo.svg">HIS</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/PatientSignUp">Sign up</a>
-                                </li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/PatientSignUp">Sign up</a>
+                            </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   Sign in
                                 </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">patient</a>
-                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
-                                            <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
-                                    </ul>
-                                    </li>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">Patient</a>
+                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
+                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
+                                </ul>
+                                </li>
 
 
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-md-3">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-3">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-                <form  class="form-container " role="form"  method = "POST"  action="http://127.0.0.1:5000/AdminSignIn"  >
+            <form class="form-container " role="form" method="POST" action="http://127.0.0.1:5000/AdminSignIn">
 
                 <form action="#" role="form" method="POST" class="form-container ">
 
-                <form action="http://127.0.0.1:5000/AdminSignIn" class="form-container " method = "post" role ='form'>
+                    <form action="http://127.0.0.1:5000/AdminSignIn" class="form-container " method="post" role='form'>
 
-                    <h2>Sign In</h2>
-                   
+                        <h2>Sign In</h2>
 
-                    <!-- <img src="{{url_for( 'static', filename='img/admin.svg' )}} " alt="Doctor " class="center " height="90 " width="105 " /> -->
-                    <img src="../static/img/admin.svg " alt="Doctor " class="center " height="90 " width="105 " />
 
                     <div class="mb-3 ">
-                        <label for="7mada" class="form-label ">Username</label>
-                        <input type=" email " class="form-control " name="7mada" id="7mada"  placeholder="Enter Username "> 
+                        <label for="SignInAdminUsername" class="form-label ">Username</label>
+                        <input type=" email " class="form-control " name="SignInAdminUsername" id="SignInAdminUsername"  placeholder="Enter Username "> 
 
-                    </div>
-                    <div class="mb-3 ">
-                        <label for="SignInAdminPassword" class="form-label ">Password</label>
-                        <input type="password" class="form-control " name="SignInAdminPassword" id="SignInAdminPassword" placeholder="Enter password ">
-                        {{error}}
-                    </div>
-                    <!-- <button type="submit" class="btn btn-primary co1-12">Sign In</button> -->
+                        <div class="mb-3 ">
+                            <label for="7mada" class="form-label ">Email</label>
+                            <input type=" email " class="form-control " name="7mada" id="7mada" placeholder="Enter Email ">
 
-                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="SignInAdminPassword" class="form-label ">Password</label>
+                            <input type="password" class="form-control " name="SignInAdminPassword" id="SignInAdminPassword" placeholder="Enter password ">
 
-                </form>
-            </div>
+                        </div>
+                        <p class="alertMsg">{{error}}</p>
+                        <br>
+                        <!-- <button type="submit" class="btn btn-primary co1-12">Sign In</button> -->
+
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+                    </form>
         </div>
-        </div>
+    </div>
+    </div>
 
 
 
 
-        <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-        <!-- <script src="../static/javascript/js/bootstrap.js "></script> -->
-        <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script>
-    </body>
+    <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
+    <!-- <script src="../static/javascript/js/bootstrap.js "></script> -->
+    <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script>
+</body>
 
 </html>

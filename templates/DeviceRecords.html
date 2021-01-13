@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/style2.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style2.css"> -->
 </head>
 
 <body>
@@ -29,13 +29,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
                         </li>
 
                     </ul>
@@ -44,7 +44,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
                         </li>
 
                         <li>
@@ -88,11 +88,11 @@
             </nav>
 
             <br><br>
-            <div class=form-container4>
+            <div class=form-container9>
                 <div class=wrapper2>
                     <h1>Device Records</h1>
-                    <div class=tablewrap>
-                        <table class="table table-stripped table-light table-hover">
+                    <div id=" no-more-tables">
+                        <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
                             <thead>
                                 <tr>
 
@@ -185,65 +185,22 @@
                                     <td>@fat</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">10</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Jacob</td>
-                                    <td>ali</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">11</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Jacob</td>
-                                    <td>ali</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">12</th>
+                                    <th scope="row">9</th>
                                     <td colspan="2">Larry the Bird</td>
                                     <td>@twitter</td>
                                     <td>Jacob</td>
                                     <td>ali</td>
                                     <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">13</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">14</th>
                                     <td>Jacob</td>
-                                    <td>Thornton</td>
+                                    <td>ali</td>
+                                    <td>@fat</td>
+                                    <td>Jacob</td>
+                                    <td>ali</td>
                                     <td>@fat</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">15</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">16</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">17</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">18</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+
+
+
                             </tbody>
                         </table>
                     </div>

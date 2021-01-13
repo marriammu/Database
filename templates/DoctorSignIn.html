@@ -13,10 +13,10 @@
         }
     </style>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style2.css">
-    <link rel="stylesheet" href="../static/css/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/css/bootstrap.css') }}"> -->
+    <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="../static/css/css/bootstrap.css">
 
 
 
@@ -69,7 +69,11 @@
                 <br>
                 <br>
 
+<<<<<<< HEAD
                 <form class="form-container" role = "form" method ="POST" action = "http://127.0.0.1:5000/DoctorSignIn" >
+=======
+                <form class="form-container" role="form" method="post" action="http://127.0.0.1:5000/DoctorSignIn">
+>>>>>>> dcc475aa15400117a5f4a9d66d97a184024a9bc4
                     <h2>Sign In</h2>
 
                     <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" />
@@ -85,7 +89,7 @@
                         <input type="password" class="form-control" name="SignInDoctorPassword" id="SignInDoctorPassword" placeholder="Enter password">
                     </div>
 
-                    <button type="submit" class="btn btn-primary col-12">Submit</button>
+                    <button type="submit" class="btn btn-primary col-12">Sign In</button>
                 </form>
             </div>
         </div>
@@ -95,8 +99,8 @@
 
 
         <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-        <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
-        <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
+        <!-- <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script> -->
+        <script src="../static/javascript/js/bootstrap.js"></script>
     </body>
 
 </html>

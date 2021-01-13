@@ -148,6 +148,17 @@ table tr {
     border-radius: 1%;
 }
 
+.tablewrap4 {
+    opacity: 0.85;
+    max-height: 500px;
+    max-width: 600px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    margin: auto;
+    background-color: #FDFDFE !important;
+    border-radius: 1%;
+}
+
 
 /* ::-webkit-scrollbar {
     width: 5px;
@@ -216,3 +227,60 @@ h1 {
     padding: 0%;
     display: inline-block;
 } */
+
+@media only screen and (max-width: 800px) {
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+        /* max-height: 500px;
+        max-width: 600px;
+        overflow-x: scroll;
+        overflow-y: scroll; */
+    }
+    #no-more-tables,
+    #no-more-tables table {
+        padding-left: 0;
+        padding-right: 0;
+        /* max-height: 500px;
+        max-width: 600px; */
+        /* overflow-x: scroll;
+        overflow-y: scroll; */
+    }
+    #no-more-tables tr {
+        border-bottom: 1px solid #eee;
+    }
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        white-space: normal;
+        text-align: left;
+        padding: 1px 8px;
+        /* max-height: 500px;
+        max-width: 600px; */
+        /* overflow-x: scroll;
+        overflow-y: scroll; */
+    }
+    #no-more-tables td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 100%;
+        padding-right: 10px;
+        /* white-space: nowrap; */
+        text-align: left;
+        /* font-weight: bold;
+        max-height: 500px;
+        max-width: 600px; */
+        /* overflow-x: scroll;
+        overflow-y: scroll; */
+    }
+}
+
+.table-responsive {
+    overflow-y: auto;
+}

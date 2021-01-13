@@ -38,13 +38,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
                         </li>
                         <li>
-                            <a href="127.0.0.1:5000/DeviceRecords">Device Records</a>
+                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
                         </li>
 
                     </ul>
@@ -53,11 +53,11 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="127.0.0.1:5000/AddDoctor">Add Doctor</a>
+                            <a href="127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
                         </li>
 
                         <li>
-                            <a href="127.0.0.1:5000/AddDevice">Add Device</a>
+                            <a href="127.0.0.1:5000/AdminPanel/AddDevice">Add Device</a>
                         </li>
 
 
@@ -106,8 +106,8 @@
 
                     <h2>Update Device</h2>
 
-                    <img src="../static/img/update.svg" alt="Doctor" class="center" height="87" width="100" />
-                    <!-- <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" /> -->
+                    <!-- <img src="../static/img/update.svg" alt="Update" class="center" height="87" width="100" /> -->
+                    <img src="{{url_for('static', filename='img/update.svg')}}" alt="Update" class="center" height="87" width="100" />
 
                     <br>
                     <div class="row">
@@ -117,7 +117,7 @@
                         </div>
 
                     </div>
-                    <br>
+
 
 
 
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col-md">
                             <label for="TotalDialysis" class="form-label">Update Total dialysis/day</label>
-                            <input type="text" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Update dialysis/day">
+                            <input type="number" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Update dialysis/day">
 
                         </div>
                     </div>
@@ -145,8 +145,9 @@
 
                     <br>
                     <br>
+                    <button type="submit" class="btn btn-primary col-12">Update Device</button>
                     <!-- <a href="http://127.0.0.1:5000/AddDoctor" class="btn btn-primary col-12">Submit</a> -->
-                    <a href="AddDoctor.html" class="btn btn-primary col-12">Update</a>
+                    <!-- <a href="AddDoctor.html" class="btn btn-primary col-12">Update</a> -->
                 </form>
             </div>
         </div>

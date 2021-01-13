@@ -172,10 +172,10 @@ def AdminSignIn():
     if request.method == 'POST':
         print(request)
         # print(request.form)
-        UserName = request.form['7mada']
+        UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         print(UserName, Pass)
-        if UserName == 'Admin' and Pass == '1234':
+        if UserName == 'Admin' and Pass == 'admin.123@45':
             print('hello')
             return render_template('AdminPanel.html')
         else:

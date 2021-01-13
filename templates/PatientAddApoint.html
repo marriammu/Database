@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -38,10 +38,10 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">View Profile</a>
+                            <a href="http://127.0.0.1:5000/PatientPanel/ViewPatientProfile">View Profile</a>
                         </li>
                         <li>
-                            <a href="#">Update Profile</a>
+                            <a href="http://127.0.0.1:5000/PatientPanel/UpdatePatientProfile">Update Profile</a>
                         </li>
 
                     </ul>
@@ -50,11 +50,15 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
+<<<<<<< HEAD
                             <a href="http://127.0.0.1:5000/PatientAddAppoint">Add Appointment</a>
+=======
+                            <a href="http://127.0.0.1:5000/PatientPanel/PatientAddAppoint">Add Appointment</a>
+>>>>>>> dcc475aa15400117a5f4a9d66d97a184024a9bc4
                         </li>
 
                         <li>
-                            <a href="#">View Appointments</a>
+                            <a href="http://127.0.0.1:5000/PatientPanel/PatientViewAppoints">View Appointments</a>
                         </li>
 
 
@@ -62,6 +66,12 @@
                     </ul>
                 </li>
                 <li>
+<<<<<<< HEAD
+=======
+                    <a href="http://127.0.0.1:5000/PatientPanel/PatientScan">Scans</a>
+                </li>
+                <li>
+>>>>>>> dcc475aa15400117a5f4a9d66d97a184024a9bc4
                     <a href="http://127.0.0.1:5000/">Sign Out</a>
                 </li>
 
@@ -96,8 +106,8 @@
                             <form class="form-container8" method="POST" role="form" action="http://127.0.0.1:5000/PatientAddAppoint">
                                 <h2>Make An Appointment</h2>
 
-                                <!-- <img src="../static/img/Appointment.svg" alt="Doctor" class="center" height="87" width="100" /> -->
-                                <img src="{{url_for('static', filename='img/Appointment.svg')}}" alt="Doctor" class="center" height="87" width="100" />
+                                <!-- <img src="../static/img/Appointment.svg" alt="Appointment" class="center" height="87" width="100" /> -->
+                                <img src="{{url_for('static', filename='img/Appointment.svg')}}" alt="Appointment" class="center" height="87" width="100" />
 
                                 <br>
                                 <div class="row">
@@ -111,19 +121,19 @@
                                 </div>
                                 <br>
 
-                                <div class="row ">
-                                    <div class="col-lg ">
-                                        <label for="PatientApointTime " class="form-label ">Appointment Time </label>
-                                        <input type="time" class="form-control " name="PatientApointTime " id="PatientApointTime " ">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <label for="PatientApointTime" class="form-label">Appointment Time </label>
+                                        <input type="time" class="form-control" name="PatientApointTime" id="PatientApointTime">
 
                                     </div>
                                 </div>
 
                                 <br>
-                                <div class="row ">
-                                    <div class="col-md ">
-                                        <label for="PatientApointDoc " class="form-label ">Doctor's Name</label>
-                                        <input type="text " class="form-control " name="PatientApointDoc " id="PatientApointDoc " placeholder="Enter Doctors name ">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <label for="PatientApointDoc" class="form-label">Doctor's Name</label>
+                                        <input type="text" class="form-control" name="PatientApointDoc" id="PatientApointDoc" placeholder="Enter Doctor's Name">
 
                                     </div>
                                 </div>
@@ -133,40 +143,49 @@
 
 
                                 <br>
-                                
-                                <a href="http://127.0.0.1:5000/PatientAddAppoint " class="btn btn-primary col-12 ">Request Appointment</a>
-                        
+                                <button type="submit" class="btn btn-primary col-12">Request Appointment</button>
+
+
+
                             </form>
                         </div>
 
                     </div>
                     <br>
-                    <div class="col-lg ">
-                        <div class="form-container7 ">
-                            <div class=wrapper3>
+                    <div class="col-lg">
+                        <div class="form-container7">
+                            <div class="wrapper3">
                                 <h2>Doctors Shifts</h2>
-                                <!-- <img src="../static/img/shift.svg " alt="Doctor " class="center " height="87 " width="100 " /> -->
-                                <img src="{{url_for( 'static', filename='img/Appointment.svg' )}} " alt="Doctor " class="center " height="87 " width="100 " />
+                                <!-- <img src="../static/img/shift.svg" alt="Shift" class="center" height="87" width="100" /> -->
+                                <img src="{{url_for( 'static', filename='img/shift.svg' )}} " alt="Shift" class="center" height="87" width="100" />
                                 <br>
-                                <div class=tablewrap3>
-                                    <table class="table table-stripped table-light table-hover ">
+                                <div class="tablewrap3">
+                                    <table class="table table-stripped table-light table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col ">Doctor Name</th>
-                                                <th scope="col ">Shift</th>
+                                                <th scope="col">Doctor Name</th>
+                                                <th scope="col">Shift</th>
                                                 <!-- <th scope="col ">LastName</th> -->
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 {% for data in appoint %}
                                                 <tr>
+<<<<<<< HEAD
                                                     <th scope="row">{{appoint.index(data)+1}}</th>
                                                     <td>{{data.0}}</td>
                                                     <td>{{data.1}} {{data.2}} {{data.3}}</td>
  
             
+=======
+                                                    <!-- <th scope="row ">{{doctorsdata.index(data)+1}}</th> -->
+                                                    <td>Ahmed</td>
+                                                    <td>8 AM</td>
+
+
+>>>>>>> dcc475aa15400117a5f4a9d66d97a184024a9bc4
                                                 </tr>
                                             </tr>
                                         </tbody>
@@ -181,13 +200,13 @@
 
 
 
-                        </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
 
 
@@ -200,8 +219,8 @@
 
 
     <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-    <!-- <script src="../static/javascript/js/bootstrap.js "></script> -->
-    <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script>
+    <script src="../static/javascript/js/bootstrap.js "></script>
+    <!-- <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
