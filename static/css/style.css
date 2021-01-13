@@ -127,7 +127,20 @@ table tr {
 .tablewrap {
     opacity: 0.85;
     height: 460px;
-    width: 745px;
+    width: 780px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    margin: auto;
+    background-color: #FDFDFE !important;
+    border-radius: 1%;
+}
+
+.tablewrap3 {
+    opacity: 0.85;
+    height: 410px;
+    width: 480px;
+    padding: 15px;
+    margin: 0 auto;
     overflow-x: scroll;
     overflow-y: scroll;
     margin: auto;
@@ -185,6 +198,12 @@ h1 {
 }
 
 .wrapper2 {
+    margin: 0 auto !important;
+    padding: 0%;
+    text-align: center;
+}
+
+.wrapper3 {
     margin: 0 auto !important;
     padding: 0%;
     text-align: center;
