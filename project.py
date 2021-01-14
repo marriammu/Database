@@ -197,7 +197,7 @@ def AdminSignIn():
     if request.method == 'POST':
         print(request)
         # print(request.form)
-        UserName = request.form['7mada']
+        UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         print(UserName, Pass)
         if UserName == 'Admin' and Pass == '1234':
