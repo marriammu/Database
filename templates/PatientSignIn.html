@@ -50,7 +50,7 @@
                                   Sign in
                                 </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">patient</a>
+                                        <li><a class="dropdown-item" href="http://127.0.0.1:5000/PatientSignIn">Patient</a>
                                             <li><a class="dropdown-item" href="http://127.0.0.1:5000/DoctorSignIn">Doctor</a></li>
                                             <li><a class="dropdown-item" href="http://127.0.0.1:5000/AdminSignIn">Admin</a></li>
                                     </ul>
@@ -79,13 +79,13 @@
                     <img src="{{url_for( 'static', filename='img/Patient.svg' )}} " alt="Doctor " class="center " height="90 " width="105 " />
 
                     <div class="mb-3 ">
-                        <label for="SignInPatientUsername" class="form-label ">Username</label>
-                        <input type="email " class="form-control " name="SignInPatientUsername" id="SignInPatientUsername" aria-describedby="emailHelp " placeholder="Enter User Name ">
+                        <label for="SignInPatientUsername" class="form-label ">Email</label>
+                        <input type="email" class="form-control " name="SignInPatientUsername" id="SignInPatientUsername" aria-describedby="emailHelp " placeholder="Enter User Name ">
 
                     </div>
                     <div class="mb-3 ">
                         <label for="SignInPatientPassword" class="form-label ">Password</label>
-                        <input type="password " class="form-control " name="SignInPatientPassword" id="SignInPatientPassword" placeholder="Enter password">
+                        <input type="password" class="form-control " name="SignInPatientPassword" id="SignInPatientPassword" placeholder="Enter password">
                     </div>
                     <p class="alertMsg">{{er}}</p>
 
