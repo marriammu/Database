@@ -36,7 +36,7 @@ for x in mycursor:
     if x == ('patients',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50),PatientContactUs TEXT)")
+    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50),PatientContactUs TEXT)")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -44,7 +44,7 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN VARCHAR(50) ,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -128,7 +128,7 @@ def PatientSignUp():
         return render_template('PatientSignUp.html')
 
 
-@app.route('/PatientPanel/ViewPatientProfile')
+@app.route('/PatientPanel/ViewPatientProfile')#
 def PatientViewProfile():
     mycursor.execute(
         "SELECT * FROM  patients WHERE PatientEmail = %s ", (session['username'],))
@@ -176,6 +176,8 @@ def UpdatePatientProfile():
                 val = (PatientSSN,session['username'])
                 mycursor.execute(sql, val)
                 mydb.commit()
+        if not 'PatientSSN':
+            return render_template('UpdatePatientProfile.html',msg='YOU MUST ENTER YOUR PASSWORD')
         if 'PatientMaritalStat':
                 sql = "UPDATE patients SET PatientMaritalStat=%s WHERE PatientEmail = %s"
                 val = (PatientMaritalStat,session['username'])
@@ -284,6 +286,11 @@ def PatientContactUs():
         return render_template('/PatientContactUs.html')
 
 
+@app.route('/PatientPanel/PatientMedicalHistory')
+def PatientMedicalHistory():
+    PatientTestResults
+
+
 @app.route('/DoctorSignIn', methods=["GET", "POST"])
 def DoctorSignIn():
     if request.method == "POST":
@@ -306,6 +313,8 @@ def DoctorSignIn():
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
 def AdminSignIn():
     if request.method == 'POST':
+        print(request)
+        # print(request.form)
         UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         if UserName == 'Admin@hos' and Pass == '1234':
@@ -345,7 +354,7 @@ def AddDoctor():
                BD, SSN, MaritalStat, Phone, BankNum, Pass, Email, DoctorSalary, DoctorShift, DoctorEmpDate)
         mycursor.execute(sql, val)
         mydb.commit()
-        return AdminPanel()
+        return render_template('AdminPanel.html')
     else:
         return render_template('AddDoctor.html')
 #
@@ -367,7 +376,7 @@ def AddDevice():
         return render_template('AddDevice.html')
 
 
-@app.route('/AdminPanel/AdminUpdate', methods=['POST', 'GET'])
+@app.route('/AdminPanel/AdminUpdate',methods=['POST','GET'])
 def AdminUpdate():
     if request.method=='POST':
         DeviceSerialNo = request.form['DeviceSerialNo']
@@ -380,9 +389,6 @@ def AdminUpdate():
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('AdminUpdate.html')
-    else:
-        return render_template('AdminUpdate.html')
-    
 
 
 @app.route('/AdminPanel/DoctorRecords')
