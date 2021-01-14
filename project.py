@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, render_template,url_for,redirect
+
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -193,7 +193,8 @@ def AdminSignIn():
         UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         if UserName == 'Admin@hos' and Pass == '1234':
-            return AdminPanel()
+            #return AdminPanel()
+            return redirect(url_for('AdminPanel'))
         else:
             return render_template('AdminSignIn.html', error='Incorrect Email or Password')
     else:
@@ -246,10 +247,16 @@ def AddDevice():
         val = (SerialNumber, Brand, DialysisPerDay, LastMent, UpcomingMent)
         mycursor.execute(sql, val)
         mydb.commit()
-        return AdminPanel()
+       # return AdminPanel()
+        return redirect(url_for('AdminPanel'))
     else:
         return render_template('AddDevice.html')
 
+@app.route('/AdminPanel/AdminUpdate',methods=['POST','GET'])
+def AdminUpdate():
+    if request.method
+
+    return render_template('AdminUpdate.html')
 
 @app.route('/AdminPanel/DoctorRecords')
 def DoctorRecords():
