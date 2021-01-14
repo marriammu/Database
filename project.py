@@ -1,6 +1,8 @@
-from flask import Flask, request, render_template,url_for,redirect
-
+from flask import Flask, request, render_template,url_for,redirect,session
+#from flask_login import LoginManager
 import mysql.connector
+
+#login_manager = LoginManager()
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -60,7 +62,9 @@ if y:
         "CREATE TABLE devices (DeviceSerialNo INT NOT NULL PRIMARY KEY,DeviceBrand VARCHAR(50),TotalDialysis VARCHAR(50),LastMaint VARCHAR(50),NextMaint VARCHAR(50))")
 
 app = Flask(__name__)
+app.secret_key = 'mew'
 
+#login_manager.init_app(app)
 
 @app.route('/')
 def index():
@@ -75,23 +79,26 @@ def PatientSignIn():
     if request.method == "POST":
         UserName = request.form['SignInPatientUsername']
         Passwd = request.form['SignInPatientPassword']
-        mycursor.execute("SELECT PatientEmail FROM patients")
-        emails = mycursor.fetchall()
-        for email in emails:
-            if email[0] == UserName:
-                mycursor.execute(
-                    "SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" % (email))
-                password = mycursor.fetchone()
-                if password[0] == Passwd:
-                    return render_template('PatientPanel.html')
-            else:
-                return render_template('PatientSignIn.html', er='Incorretct Email or Password')
+        mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",(UserName,Passwd))
+        email = mycursor.fetchone()
+        if email:
+            session['loggedin'] = True
+            session['id'] = UserName
+            session['username'] = UserName 
+            return render_template('PatientPanel.html')
+        else:
+            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('PatientSignIn.html')
 
 # @app.context_processor()
 # def content_procrssor():
 #     return dict(patient_sign_in = PatientSignIn)
+@app.route('/logout')
+def logout():
+   session.clear()
+   return render_template('index.html')
+
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
@@ -118,14 +125,13 @@ def PatientSignUp():
         return render_template('PatientSignUp.html')
 
 
-# @app.route('/PatientPanel/ViwePatientProfile')##
-# def PatientViewProfile():
-#     PatientSignIn()
-#     mycursor.execute("SELECT *FROM patients")
-#     # WHERE PatientEmail  = '%s'" % (email))
-#     data = mycursor.fetchall()
-#     #query.filter_by().first()
-#     return render_template('PatientRecords.html', data=patientdata)#eb3ty el data hnak fy el html
+@app.route('/PatientPanel/ViewPatientProfile')
+def PatientViewProfile():
+    mycursor.execute("SELECT * FROM  patients WHERE PatientEmail = %s ",(session['username'],))
+    # WHERE PatientEmail  = '%s'" % (email))
+    email = mycursor.fetchone()
+
+    return render_template('ViewPatientProfile.html', data=email)#eb3ty el data hnak fy el html
 
 
 # @app.route('/PatientPanel/##') ##
@@ -254,7 +260,8 @@ def AddDevice():
 
 @app.route('/AdminPanel/AdminUpdate',methods=['POST','GET'])
 def AdminUpdate():
-    if request.method
+    if request.method=='POST':
+        pass
 
     return render_template('AdminUpdate.html')
 
