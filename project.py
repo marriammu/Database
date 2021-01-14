@@ -246,7 +246,7 @@ def AdminUpdate():
         mydb.commit()
         return render_template('AdminUpdate.html')
 
-
+##
 @app.route('/AdminPanel/DoctorRecords')
 def DoctorRecords():
     mycursor.execute("SELECT * FROM doctors")
