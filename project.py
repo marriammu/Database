@@ -90,15 +90,6 @@ def PatientSignIn():
     else:
         return render_template('PatientSignIn.html')
 
-# @app.context_processor()
-# def content_procrssor():
-#     return dict(patient_sign_in = PatientSignIn)
-@app.route('/logout')
-def logout():
-   session.clear()
-   return render_template('index.html')
-
-
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
     if request.method == "POST":
@@ -119,7 +110,7 @@ def PatientSignUp():
                Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('PatientPanel.html')
+        return render_template('PatientSignUp.html',msg='YOU SIGNED UP SUCCESSFULLY')
     else:
         return render_template('PatientSignUp.html')
 
@@ -131,25 +122,6 @@ def PatientViewProfile():
     data = mycursor.fetchall()
     #query.filter_by().first()
     return render_template('ViewPatientProfile.html', patientdata=data)#eb3ty el data hnak fy el html
-
-
-# @app.route('/PatientPanel/##') ##
-# def PatientUpdateProfile():
-#     if request.method == "POST":
-#         PatientFname = request.form['PatientFname']
-#         PatientLname = request.form['PatientLname']
-#         PatientGender = request.form['PatientGender']
-#         PatientBD = request.form['PatientBD']
-#         PatientSSN = request.form['PatientSSN']
-#         PatientMaritalStat = request.form['PatientMaritalStat']
-#         PatientHeight = request.form['PatientHeight']
-#         PatientWeight = request.form['PatientHeight']
-#         PatientBloodGrp = request.form['PatientBloodGrp']
-#         PatientPhone = request.form['PatientPhone']
-#         PatientEmail = request.form['PatientEmail']
-#         PatientPass = request.form['PatientPass']
-
-
 
 @app.route('/PatientPanel/PatientAddAppoint')
 def PatientViewAppoint():
@@ -171,25 +143,40 @@ def PatientAddAppoint():
         mydb.commit()
         return render_template('PatientAddAppoint.html')
 
-
-@app.route('/DoctorSignIn', methods=['POST', 'GET'])
+@app.route('/DoctorSignIn', methods=["GET", "POST"])
 def DoctorSignIn():
-    if request.method == 'POST':
-        UserName = request.form['SignInDoctorUsername']
-        Passwd = request.form['SignInDoctorPassword']
-        mycursor.execute("SELECT DoctorEmail FROM doctors")
-        Emails = mycursor.fetchall()
-        for x in Emails:
-            if UserName == x[0]:
-                mycursor.execute(
-                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (x))
-                Password = mycursor.fetchone()
-                if Passwd == Password[0]:
-                    return render_template('DoctorPanel.html')
+    if request.method == "POST":
+        DoctorUserName = request.form['SignInDoctorUsername']
+        DoctorPasswd = request.form['SignInDoctorPassword']
+        mycursor.execute("SELECT * FROM doctors WHERE DoctorEmail = %s AND DoctorPass = %s ",(DoctorUserName,DoctorPasswd))
+        DoctorInfo = mycursor.fetchone()
+        if DoctorInfo:
+            session['loggedin'] = True
+            session['id'] = DoctorUserName
+            session['username'] = DoctorUserName 
+            return render_template('DoctorPanel.html')
         else:
-            return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
+            return render_template('DoctorSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('DoctorSignIn.html')
+# @app.route('/DoctorSignIn', methods=['POST', 'GET'])
+# def DoctorSignIn():
+#     if request.method == 'POST':
+#         UserName = request.form['SignInDoctorUsername']
+#         Passwd = request.form['SignInDoctorPassword']
+#         mycursor.execute("SELECT DoctorEmail FROM doctors")
+#         Emails = mycursor.fetchall()
+#         for x in Emails:
+#             if UserName == x[0]:
+#                 mycursor.execute(
+#                     "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (x))
+#                 Password = mycursor.fetchone()
+#                 if Passwd == Password[0]:
+#                     return render_template('DoctorPanel.html')
+#         else:
+#             return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
+#     else:
+#         return render_template('DoctorSignIn.html')
 
 
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
@@ -284,6 +271,12 @@ def PatientRecords():
     data = mycursor.fetchall()
 
     return render_template('PatientRecords.html', patientsdata=data)
+
+
+@app.route('/SignOut')
+def logout():
+   session.clear()
+   return render_template('index.html')    
 
 
 app.run(port=5000, debug=True)
