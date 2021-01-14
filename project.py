@@ -34,7 +34,7 @@ for x in mycursor:
     if x == ('patients',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN INT NOT NULL PRIMARY KEY,PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender VARCHAR(50),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250),PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -42,7 +42,7 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender VARCHAR(25),DoctorBD VARCHAR(50),DoctorSSN VARCHAR(50),DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) ,DoctorPass VARCHAR(50),DoctorSalary VARCHAR(50),DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -64,7 +64,7 @@ if y:
 app = Flask(__name__)
 app.secret_key = 'mew'
 
-#login_manager.init_app(app)
+# login_manager.init_app(app)
 
 
 @app.route('/')
@@ -106,11 +106,24 @@ def PatientSignUp():
         Patientphone = request.form['PatientPhone']
         Patientemail = request.form['PatientEmail']
         Patientpass = request.form['PatientPass']
+
+        mycursor.execute("SELECT PatientEmail FROM patients")
+        patientE = mycursor.fetchall()
+        # print(Patientemail)
+        for x in patientE:
+            #print(x[0])
+            if x[0] == Patientemail:
+                # print(x[0])
+                return render_template('PatientSignUp.html', msg='Email is already exist')
+            else:
+                continue
+        
         sql = "INSERT INTO patients (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         val = (Patientfirstname, Patientlastname, Patientgender, Patientbirthdate, Patientssn, Patientmaritalstat,
                Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
         mycursor.execute(sql, val)
-        mydb.commit()
+        #print(Patientemail)
+        mydb.commit()    
         return render_template('PatientSignUp.html', msg='YOU SIGNED UP SUCCESSFULLY')
     else:
         return render_template('PatientSignUp.html')
@@ -138,7 +151,7 @@ def PatientAddAppoint():
         AppointmentDate = request.form['PatientApointDay']
         AppointmentTime = request.form['PatientApointTime']
         DoctorFname = request.form['PatientApointDoc']
-        #DoctorMname
+        # DoctorMname
         sql = "INSERT INTO appointments (AppointmentDate,AppointmentTime,DoctorFname) VALUES (%s,%s,%s)"
         val = (AppointmentDate, AppointmentTime,
                DoctorFname)  # hangeeb el name mneen ?
@@ -172,7 +185,7 @@ def AdminSignIn():
         UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         if UserName == 'Admin@hos' and Pass == '1234':
-            #return AdminPanel()
+            # return AdminPanel()
             return redirect(url_for('AdminPanel'))
         else:
             return render_template('AdminSignIn.html', error='Incorrect Email or Password')
@@ -208,8 +221,19 @@ def AddDoctor():
         val = (Fname, Mname, Lname, Address, Nationality, Gender,
                BD, SSN, MaritalStat, Phone, BankNum, Pass, Email, DoctorSalary, DoctorShift, DoctorEmpDate)
         mycursor.execute(sql, val)
+        mycursor.execute("SELECT DoctorEmail FROM doctors")
+        DoctorE = mycursor.fetchall()
+        print(DoctorE)
+        for x in DoctorE:
+            print(x)
+            if x == ('Email',):
+                print(x)
+                return render_template('AddDoctor.html', msg='Email is already exist')
+            else:       
+                continue
         mydb.commit()
-        return AdminPanel()
+        return render_template('AddDoctor.html', msg='DOCTOR ADDED SUCCESSFULLY')
+        #return AdminPanel()
     else:
         return render_template('AddDoctor.html')
 
@@ -257,8 +281,8 @@ def PatientRecords():
 
 @app.route('/SignOut')
 def logout():
-   session.clear()
-   return render_template('index.html')
+    session.clear()
+    return render_template('index.html')
 
 
 app.run(port=5000, debug=True)
