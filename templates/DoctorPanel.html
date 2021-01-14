@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -35,43 +35,40 @@
 
 
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorPanel/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/ViewDoctorProfile">View Profile</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorPanel/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/UpdateDoctorProfile">Update Profile</a>
                         </li>
-                        <li>
-                            <a href="http://127.0.0.1:5000/DoctorPanel/DeviceRecords">Device Records</a>
-                        </li>
+
 
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorPanel/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsPatientRecords">Patient Records</a>
                         </li>
 
                         <li>
-                            <a href="http://127.0.0.1:5000/DoctorPanel/AddDevice">Add Device</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsDeviceRecords">Device Records</a>
                         </li>
 
 
                     </ul>
                 </li>
+
                 <li>
-                    <a href="#">Update</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalInfo">Patients Medical Info</a>
                 </li>
                 <li>
-                    <a href="#">Appointments</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorViewAppoints">View Appointments</a>
                 </li>
-                <li>
-                    <a href="#">Statistical Analysis</a>
-                </li>
+
                 <li>
                     <a href="http://127.0.0.1:5000/SignOut">Sign Out</a>
                 </li>

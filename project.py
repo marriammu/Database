@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template, url_for, redirect, session
+import os
+from flask import Flask, request, render_template, url_for, redirect, session, flash
+#from werkzeug import secure_filename
 #from flask_login import LoginManager
 import mysql.connector
 
@@ -50,7 +52,7 @@ for x in mycursor:
     if x == ('appointments',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFname VARCHAR(50),DoctorMname VARCHAR(50))")
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),Doctorname VARCHAR(50),PatientEmail VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -58,8 +60,15 @@ for x in mycursor:
     if x == ('devices',):
         y = False
 if y:
-    mycursor.execute(
-        "CREATE TABLE devices (DeviceSerialNo INT NOT NULL PRIMARY KEY,DeviceBrand VARCHAR(50),TotalDialysis VARCHAR(50),LastMaint VARCHAR(50),NextMaint VARCHAR(50))")
+    mycursor.execute("CREATE TABLE devices (DeviceSerialNo INT NOT NULL PRIMARY KEY,DeviceBrand VARCHAR(50),TotalDialysis VARCHAR(50),LastMaint VARCHAR(50),NextMaint VARCHAR(50))")
+
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('testresults',):
+        y = False
+if y:
+    mycursor.execute("CREATE TABLE testresults (TestName VARCHAR(50),TestDate VARCHAR(50),TestFile VARCHAR(333))")
 
 app = Flask(__name__)
 app.secret_key = 'mew'
@@ -118,6 +127,9 @@ def PatientSignUp():
             else:
                 continue
         
+        ConfirmPatientPass = request.form['ConfirmPatientPass']
+        if Patientpass != ConfirmPatientPass:
+            return render_template('PatientSignUp.html',msg="Password doesn't match")
         sql = "INSERT INTO patients (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         val = (Patientfirstname, Patientlastname, Patientgender, Patientbirthdate, Patientssn, Patientmaritalstat,
                Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
@@ -129,7 +141,7 @@ def PatientSignUp():
         return render_template('PatientSignUp.html')
 
 
-@app.route('/PatientPanel/ViewPatientProfile')
+@app.route('/PatientPanel/ViewPatientProfile')#
 def PatientViewProfile():
     mycursor.execute(
         "SELECT * FROM  patients WHERE PatientEmail = %s ", (session['username'],))
@@ -137,10 +149,34 @@ def PatientViewProfile():
     return render_template('ViewPatientProfile.html', data=email)
 
 
+@app.route('/PatientPanel/UpdatePatientProfile')
+def UpdatePatientProfile():
+    if request.method == 'POST':
+        Patientfirstname = request.form['PatientFname']
+        Patientlastname = request.form['PatientLname']
+        Patientgender = request.form['PatientGender']
+        Patientbirthdate = request.form['PatientBD']
+        Patientssn = request.form['PatientSSN']
+        Patientmaritalstat = request.form['PatientMaritalStat']
+        Patientheight = request.form['PatientHeight']
+        Patientweight = request.form['PatientWeight']
+        Patientbloodgrp = request.form['PatientBloodGrp']
+        Patientphone = request.form['PatientPhone']
+        Patientemail = request.form['PatientEmail']
+        Patientpass = request.form['PatientPass']
+        sql = "UPDATE patients SET PatientFname=%s,PatientLname=%s,PatientGender=%s,PatientBD=%s,PatientSSN=%s,PatientMaritalStat=%s,PatientHeight=%s,PatientWeight=%s,PatientBloodGrp=%s,PatientPhone=%s,PatientEmail=%s,PatientPass=%s PatientEmail=%s WHERE PatientEmail=%s"
+        val = (Patientfirstname, Patientlastname, Patientgender, Patientbirthdate, Patientssn, Patientmaritalstat,
+               Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass,session['username'])
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('ViewPatientProfile.html',msg='YOU UPDATED YOUR PROFILE SUCCESSFULLY')
+    else:
+        return render_template('UpdatePatientProfile.html')
+
+
 @app.route('/PatientPanel/PatientAddAppoint')
-def PatientViewAppoint():
-    mycursor.execute(
-        "SELECT DoctorFName, DoctorMName, DoctorShift FROM doctors")
+def PatientViewAppoints():
+    mycursor.execute("SELECT DoctorFName, DoctorMName, DoctorShift FROM doctors")
     data = mycursor.fetchall()
     return render_template("PatientAddAppoint.html", appoint=data)
 
@@ -150,14 +186,49 @@ def PatientAddAppoint():
     if request.method == 'POST':
         AppointmentDate = request.form['PatientApointDay']
         AppointmentTime = request.form['PatientApointTime']
-        DoctorFname = request.form['PatientApointDoc']
-        # DoctorMname
-        sql = "INSERT INTO appointments (AppointmentDate,AppointmentTime,DoctorFname) VALUES (%s,%s,%s)"
-        val = (AppointmentDate, AppointmentTime,
-               DoctorFname)  # hangeeb el name mneen ?
+        Doctorname = request.form['PatientApointDoc']
+        mycursor.execute(
+        "SELECT PatientFname PatientLname FROM  patients WHERE PatientEmail = %s ", (session['username'],))
+        Patient_name = mycursor.fetchone()
+        sql = "INSERT INTO appointments (PatientFname,AppointmentDate,AppointmentTime,Doctorname,PatientEmail) VALUES (%s,%s,%s,%s,%s)"
+        val = (Patient_name[0],AppointmentDate, AppointmentTime, Doctorname,session['username'])
         mycursor.execute(sql, val)
         mydb.commit()
+        return render_template('PatientViewAppoints.html')
+    else:
         return render_template('PatientAddAppoint.html')
+
+
+@app.route('/PatientPanel/PatientViewAppoint')
+def PatientViewMyAppoint():
+    mycursor.execute(
+        "SELECT AppointmentDate AppointmentTime Doctorname FROM appointments WHERE PatientEmail = %s ", (session['username'],))
+    data = mycursor.fetchall()
+    return render_template('PatientViewAppoints.html', app=data)
+
+
+@app.route('/PatientPanel/PatientTestResults',methods=['POST','GET'])
+def PatientTestResults():
+    if request.method == 'POST':
+        TestName = request.form['TestName']
+        TestDate = request.form['TestDate']
+        #TestFile = request.form['TestFile']
+        #TestFile = request.files['TestFile']
+        #TestFile.save(secure_filename(TestFile.filename))
+        sql = "INSERT INTO testresults (TestName,TestDate) VALUES (%s,%s)"
+        val = (TestName,TestDate)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('PatientTestResults.html')
+    else:
+        return render_template('PatientTestResults.html')
+
+
+@app.route('/PatientPanel/PatientTestResults')
+def ViewTestResults():
+    mycursor.execute("SELECT *FROM testresults")
+    data = mycursor.fetchall()
+    return render_template('PatientTestResults.html',TestData=data)
 
 
 @app.route('/DoctorSignIn', methods=["GET", "POST"])
@@ -182,6 +253,8 @@ def DoctorSignIn():
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
 def AdminSignIn():
     if request.method == 'POST':
+        print(request)
+        # print(request.form)
         UserName = request.form['SignInAdminUsername']
         Pass = request.form['SignInAdminPassword']
         if UserName == 'Admin@hos' and Pass == '1234':
@@ -256,14 +329,21 @@ def AddDevice():
         return render_template('AddDevice.html')
 
 
-@app.route('/AdminPanel/AdminUpdate', methods=['POST', 'GET'])
+@app.route('/AdminPanel/AdminUpdate',methods=['POST','GET'])
 def AdminUpdate():
-    if request.method == 'POST':
-        pass
+    if request.method=='POST':
+        DeviceSerialNo = request.form['DeviceSerialNo']
+        DeviceBrand = request.form['DeviceBrand']
+        TotalDialysis = request.form['TotalDialysis']
+        LastMaint = request.form['LastMaint']
+        NextMaint = request.form['NextMaint']
+        sql = "INSERT INTO devices (DeviceSerialNo,DeviceBrand,TotalDialysis,LastMaint,NextMaint) VALUES (%s,%s,%s,%s,%s)"
+        val = (DeviceSerialNo,DeviceBrand,TotalDialysis,LastMaint,NextMaint)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('AdminUpdate.html')
 
-    return render_template('AdminUpdate.html')
-
-
+##
 @app.route('/AdminPanel/DoctorRecords')
 def DoctorRecords():
     mycursor.execute("SELECT * FROM doctors")
@@ -275,7 +355,6 @@ def DoctorRecords():
 def PatientRecords():
     mycursor.execute("SELECT * FROM patients")
     data = mycursor.fetchall()
-
     return render_template('PatientRecords.html', patientsdata=data)
 
 
@@ -284,5 +363,5 @@ def logout():
     session.clear()
     return render_template('index.html')
 
-
+##whaaat 
 app.run(port=5000, debug=True)
