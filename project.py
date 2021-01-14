@@ -1,11 +1,8 @@
-from flask import Flask, jsonify, request, render_template, url_for,redirect,session
-#from flask_mysqldb import MySQL
-#import MySQLdb.cursors
-import re
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, render_template,url_for,redirect,session
+#from flask_login import LoginManager
 import mysql.connector
 
-#mysql = MySQL(app)
+#login_manager = LoginManager()
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -55,8 +52,18 @@ for x in mycursor:
 if y:
     mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFname VARCHAR(50),DoctorMname VARCHAR(50))")
 
-app = Flask(__name__)
+# mycursor.execute("SHOW TABLES")
+# y = True
+# for x in mycursor:
+#     if x == ('appointments',):
+#         y = False
+# if y:
+#     mycursor.execute("CREATE TABLE
 
+app = Flask(__name__)
+app.secret_key = 'mew'
+
+#login_manager.init_app(app)
 
 @app.route('/')
 def index():
@@ -71,23 +78,26 @@ def PatientSignIn():
     if request.method == "POST":
         UserName = request.form['SignInPatientUsername']
         Passwd = request.form['SignInPatientPassword']
-        mycursor.execute("SELECT PatientEmail FROM patients")
-        emails = mycursor.fetchall()
-        for email in emails:
-            if email[0] == UserName:
-                mycursor.execute(
-                    "SELECT PatientPass FROM patients WHERE PatientEmail = '%s'" % (email))
-                password = mycursor.fetchone()
-                if password[0] == Passwd:
-                    return render_template('PatientPanel.html')
-            else:
-                return render_template('PatientSignIn.html', er='Incorretct Email or Password')
+        mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",(UserName,Passwd))
+        email = mycursor.fetchone()
+        if email:
+            session['loggedin'] = True
+            session['id'] = UserName
+            session['username'] = UserName 
+            return render_template('PatientPanel.html')
+        else:
+            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('PatientSignIn.html')
 
 # @app.context_processor()
 # def content_procrssor():
 #     return dict(patient_sign_in = PatientSignIn)
+@app.route('/logout')
+def logout():
+   session.clear()
+   return render_template('index.html')
+
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
@@ -232,6 +242,34 @@ def AddDoctor():
     else:
         return render_template('AddDoctor.html')
 
+
+@app.route('/AdminPanel/AddDevice', methods=['POST', 'GET'])
+def AddDevice():
+    if request.method == 'POST':
+        SerialNumber = request.form['DeviceSerialNo']
+        Brand = request.form['DeviceBrand']
+        DialysisPerDay = request.form['TotalDialysis']
+        LastMent = request.form['LastMaint']
+        UpcomingMent = request.form['NextMaint']
+        sql = "INSERT INTO devices (DeviceSerialNo,DeviceBrand,TotalDialysis,LastMaint,NextMaint) VALUES(%s,%s,%s,%s,%s)"
+        val = (SerialNumber, Brand, DialysisPerDay, LastMent, UpcomingMent)
+        mycursor.execute(sql, val)
+        mydb.commit()
+       # return AdminPanel()
+        return redirect(url_for('AdminPanel'))
+    else:
+        return render_template('AddDevice.html')
+
+
+@app.route('/AdminPanel/AdminUpdate',methods=['POST','GET'])
+def AdminUpdate():
+    if request.method=='POST':
+        DeviceSerialNo = request.form['DeviceSerialNo']
+        TotalDialysis = request.form['TotalDialysis']
+        LastMaint = request.form['LastMaint']
+        NextMaint = request.form['NextMaint']
+
+    return render_template('AdminUpdate.html')
 
 @app.route('/AdminPanel/DoctorRecords')
 def DoctorRecords():
