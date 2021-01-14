@@ -44,7 +44,7 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender VARCHAR(25),DoctorBD VARCHAR(50),DoctorSSN VARCHAR(50),DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) ,DoctorPass VARCHAR(50),DoctorSalary VARCHAR(50),DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender VARCHAR(25),DoctorBD VARCHAR(50),DoctorSSN VARCHAR(250),DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmpDate VARCHAR(50),DoctorSalary VARCHAR(50),DoctorShift VARCHAR(50),DoctorEmail VARCHAR(250) ,DoctorPass VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -366,26 +366,25 @@ def AddDoctor():
         DoctorSalary = request.form['DoctorSalary']
         DoctorShift = request.form['DoctorShift']
         DoctorEmpDate = request.form['DoctorEmploymentDate']
-        sql = "INSERT INTO doctors (DoctorFName,DoctorMName,DoctorLName,DoctorAddress,DoctorNationality,DoctorGender,DoctorBD,DoctorSSN,DoctorMaritalStat,DoctorPhone,DoctorBankNum,DoctorPass,DoctorEmail,DoctorSalary,DoctorShift,DoctorEmpDate) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = (Fname, Mname, Lname, Address, Nationality, Gender,
-               BD, SSN, MaritalStat, Phone, BankNum, Pass, Email, DoctorSalary, DoctorShift, DoctorEmpDate)
-        mycursor.execute(sql, val)
         mycursor.execute("SELECT DoctorEmail FROM doctors")
         DoctorE = mycursor.fetchall()
         print(DoctorE)
         for x in DoctorE:
             print(x)
-            if x == ('Email',):
-                print(x)
+            if x[0] == Email:
+                print(x[0])
                 return render_template('AddDoctor.html', msg='Email is already exist')
             else:
                 continue
+        sql = "INSERT INTO doctors (DoctorFName,DoctorMName,DoctorLName,DoctorAddress,DoctorNationality,DoctorGender,DoctorBD,DoctorSSN,DoctorMaritalStat,DoctorPhone,DoctorBankNum,DoctorEmpDate,DoctorSalary,DoctorShift,DoctorEmail,DoctorPass) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = (Fname, Mname, Lname, Address, Nationality, Gender,
+               BD, SSN, MaritalStat, Phone, BankNum,DoctorEmpDate ,  DoctorSalary, DoctorShift, Email,Pass)
+        mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('AddDoctor.html', msg='DOCTOR ADDED SUCCESSFULLY')
+        return render_template('AdminPanel.html', msg='DOCTOR ADDED SUCCESSFULLY')
         # return AdminPanel()
     else:
         return render_template('AddDoctor.html')
-#
 
 
 @app.route('/AdminPanel/AddDevice', methods=['POST', 'GET'])
