@@ -159,6 +159,19 @@ table tr {
     border-radius: 1%;
 }
 
+.tablewrap5 {
+    opacity: 0.85;
+    height: 330px;
+    width: 480px;
+    padding: 15px;
+    margin: 0 auto;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /* margin: auto; */
+    background-color: #FDFDFE !important;
+    border-radius: 1%;
+}
+
 
 /* ::-webkit-scrollbar {
     width: 5px;
