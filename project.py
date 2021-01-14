@@ -59,7 +59,7 @@ if y:
 #         y = False
 # if y:
 #     mycursor.execute("CREATE TABLE
-
+########
 app = Flask(__name__)
 app.secret_key = 'mew'
 
