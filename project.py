@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template,url_for,redirect
+from flask import Flask, request, render_template,url_for,redirect
 
 import mysql.connector
 
@@ -40,7 +40,15 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50), DoctorEmpDate VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT NOT NULL PRIMARY KEY,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmail VARCHAR(250) NOT NULL UNIQUE,DoctorPass VARCHAR(50),DoctorSalary INT,DoctorShift VARCHAR(50),DoctorEmpDate VARCHAR(50))")
+
+mycursor.execute("SHOW TABLES")
+y = True
+for x in mycursor:
+    if x == ('appointments',):
+        y = False
+if y:
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFname VARCHAR(50),DoctorMname VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -59,6 +67,9 @@ def index():
     return render_template('index.html')
 
 
+
+
+
 @app.route('/PatientSignIn', methods=["GET", "POST"])
 def PatientSignIn():
     if request.method == "POST":
@@ -73,11 +84,14 @@ def PatientSignIn():
                 password = mycursor.fetchone()
                 if password[0] == Passwd:
                     return render_template('PatientPanel.html')
-        else:
-            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
+            else:
+                return render_template('PatientSignIn.html', er='Incorretct Email or Password')
     else:
         return render_template('PatientSignIn.html')
 
+# @app.context_processor()
+# def content_procrssor():
+#     return dict(patient_sign_in = PatientSignIn)
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
@@ -99,20 +113,58 @@ def PatientSignUp():
                Patientheight, Patientweight, Patientbloodgrp, Patientphone, Patientemail, Patientpass)
         mycursor.execute(sql, val)
         mydb.commit()
-        return render_template('index.html')
+        return render_template('PatientPanel.html')
     else:
         return render_template('PatientSignUp.html')
 
 
-@app.route('/PatientRecords', methods=['POST', 'GET'])
-def ShowDoctors():
-    if request.method == 'GET':
-        mycursor.execute(
-            "SELECT DoctorFName DoctorMName DoctorLName FROM doctors")
-        data1 = mycursor.fetchall()
-        mycursor.execute("SELECT Shift from shifts")
-        data2 = mycursor.fetchall()
-        return render_template("PatientRecords", DoctorNames=data1, DoctorsShift=data2)
+# @app.route('/PatientPanel/ViwePatientProfile')##
+# def PatientViewProfile():
+#     PatientSignIn()
+#     mycursor.execute("SELECT *FROM patients")
+#     # WHERE PatientEmail  = '%s'" % (email))
+#     data = mycursor.fetchall()
+#     #query.filter_by().first()
+#     return render_template('PatientRecords.html', data=patientdata)#eb3ty el data hnak fy el html
+
+
+# @app.route('/PatientPanel/##') ##
+# def PatientUpdateProfile():
+#     if request.method == "POST":
+#         PatientFname = request.form['PatientFname']
+#         PatientLname = request.form['PatientLname']
+#         PatientGender = request.form['PatientGender']
+#         PatientBD = request.form['PatientBD']
+#         PatientSSN = request.form['PatientSSN']
+#         PatientMaritalStat = request.form['PatientMaritalStat']
+#         PatientHeight = request.form['PatientHeight']
+#         PatientWeight = request.form['PatientHeight']
+#         PatientBloodGrp = request.form['PatientBloodGrp']
+#         PatientPhone = request.form['PatientPhone']
+#         PatientEmail = request.form['PatientEmail']
+#         PatientPass = request.form['PatientPass']
+
+
+
+@app.route('/PatientPanel/PatientAddAppoint')
+def PatientViewAppoint():
+    mycursor.execute("SELECT DoctorFName, DoctorMName, DoctorShift FROM doctors")
+    data = mycursor.fetchall()
+    return render_template("PatientAddAppoint.html", appoint=data)
+
+
+@app.route('/PatientPanel/PatientAddAppoint', methods=['POST','GET']) 
+def PatientAddAppoint():
+    if request.method == 'POST':
+        AppointmentDate = request.form['PatientApointDay']
+        AppointmentTime = request.form['PatientApointTime']
+        DoctorFname = request.form['PatientApointDoc']
+        #DoctorMname
+        sql = "INSERT INTO appointments (AppointmentDate,AppointmentTime,DoctorFname) VALUES (%s,%s,%s)"
+        val = (AppointmentDate,AppointmentTime,DoctorFname)##hangeeb el name mneen ?
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return render_template('PatientAddAppoint.html')
 
 
 @app.route('/DoctorSignIn', methods=['POST', 'GET'])
@@ -120,27 +172,17 @@ def DoctorSignIn():
     if request.method == 'POST':
         UserName = request.form['SignInDoctorUsername']
         Passwd = request.form['SignInDoctorPassword']
-        mycursor.execute("SELECT DoctorEmail FROM doctors ")
-        myresult = mycursor.fetchall()
-        Emails = myresult
+        mycursor.execute("SELECT DoctorEmail FROM doctors")
+        Emails = mycursor.fetchall()
         for x in Emails:
-            print(x)
             if UserName == x[0]:
                 mycursor.execute(
-                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (UserName))
+                    "SELECT DoctorPass FROM doctors WHERE DoctorEmail='%s' " % (x))
                 Password = mycursor.fetchone()
-                print(Password)
                 if Passwd == Password[0]:
                     return render_template('DoctorPanel.html')
-
-                else:
-                    MSG = "UNCORRECT PASSWORD,PLEASE TRY AGAIN"
-                    return render_template('DoctorSignIn.html', MSG=MSG)
-            else:
-                continue
-
-        return render_template('index.html')
-
+        else:
+            return render_template('DoctorSignIn.html', er="Incorretct Email or Password")
     else:
         return render_template('DoctorSignIn.html')
 
@@ -180,9 +222,12 @@ def AddDoctor():
         BankNum = request.form['DoctorBankNum']
         Pass = request.form['DoctorPass']
         Email = request.form['DoctorEmail']
-        sql = "INSERT INTO doctors (DoctorFName,DoctorMName,DoctorLName,DoctorAddress,DoctorNationality,DoctorGender,DoctorBD,DoctorSSN,DoctorMaritalStat,DoctorPhone,DoctorBankNum,DoctorPass,DoctorEmail) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        DoctorSalary = request.form['DoctorSalary']
+        DoctorShift = request.form['DoctorShift']
+        DoctorEmpDate = request.form['DoctorEmploymentDate']
+        sql = "INSERT INTO doctors (DoctorFName,DoctorMName,DoctorLName,DoctorAddress,DoctorNationality,DoctorGender,DoctorBD,DoctorSSN,DoctorMaritalStat,DoctorPhone,DoctorBankNum,DoctorPass,DoctorEmail,DoctorSalary,DoctorShift,DoctorEmpDate) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         val = (Fname, Mname, Lname, Address, Nationality, Gender,
-               BD, SSN, MaritalStat, Phone, BankNum, Pass, Email)
+               BD, SSN, MaritalStat, Phone, BankNum, Pass, Email,DoctorSalary,DoctorShift,DoctorEmpDate)
         mycursor.execute(sql, val)
         mydb.commit()
         return AdminPanel()
@@ -217,7 +262,6 @@ def AdminUpdate():
 def DoctorRecords():
     mycursor.execute("SELECT * FROM doctors")
     data = mycursor.fetchall()
-
     return render_template('DoctorRecords.html', doctorsdata=data)
 
 
