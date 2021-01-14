@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -63,10 +63,10 @@
                 </li>
 
                 <li>
-                    <a href="http://127.0.0.1:5000/DoctorsMedicalInfo">Patients Medical Info</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalInfo">Patients Medical Info</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/DoctorViewAppoints">View Appointments</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorViewAppoints">View Appointments</a>
                 </li>
 
                 <li>
@@ -106,8 +106,8 @@
 
 
                     <h2>Welcome To Your Profile!</h2>
-                    <!-- <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" /> -->
-                    <img src="../static/img/doctor.svg" alt="Doctor" class="center" height="87" width="100" />
+                    <img src="{{url_for('static', filename='img/doctor.svg')}}" alt="Doctor" class="center" height="87" width="100" />
+                    <!-- <img src="../static/img/doctor.svg" alt="Doctor" class="center" height="87" width="100" /> -->
                     <br>
                     <br>
 
@@ -126,8 +126,8 @@
 
 
     <!-- <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script> -->
-    <script src="../static/javascript/js/bootstrap.js"></script>
-    <!-- <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script> -->
+    <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
+    <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
