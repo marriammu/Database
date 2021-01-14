@@ -105,16 +105,16 @@
 
                         <img src="../static/img/profile.svg" alt="Profile" class="center" height="87" width="100" />
                         <!-- <img src="{{url_for('static', filename='img/profile.svg')}}" alt="Profile" class="center" height="87" width="100" /> -->
-
+                        {% for data in patientdata %}
                         <br>
                         <div class="row">
                             <div class="col-md">
                                 <label for="1" class="form-label">First Name</label>
-                                <input type="text" class="form-control" readonly value="Meirna" name="1" id="1">
+                                <input type="text" class="form-control" readonly value={{data.0}} name="1" id="1">
                             </div>
                             <div class="col-md">
                                 <label for="2" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" readonly value="Kamal" name="2" id="2">
+                                <input type="text" class="form-control" readonly value={{data.1}} name="2" id="2">
                             </div>
                         </div>
                         <br>
@@ -122,11 +122,11 @@
                         <div class="row">
                             <div class="col-md">
                                 <label for="2" class="form-label">Gender</label>
-                                <input type="text" class="form-control" readonly value="Female" name="2" id="2">
+                                <input type="text" class="form-control" readonly value={{data.2}} name="2" id="2">
                             </div>
                             <div class="col-md">
                                 <label for="3" class="form-label">Date Of Birth</label>
-                                <input type="text" class="form-control" readonly value="18/2/1999" name="3" id="3">
+                                <input type="text" class="form-control" readonly value={{data.3}} name="3" id="3">
                             </div>
                         </div>
                         <br>
@@ -135,31 +135,31 @@
 
                             <div class="col-md">
                                 <label for="4" class="form-label">Social Security Number</label>
-                                <input type="text" class="form-control" readonly value="123456" name="4" id="4">
+                                <input type="text" class="form-control" readonly value={{data.4}} name="4" id="4">
                             </div>
                             <div class="col-md">
                                 <label for="5" class="form-label">Marital Stats</label>
-                                <input type="text" class="form-control" readonly value="Single" name="5" id="5">
+                                <input type="text" class="form-control" readonly value={{data.5}} name="5" id="5">
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-md">
                                 <label for="6" class="form-label">Height</label>
-                                <input type="text" class="form-control" readonly value="160" name="6" id="6">
+                                <input type="text" class="form-control" readonly value={{data.6}} name="6" id="6">
                             </div>
                             <div class="col-md">
                                 <label for="7" class="form-label">Weight</label>
-                                <input type="text" class="form-control" readonly value="53" name="7" id="7">
+                                <input type="text" class="form-control" readonly value={{data.7}} name="7" id="7">
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-md">
                                 <label for="8" class="form-label">Blood Group</label>
-                                <input type="text" class="form-control" readonly value="A" name="8" id="8">
+                                <input type="text" class="form-control" readonly value={{data.8}} name="8" id="8">
                             </div>
                             <div class="col-md">
                                 <label for="9" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" readonly value="0102873892" name="9" id="9">
+                                <input type="text" class="form-control" readonly value={{data.9}} name="9" id="9">
                             </div>
 
                         </div>
@@ -167,17 +167,17 @@
                         <div class="row">
                             <div class="col-md">
                                 <label for="10" class="form-label">Email</label>
-                                <input type="text" class="form-control" readonly value="Meirnakamal@icloud.com" name="10" id="10">
+                                <input type="text" class="form-control" readonly value={{data.10}} name="10" id="10">
                             </div>
                             <div class="col-md">
                                 <label for="11" class="form-label">Password</label>
-                                <input type="text" class="form-control" readonly value="mypassword" name="11" id="11">
+                                <input type="text" class="form-control" readonly value={{data.11}} name="11" id="11">
                             </div>
                         </div>
 
                     </div>
                     <br>
-
+                    {% endfor %}
 
 
                     <!-- <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor" class="btn btn-primary col-12">Submit</a> -->
