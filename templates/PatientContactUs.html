@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -91,25 +91,41 @@
 
 
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+
+
             <div>
-                <div class="form-container5">
+                <form class="form-container13" method="POST" role="form" action="">
 
 
 
 
-                    <h2>Welcome To Your Profile!</h2>
-                    <img src="{{url_for('static', filename='img/Patient.svg')}}" alt="Patient" class="center" height="87" width="100" />
-                    <!-- <img src="../static/img/Patient.svg" alt="Patient" class="center" height="87" width="100" /> -->
+                    <h2>Enter Your FeedBack</h2>
+
+                    <!-- <img src="../static/img/feedback.svg" alt="feedback" class="center" height="87" width="100" /> -->
+                    <img src="{{url_for('static', filename='img/feedback.svg')}}" alt="feedback" class="center" height="87" width="100" />
+
+                    <br>
+                    <div class="row">
+                        <div class="col-lg">
+                            <label for="PatientContactUs" class="form-label">Write Down Your Msg/FeedBack</label>
+
+                            <textarea class="form-control" name="PatientContactUs" id="PatientContactUs" autofocus>Enter feedback
+                        </textarea>
+                        </div>
+
+
+
+                    </div>
                     <br>
                     <br>
 
 
-                </div>
+
+                    <button type="submit" class="btn btn-primary col-12">Send FeedBack</button>
+
+
+
+                </form>
             </div>
         </div>
 

@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -65,6 +65,9 @@
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientTestResults">Test Results</a>
                 </li>
                 <li>
+                    <a href="http://127.0.0.1:5000/PatientPanel/PatientContactUs">Contact Us</a>
+                </li>
+                <li>
                     <a href="http://127.0.0.1:5000/SignOut">Sign Out</a>
                 </li>
 
@@ -100,8 +103,8 @@
                         <div class="form-container12">
                             <div class="wrapper3">
                                 <h2>View Appointments</h2>
-                                <img src="../static/img/Appointment.svg" alt="Shift" class="center" height="80" width="90" />
-                                <!-- <img src="{{url_for( 'static', filename='img/Appointment.svg' )}} " alt="Shift" class="center" height="87" width="100" /> -->
+                                <!-- <img src="../static/img/Appointment.svg" alt="Shift" class="center" height="80" width="90" /> -->
+                                <img src="{{url_for( 'static', filename='img/Appointment.svg' )}} " alt="Shift" class="center" height="87" width="100" />
                                 <br>
                                 <div id=" no-more-tables">
                                     <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
@@ -155,8 +158,8 @@
 
 
     <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
-    <script src="../static/javascript/js/bootstrap.js "></script>
-    <!-- <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script> -->
+    <!-- <script src="../static/javascript/js/bootstrap.js "></script> -->
+    <script src="{{ url_for( 'static', filename='javascript/js/bootstrap.js' ) }} "></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>

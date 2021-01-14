@@ -65,7 +65,10 @@
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientTestResults">Test Results</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/">Sign Out</a>
+                    <a href="http://127.0.0.1:5000/PatientPanel/PatientContactUs">Contact Us</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:5000/SignOut">Sign Out</a>
                 </li>
 
 
@@ -164,8 +167,8 @@
                         <div class="form-container11">
                             <div class="wrapper3">
                                 <h2>Test Results</h2>
-                                <!-- <img src="../static/img/test.svg" alt="Shift" class="center" height="80" width="90" /> -->
-                                <img src="{{url_for( 'static', filename='img/test.svg' )}} " alt="Shift" class="center" height="87" width="100" />
+                                <!-- <img src="../static/img/test.svg" alt="testresult" class="center" height="80" width="90" /> -->
+                                <img src="{{url_for( 'static', filename='img/test.svg' )}} " alt="testresult" class="center" height="87" width="100" />
                                 <br>
                                 <div class="tablewrap5">
                                     <table class="table table-stripped table-light table-hover">
@@ -180,7 +183,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {% for data in  TestData %}
+                                                {% for data in TestData %}
                                                 <tr>
                                                     <td>{{data.0}}</td>
                                                     <td>{{data.1}}</td>
