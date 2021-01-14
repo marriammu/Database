@@ -116,15 +116,13 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {% for data in doctorsdata %}
+                                                {% for data in app %}
                                                 <tr>
-                                                    <!-- <th scope="row ">{{doctorsdata.index(data)+1}}</th> -->
-                                                    <td>12/10/2021</td>
-                                                    <td>8 AM</td>
-                                                    <td>Ahmed Mohamed</td>
-
-
+                                                    <td>{{data.0}}</td>
+                                                    <td>{{data.1}}</td>
+                                                    <td>{{data.2}}</td>
                                                 </tr>
+                                                {% endfor %}
                                             </tr>
                                         </tbody>
                                     </table>

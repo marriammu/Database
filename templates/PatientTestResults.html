@@ -180,14 +180,12 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {% for data in doctorsdata %}
+                                                {% for data in  TestData %}
                                                 <tr>
-                                                    <!-- <th scope="row ">{{doctorsdata.index(data)+1}}</th> -->
-                                                    <td>Ahmed</td>
-                                                    <td>8 AM</td>
-
-
+                                                    <td>{{data.0}}</td>
+                                                    <td>{{data.1}}</td>
                                                 </tr>
+                                                {% endfor %}
                                             </tr>
                                         </tbody>
                                     </table>
