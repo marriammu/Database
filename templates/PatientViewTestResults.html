@@ -61,6 +61,7 @@
 
                     </ul>
                 </li>
+
                 <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientViewShifts">View doctor shifts</a>
                 </li>
@@ -106,69 +107,58 @@
 
             <div>
                 <div class="row">
+
+                    <br>
                     <div class="col-lg">
-                        <div>
-                            <form class="form-container8" method="POST" role="form" action="http://127.0.0.1:5000/PatientPanel/PatientAddAppoint">
-                                <h2>Make An Appointment</h2>
-
-                                <!-- <img src="../static/img/Appointment.svg" alt="Appointment" class="center" height="87" width="100" /> -->
-                                <img src="{{url_for('static', filename='img/Appointment.svg')}}" alt="Appointment" class="center" height="87" width="100" />
-
+                        <div class="form-container11">
+                            <div class="wrapper3">
+                                <h2>Test Results</h2>
+                                <!-- <img src="../static/img/test.svg" alt="testresult" class="center" height="80" width="90" /> -->
+                                <img src="{{url_for( 'static', filename='img/test.svg' )}} " alt="testresult" class="center" height="87" width="100" />
                                 <br>
-                                <div class="row">
-                                    <div class="col-lg">
-                                        <label for="PatientApointDay" class="form-label">Appointment Day</label>
-                                        <input type="Date" class="form-control" name="PatientApointDay" id="PatientApointDay" required>
-                                    </div>
+                                <div class="tablewrap5">
+                                    <table class="table table-stripped table-light table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Test Type</th>
+                                                <th scope="col">Test Date</th>
+                                                <th scope="col">Test File</th>
+                                                <!-- <th scope="col ">LastName</th> -->
 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% for data in TestData %}
+                                                <tr>
+                                                    <td>{{data.0}}</td>
+                                                    <td>{{data.1}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col-lg">
-                                        <label for="PatientApointTime" class="form-label">Appointment Time </label>
-                                        <input type="time" class="form-control" name="PatientApointTime" id="PatientApointTime" required>
-
-                                    </div>
-                                </div>
-
-                                <br>
-                                <div class="row">
-                                    <div class="col-md">
-                                        <label for="PatientApointDoc" class="form-label">Doctor's Name</label>
-                                        <input type="text" class="form-control" name="PatientApointDoc" id="PatientApointDoc" placeholder="Enter Doctor's Name" required>
-
-                                    </div>
-                                </div>
-                                <br>
-
-
-
-
-                                <br>
-                                <button type="submit" class="btn btn-primary col-12">Request Appointment</button>
-
-
-
-                            </form>
+                            </div>
                         </div>
 
+
+
+
+
+
+
                     </div>
-                    <br>
-
-
-
-
-
-
 
                 </div>
-
             </div>
-        </div>
 
+        </div>
+    </div>
     </div>
 
+
+    </div>
 
 
 
