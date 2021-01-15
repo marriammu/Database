@@ -288,7 +288,7 @@ def PatientMedicalHistory():
         return render_template('/PatientMedicalHistory.html')
     else:
         return render_template('/PatientMedicalHistory.html')
-
+###
 
 # @app.route('/DoctorSignIn', methods=["GET", "POST"])
 # def DoctorSignIn():
