@@ -6,9 +6,9 @@ import mysql.connector
 import datetime
 import pickle
 import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+# from googleapiclient.discovery import build
+# from google_auth_oauthlib.flow import InstalledAppFlow
+# from google.auth.transport.requests import Request
 
 
 app = Flask(__name__)
@@ -51,7 +51,7 @@ for x in mycursor:
     if x == ('patients',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50),ConfirmPatientPass VARCHAR(50))")
+    mycursor.execute("CREATE TABLE patients (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientGender ENUM('Female','Male'),PatientBD VARCHAR(50),PatientSSN VARCHAR(50),PatientMaritalStat ENUM('Single','Married','Widowed','Divorced'),PatientHeight VARCHAR(50),PatientWeight VARCHAR(50),PatientBloodGrp VARCHAR(5),PatientPhone VARCHAR(50),PatientEmail VARCHAR(250) NOT NULL UNIQUE,PatientPass VARCHAR(50)")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -106,22 +106,22 @@ if y:
 @app.route('/')
 def index():
     return render_template('index.html')
-@app.route('/PatientSignIn', methods=["GET", "POST"])
-def PatientSignIn():
-    if request.method == "POST":
-        PatientUserName = request.form['SignInPatientUsername']
-        PatientPasswd = request.form['SignInPatientPassword']
-        mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",(PatientUserName, PatientPasswd))
-        email = mycursor.fetchone()
-        if email:
-            session['loggedin'] = True
-            session['id'] = PatientUserName
-            session['username'] = PatientUserName
-            return render_template('PatientPanel.html')
-        else:
-            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
-    else:
-        return render_template('PatientSignIn.html')
+# @app.route('/PatientSignIn', methods=["GET", "POST"])
+# def PatientSignIn():
+#     if request.method == "POST":
+#         PatientUserName = request.form['SignInPatientUsername']
+#         PatientPasswd = request.form['SignInPatientPassword']
+#         mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",(PatientUserName, PatientPasswd))
+#         email = mycursor.fetchone()
+#         if email:
+#             session['loggedin'] = True
+#             session['id'] = PatientUserName
+#             session['username'] = PatientUserName
+#             return render_template('PatientPanel.html')
+#         else:
+#             return render_template('PatientSignIn.html', er='Incorretct Email or Password')
+#     else:
+#         return render_template('PatientSignIn.html')
 
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
@@ -194,33 +194,34 @@ def PatientViewProfile():
 
 
 
-# @app.route('/PatientPanel/UpdatePatientProfile', methods=['POST', 'GET'])
-# def UpdatePatientProfile():
-#     if request.method == 'POST':
-#         PatientFname = request.form['PatientFname']
-#         PatientLname = request.form['PatientLname']
-#         PatientGender = request.form['PatientGender']
-#         PatientBD = request.form['PatientBD']
-#         PatientSSN = request.form['PatientSSN']
-#         PatientMaritalStat = request.form['PatientMaritalStat']
-#         PatientHeight = request.form['PatientHeight']
-#         PatientWeight = request.form['PatientWeight']
-#         PatientBloodGrp = request.form['PatientBloodGrp']
-#         PatientPhone = request.form['PatientPhone']
-#         PatientEmail = request.form['PatientEmail']
-#         PatientPass = request.form['PatientPass']
-#         mycursor.execute("SELECT *FROM  patients WHERE PatientEmail = %s ", (session['username'],))
-#         patientdata = mycursor.fetchone()
-#         sql = "UPDATE patients SET PatientFname=%s,PatientLname=%s,PatientGender=%s,PatientBD=%s,PatientSSN=%s,PatientMaritalStat=%s,PatientHeight=%s,PatientWeight=%s,PatientBloodGrp=%s,PatientPhone=%s,`PatientEmail=%s,PatientPass=%s,ConfirmPatientPass=%s"
-#         val = (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass)
-#         mycursor.execute(sql,val)
-#         mydb.commit()
+@app.route('/PatientPanel/UpdatePatientProfile', methods=['POST', 'GET'])
+def UpdatePatientProfile():
+    if request.method == 'POST':
+        PatientFname = request.form['PatientFname']
+        PatientLname = request.form['PatientLname']
+        PatientGender = request.form['PatientGender']
+        PatientBD = request.form['PatientBD']
+        PatientSSN = request.form['PatientSSN']
+        PatientMaritalStat = request.form['PatientMaritalStat']
+        PatientHeight = request.form['PatientHeight']
+        PatientWeight = request.form['PatientWeight']
+        PatientBloodGrp = request.form['PatientBloodGrp']
+        PatientPhone = request.form['PatientPhone']
+        PatientEmail = request.form['PatientEmail']
+        PatientPass = request.form['PatientPass']
+        mycursor.execute("SELECT *FROM  patients WHERE PatientEmail = %s ", (session['username'],))
+        patientdata = mycursor.fetchone()
+        data1=[PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass]
+        sql = "UPDATE patients SET PatientFname=%s,PatientLname=%s,PatientGender=%s,PatientBD=%s,PatientSSN=%s,PatientMaritalStat=%s,PatientHeight=%s,PatientWeight=%s,PatientBloodGrp=%s,PatientPhone=%s,PatientEmail=%s,PatientPass=%s"
+        val = (PatientFname,PatientLname,PatientGender,PatientBD,PatientSSN,PatientMaritalStat,PatientHeight,PatientWeight,PatientBloodGrp,PatientPhone,PatientEmail,PatientPass)
+        mycursor.execute(sql,val)
+        mydb.commit()
         
-#         return render_template('Update PatientProfile.html', data=patientdata, msg='YOU UPDATED YOUR PROFILE SUCCESSFULLY')
-#     else:
-#         mycursor.execute("SELECT *FROM  patients WHERE PatientEmail = %s ", (session['username'],))
-#         patientdata = mycursor.fetchone()
-#         return render_template('UpdatePatientProfile.html', data=patientdata)
+        return render_template('UpdatePatientProfile.html', data=patientdata, msg='YOU UPDATED YOUR PROFILE SUCCESSFULLY')
+    else:
+        mycursor.execute("SELECT *FROM  patients WHERE PatientEmail = %s ", (session['username'],))
+        patientdata = mycursor.fetchone()
+        return render_template('UpdatePatientProfile.html', data=patientdata)
 
 
 @app.route('/PatientPanel/PatientViewShifts')
@@ -243,18 +244,17 @@ def PatientAddAppoint():
         val = (Patient_name[0],AppointmentDate, AppointmentTime, Doctorname,session['username'])
         mycursor.execute(sql, val)
         mydb.commit()
- 
         Calendar(AppointmentDate,AppointmentTime)
         return render_template('PatientViewAppoints.html')
     else:
         return render_template('PatientAddAppoint.html')
 
 
-# @app.route('PatientPanel/PatientViewAppoints')
-# def PatientViewAppoints():
-#     mycursor.execute("SELECT AppointmentDate AppointmentTime Doctorname FROM appointments WHERE PatientEmail = %s ", (session['username'],))
-#     data = mycursor.fetchall()
-#     return render_template('PatientViewAppoints.html', app=data)
+@app.route('PatientPanel/PatientViewAppoints')
+def PatientViewAppoints():
+    mycursor.execute("SELECT AppointmentDate AppointmentTime Doctorname FROM appointments WHERE PatientEmail = %s ", (session['username'],))
+    data = mycursor.fetchall()
+    return render_template('PatientViewAppoints.html', app=data)
 
 
 # def save_file(f):
@@ -509,57 +509,57 @@ def logout():
 
 
 
-def Calendar(date,time):
-    SCOPES = ['https://www.googleapis.com/auth/calendar']
+# def Calendar(date,time):
+#     SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
-    """
-    creds = None
-    # The file token.pickle stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'secrets.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
+#     """Shows basic usage of the Google Calendar API.
+#     Prints the start and name of the next 10 events on the user's calendar.
+#     """
+#     creds = None
+#     # The file token.pickle stores the user's access and refresh tokens, and is
+#     # created automatically when the authorization flow completes for the first
+#     # time.
+#     if os.path.exists('token.pickle'):
+#         with open('token.pickle', 'rb') as token:
+#             creds = pickle.load(token)
+#     # If there are no (valid) credentials available, let the user log in.
+#     if not creds or not creds.valid:
+#         if creds and creds.expired and creds.refresh_token:
+#             creds.refresh(Request())
+#         else:
+#             flow = InstalledAppFlow.from_client_secrets_file(
+#                 'secrets.json', SCOPES)
+#             creds = flow.run_local_server(port=0)
+#         # Save the credentials for the next run
+#         with open('token.pickle', 'wb') as token:
+#             pickle.dump(creds, token)
 
-    event_date = date + 'T' + time + ':00'
+#     event_date = date + 'T' + time + ':00'
 
-    event = {
-    'summary': 'Hemodialysis Session',
-    'location': '800 Howard St., San Francisco, CA 94103',
-    'description': '',
-    'start': {
-        'dateTime': event_date,
-        'timeZone': 'Africa/Cairo',
-    },
-    'end': {
-        'dateTime': event_date,
-        'timeZone': 'Africa/Cairo',
-    },
+#     event = {
+#     'summary': 'Hemodialysis Session',
+#     'location': '800 Howard St., San Francisco, CA 94103',
+#     'description': '',
+#     'start': {
+#         'dateTime': event_date,
+#         'timeZone': 'Africa/Cairo',
+#     },
+#     'end': {
+#         'dateTime': event_date,
+#         'timeZone': 'Africa/Cairo',
+#     },
     
-    'reminders': {
-        'useDefault': False,
-        'overrides': [
-        {'method': 'email', 'minutes': 24 * 60},
-        {'method': 'popup', 'minutes': 10},
-        ],
-    },
-    }
-    service = build('calendar', 'v3', credentials=creds)
+#     'reminders': {
+#         'useDefault': False,
+#         'overrides': [
+#         {'method': 'email', 'minutes': 24 * 60},
+#         {'method': 'popup', 'minutes': 10},
+#         ],
+#     },
+#     }
+#     service = build('calendar', 'v3', credentials=creds)
 
-    service.events().insert(calendarId='primary', body=event).execute()
+#     service.events().insert(calendarId='primary', body=event).execute()
 
 
 
