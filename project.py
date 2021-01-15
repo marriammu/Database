@@ -1,5 +1,8 @@
-from flask import Flask, request, render_template, url_for, redirect, session, flash
+from flask import Flask, request, render_template, url_for, redirect, session, send_from_directory
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
+
 import os
 import secrets
 import mysql.connector
@@ -13,11 +16,13 @@ import os.path
 
 app = Flask(__name__)
 app.secret_key = 'mew'
+photos = UploadSet('photos',IMAGES)
+app.config['UPLOADED_PHOTOS_DEST']='static'
+configure_uploads(app,photos)
 
-
-UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# UPLOAD_FOLDER = '/path/to/the/uploads'
+# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 mydb = mysql.connector.connect(
@@ -243,13 +248,31 @@ def PatientViewMyAppoint():
     else:
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
+@app.route('/PatientPanel/PatientAddTestResults',methods = ['GET','POST'])
+def PatientAddTestResults():
+    if session['type'] == 'patient':
+        if request.method == 'POST' and 'photo' in request.files:
+            # print('ay 7aga')
+            # data = request.files
+            # print('wala 7aga')
+            # print(data)
+            filename = photos.save(request.files['photo'])
+            #return filename
+        
+            return render_template("PatientViewTestResults.html", image_name=filename)
+           # return send_from_directory('static/img',filename ,as_attachment=True)
+        else:
+            return render_template('PatientAddTestResults.html')
+    else:    
+        return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
+
 
 @app.route('/PatientPanel/PatientViewTestResults')
 def PatientViewTestResults():
     if session['type']=='patient':
-        mycursor.execute("SELECT *FROM testresults")
-        data = mycursor.fetchall()
-        return render_template('PatientViewTestResults.html', TestData=data)
+        # mycursor.execute("SELECT *FROM testresults")
+        # data = mycursor.fetchall()
+        return render_template("PatientViewTestResults.html",image_name=filename)
     else:
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
@@ -262,42 +285,10 @@ def PatientViewTestResults():
 #     return f_name
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-    filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# def allowed_file(filename):
+#     return '.' in filename and \
+#     filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/PatientPanel/PatientAddTestResults')
-def PatientAddTestResults():
-    if session['type'] == 'patient':
-        if request.method == 'POST':
-        #     TestName = request.form['TestName']
-        # TestDate = request.form['TestDate']
-        # TestFile = request.files['TestFile']
-        # url = TestFile.save(secure_filename(TestFile.filename))
-        # print(url)
-
-        # TestFile = save_file(secure_filename(request.files['TestFile']))
-        #  if 'TestFile' not in request.files:
-        #      flash('No file part')
-        #      return render_template('PatientAddTestResults.html',msg='No file part')
-        
-        # if TestFile.filename == '':
-        #     flash('No selected file')
-        #     return render_template('PatientAddTestResults.html',msg='NO FILUPLOADEDE IS')
-        # if TestFile and allowed_file(TestFile.filename):
-        #     filename = secure_filename(TestFile.filename)
-        #     TestFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #     url = url_for('uploaded_file',filename=filename)
-        #     print(url)
-            sql = "INSERT INTO testresults (TestName,TestDate,TestFile) VALUES (%s,%s,%s)"
-            val = (TestName,TestDate,url)
-            mycursor.execute(sql, val)
-            mydb.commit()
-            return render_template('PatientAddTestResults.html')
-        else:
-            return render_template('PatientAddTestResults.html')
-    else:    
-        return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
 
 @app.route('/PatientPanel/PatientContactUs', methods=['POST', 'GET'])
