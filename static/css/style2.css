@@ -199,6 +199,28 @@ body {
     width: 600px !important;
 }
 
+.form-container17 {
+    max-width: 800px !important;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+    width: 800px
+}
+
+.form-container18 {
+    max-width: 500px;
+    max-height: 600px;
+    justify-content: center;
+    margin: auto auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
 .nav-item .navbar-nav .nav-link {
     color: wheat !important;
 }
