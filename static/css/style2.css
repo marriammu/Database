@@ -182,6 +182,23 @@ body {
     box-shadow: 0px 0px 10px 0px #000;
 }
 
+.form-container16 {
+    max-width: 850px !important;
+    height: 300px !important;
+    padding: 5px !important;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: white;
+    opacity: 0.83;
+    box-shadow: 0px 0px 10px 0px #000;
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    width: 600px !important;
+}
+
 .nav-item .navbar-nav .nav-link {
     color: wheat !important;
 }

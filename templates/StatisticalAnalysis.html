@@ -38,11 +38,11 @@
                 ["name", "number", {
                     role: "style"
                 }],
-                ["Doctors", 2, "#444444"],
-                ["Patients", 31, "#444444"],
+                ["Doctors", 30, "#444444"],
+                ["Patients", 70, "#444444"],
                 ["Devices", 20, "#444444"],
-                ["Appoints", 10, "#444444"],
-                ["FeedBack", 9, "#444444"]
+                ["Appoints", 110, "#444444"],
+
             ]);
 
             var view = new google.visualization.DataView(data);
@@ -144,10 +144,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn  btn-secondary">
-                                        <i class="fas fa-align-left">
+                        <i class="fas fa-align-left"></i>
     
-                                        </i>
-                                    </button>
+                                        
+                    </button>
                 </div>
             </nav>
 
@@ -157,7 +157,7 @@
             <br>
 
 
-            <div>
+            <div class="row">
                 <div class="form-container14">
                     <h1>Statistical Analysis</h1>
 
@@ -166,6 +166,54 @@
 
                     <!-- <div name="barchart" id="top_x_div" style="height:500px !important;"></div> -->
                     <div name="barchart" id="columnchart_values" style="height: 500px !important;"></div>
+
+
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="form-container16">
+                    <!-- <h1>Statistical Analysis</h1> -->
+
+                    <!-- <div class=wrapper2> -->
+
+                    <div id=" no-more-tables">
+                        <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Doctors Registered</th>
+                                    <th scope="col">Patients Registered</th>
+                                    <th scope="col">Devices Added</th>
+                                    <th scope="col">Appointments made</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <tr>
+
+                                        <td>20</td>
+                                        <td>30</td>
+                                        <td>40</td>
+                                        <td>50</td>
+
+
+
+                                    </tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- </div> -->
+
+
+
+
+
+
 
 
                 </div>
