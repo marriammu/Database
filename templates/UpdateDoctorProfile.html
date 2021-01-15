@@ -143,11 +143,7 @@
                                 </div>
                                 <div class="col-md">
                                     <label for="DoctorGender" class="form-label">Gender</label>
-                                    <select name="DoctorGender" class="form-control" id="DoctorGender">
-                                        <option value="Female">Female</option>
-                                        <option value="Male">Male</option>
-                                        
-                                      </select>
+                                    <input type="text" class="form-control" placeholder="Enter Gender" name="DoctorGender" id="DoctorGender" value={data.5}>
                                 </div>
                             </div>
                             <br>
@@ -167,13 +163,8 @@
                             <div class="row">
 
                                 <div class="col-md">
-                                    <label for="DoctorMaritalStat" class="form-label">Marital Stats</label>
-                                    <select name="DoctorMaritalStat" class="form-control" id="DoctorMaritalStat">
-                                        <option value="Single">Single</option>
-                                        <option value="Married">Married</option>
-                                        <option value="Widowed">Widowed</option>
-                                        <option value="Divorced">Divorced</option>
-                                      </select>
+                                    <label for="DoctorMaritalStat" class="form-label">Marital Status</label>
+                                    <input type="text" class="form-control" placeholder="Enter Marital Status" name="DoctorMaritalStat" id="DoctorMaritalStat" value={data.8}>
                                 </div>
                                 <div class="col-md">
                                     <label for="DoctorPhone" class="form-label">Phone Number</label>
@@ -197,14 +188,7 @@
                                 </div>
                                 <div class="col-md">
                                     <label for="DoctorShift" class="form-label">Shift</label>
-                                    <select name="DoctorShift" class="form-control" id="DoctorShift">
-                                        <option value="12 PM">12 PM</option>
-                                        <option value="4 PM">4 PM</option>
-                                        <option value="8 PM">8 PM</option>
-                                        <option value="12 AM">12 AM</option>
-                                        <option value="4 AM">4 AM</option>
-                                        <option value="8 AM">8 AM</option>
-                                      </select>
+                                    <input type="time" class="form-control" name="DoctorShift" id="DoctorShift" value={data.13}>
                                 </div>
 
                             </div>
@@ -212,7 +196,7 @@
                             <div class="row">
                                 <div class="col-md">
                                     <label for="DoctorEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" placeholder="Enter Email" name="DoctorEmail" id="DoctorEmail" value={data.14>
+                                    <input type="email" class="form-control" placeholder="Enter Email" name="DoctorEmail" id="DoctorEmail" value={data.14}>
                                 </div>
                                 <div class="col-md">
                                     <label for="DoctorPass" class="form-label">Password</label>
