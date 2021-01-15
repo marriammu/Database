@@ -71,9 +71,7 @@
                 <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientAddTestResults">Add Test Results</a>
                 </li>
-                <li>
-                    <a href="http://127.0.0.1:5000/PatientPanel/PatientViewTestResults">View Test Results</a>
-                </li>
+
                 <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientContactUs">Contact Us</a>
                 </li>
@@ -110,42 +108,18 @@
 
                     <br>
                     <div class="col-lg">
-                        <div class="form-container11">
+                        <div class="form-container20">
                             <div class="wrapper3">
-                                <h2>Test Results</h2>
-                                <!-- <img src="../static/img/test.svg" alt="testresult" class="center" height="80" width="90" /> -->
-                                <img src="{{url_for( 'static', filename='img/test.svg' )}} " alt="testresult" class="center" height="87" width="100" />
-                                <br>
-                                <div class="tablewrap5">
-                                    <table class="table table-stripped table-light table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Test Type</th>
-                                                <th scope="col">Test Date</th>
-                                                <th scope="col">Test File</th>
-                                                <!-- <th scope="col ">LastName</th> -->
+                                <h2 style="font-size:30px;">Test Result</h2>
+                                <img src="{{url_for( 'static', filename=image_name)}}" alt="testresult" class="center" height="500" width="500" />
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {% for data in TestData %}
-                                                <tr>
-                                                    <td>{{data.0}}</td>
-                                                    <td>{{data.1}}</td>
-                                                    <td>{{data.2}}</td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    
-                                </div>
+                                <br>
+
                             </div>
                         </div>
 
 
-                        <img src="{{url_for( 'static', filename=image_name)}}" alt="testresult" class="center" height="87" width="100" />
+
 
 
 
@@ -157,10 +131,7 @@
 
         </div>
     </div>
-    </div>
 
-
-    </div>
 
 
 
