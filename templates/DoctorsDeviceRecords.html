@@ -120,60 +120,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Jacob</td>
-
+                                        {% for data in DeviceRecords %}
+                                        <!-- <th scope="row">1</th> -->
+                                        <td>{{data.0}}</td>
+                                        <td>{{data.1}}</td>
+                                        <td>{{data.2}}</td>
+                                        <td>{{data.3}}</td>
+                                        <td>{{data.4}}</td>
+                                        {% endfor %}
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>ali</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Jacob</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Jacob</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-
-                                    </tr>
-
-
-
-
-
                                 </tbody>
                             </table>
                         </div>

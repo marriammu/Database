@@ -108,12 +108,11 @@
 
                     <!-- <img src="../static/img/update.svg" alt="Update" class="center" height="87" width="100" /> -->
                     <img src="{{url_for('static', filename='img/update.svg')}}" alt="Update" class="center" height="87" width="100" />
-
                     <br>
                     <div class="row">
                         <div class="col-lg">
                             <label for="DeviceSerialNo" class="form-label">Serial Number</label>
-                            <input type="number" class="form-control" name="DeviceSerialNo" id="DeviceSerialNo" placeholder="Enter Serial Number Of Device" autofocus>
+                            <input type="number" class="form-control" name="DeviceSerialNo" required id="DeviceSerialNo" placeholder="Enter Serial Number Of Device" autofocus>
                         </div>
 
                     </div>
@@ -125,7 +124,7 @@
                     <div class="row">
                         <div class="col-md">
                             <label for="TotalDialysis" class="form-label">Update Total dialysis/day</label>
-                            <input type="number" class="form-control" name="TotalDialysis" id="TotalDialysis" placeholder="Update dialysis/day">
+                            <input type="number" class="form-control" required name="TotalDialysis" id="TotalDialysis" placeholder="Update dialysis/day">
 
                         </div>
                     </div>
@@ -133,11 +132,11 @@
                     <div class="row">
                         <div class="col-md">
                             <label for="LastMaint" class="form-label">Update Last MAINT</label>
-                            <input type="date" class="form-control" name="LastMaint" id="LastMaint">
+                            <input type="date" class="form-control" required name="LastMaint" id="LastMaint">
                         </div>
                         <div class="col-md">
                             <label for="NextMaint" class="form-label"> update Next MAINT</label>
-                            <input type="date" class="form-control" name="NextMaint" id="NextMaint">
+                            <input type="date" class="form-control" required name="NextMaint" id="NextMaint">
                         </div>
                     </div>
 

@@ -109,7 +109,8 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Patient Name</th>
+                                        <th scope="col">Patient Fname</th>
+                                        <th scope="col">Patient Lname</th>
                                         <th scope="col">Test Name</th>
                                         <th scope="col">Test Date</th>
                                         <th scope="col">Test File</th>
@@ -119,30 +120,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-
+                                        {% for data in TestResults %}
                                         <tr>
 
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
+                                            <td>{{data.0}}</td>
+                                            <td>{{data.1}}</td>
+                                            <td>{{data.2}}</td>
+                                            <td>{{data.3}}</td>
+                                            <td>{{data.4}}</td>
 
 
 
 
                                         </tr>
-                                        <tr>
-
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
-
-
-
-
-                                        </tr>
-
+                                        {% endfor %}
                                     </tr>
                                 </tbody>
                             </table>
