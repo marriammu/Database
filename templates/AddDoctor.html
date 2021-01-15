@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -114,11 +114,11 @@
                     <div class="row">
                         <div class="col-md">
                             <label for="DoctorFName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="DoctorFName" id="DoctorFName" placeholder="Enter First Name" autofocus>
+                            <input type="text" class="form-control" name="DoctorFName" id="DoctorFName" placeholder="Enter First Name" required>
                         </div>
                         <div class="col-md">
                             <label for="DoctorMName" class="form-label">Middle Name</label>
-                            <input type="text" class="form-control" name="DoctorMName" id="DoctorMName" placeholder="Enter Middle Name">
+                            <input type="text" class="form-control" name="DoctorMName" id="DoctorMName" placeholder="Enter Middle Name" required>
                         </div>
                     </div>
                     <br>
@@ -126,11 +126,11 @@
                     <div class="row">
                         <div class="col-md">
                             <label for="DoctorLName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="DoctorLName" id="DoctorLName" placeholder="Enter Last Name">
+                            <input type="text" class="form-control" name="DoctorLName" id="DoctorLName" placeholder="Enter Last Name" required>
                         </div>
                         <div class="col-md">
                             <label for="DoctorAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" name="DoctorAddress" id="DoctorAddress" placeholder="Enter Address">
+                            <input type="text" class="form-control" name="DoctorAddress" id="DoctorAddress" placeholder="Enter Address" required>
                         </div>
                     </div>
                     <br>
@@ -141,16 +141,14 @@
                             <input type="text" class="form-control" name="DoctorNationality" id="DoctorNationality" placeholder="Enter Nationality">
                         </div>
                         <div class="col-md">
-                            <br>
-                            <fieldset>
-                                <div class="some-class">
-
-                                    <input type="radio" class="radio" name="DoctorGender" value="Female" id="Female" />
-                                    <label for="Female">Female</label>
-                                    <input type="radio" class="radio" name="DoctorGender" value="Male" id="Male" />
-                                    <label for="Male">Male</label>
-                                </div>
-                            </fieldset>
+                            <label for="DoctorGender" class="form-label">Gender</label>
+                            <div class="col-md">
+                                <select class="form-control  form-control-md" name="DoctorGender" id="DoctorGender">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                            
+                                </select>
+                            </div>
                         </div>
                     </div><br>
                     <div class="row">
@@ -178,7 +176,7 @@
                         </div>
                         <div class="col-md">
                             <label for="DoctorPhone" class="form-label">Phone number</label>
-                            <input type="tel" class="form-control" name="DoctorPhone" id="DoctorPhone" placeholder="Enter Phone No.">
+                            <input type="tel" class="form-control" name="DoctorPhone" id="DoctorPhone" placeholder="Enter Phone No." required>
                         </div>
 
                     </div>
@@ -225,7 +223,7 @@
                             <label for="DoctorEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="DoctorEmail" id="DoctorEmail" placeholder="Enter Email">
                         </div>
-                        
+
                         <div class="col-md">
                             <label for="DoctorPass" class="form-label">Password</label>
                             <input type="password" class="form-control" name="DoctorPass" id="DoctorPass" placeholder="Enter Password">
@@ -234,6 +232,7 @@
                     </div>
                     <br>
                     <p class="alertMsg">{{msg}}</p>
+
 
 
                     <br>

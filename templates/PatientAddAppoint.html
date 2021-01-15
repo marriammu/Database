@@ -62,6 +62,9 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="http://127.0.0.1:5000/PatientPanel/PatientViewShifts">View doctor shifts</a>
+                </li>
+                <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientMedicalHistory">Medical History</a>
                 </li>
                 <li>
@@ -112,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-lg">
                                         <label for="PatientApointDay" class="form-label">Appointment Day</label>
-                                        <input type="Date" class="form-control" name="PatientApointDay" id="PatientApointDay" autofocus>
+                                        <input type="Date" class="form-control" name="PatientApointDay" id="PatientApointDay" required>
                                     </div>
 
                                 </div>
@@ -121,7 +124,7 @@
                                 <div class="row">
                                     <div class="col-lg">
                                         <label for="PatientApointTime" class="form-label">Appointment Time </label>
-                                        <input type="time" class="form-control" name="PatientApointTime" id="PatientApointTime">
+                                        <input type="time" class="form-control" name="PatientApointTime" id="PatientApointTime" required>
 
                                     </div>
                                 </div>
@@ -130,7 +133,7 @@
                                 <div class="row">
                                     <div class="col-md">
                                         <label for="PatientApointDoc" class="form-label">Doctor's Name</label>
-                                        <input type="text" class="form-control" name="PatientApointDoc" id="PatientApointDoc" placeholder="Enter Doctor's Name">
+                                        <input type="text" class="form-control" name="PatientApointDoc" id="PatientApointDoc" placeholder="Enter Doctor's Name" required>
 
                                     </div>
                                 </div>
@@ -149,55 +152,20 @@
 
                     </div>
                     <br>
-                    <div class="col-lg">
-                        <div class="form-container7">
-                            <div class="wrapper3">
-                                <h2>Doctors Shifts</h2>
-                                <!-- <img src="../static/img/shift.svg" alt="Shift" class="center" height="87" width="100" /> -->
-                                <img src="{{url_for( 'static', filename='img/shift.svg' )}} " alt="Shift" class="center" height="87" width="100" />
-                                <br>
-                                <div class="tablewrap3">
-                                    <table class="table table-stripped table-light table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Doctor fname</th>
-                                                <th scope="col">Doctor lname</th>
-                                                <th scope="col">Shift</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for data in appoint %}
-                                            <tr>
-                                                <tr>
-                                                    <td>{{data.0}}</td>
-                                                    <td>{{data.1}}</td>
-                                                    <td>{{data.2}}</td>
-                                                </tr>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
 
 
 
 
 
 
-
-                    </div>
 
                 </div>
+
             </div>
-
         </div>
-    </div>
-    </div>
-
 
     </div>
+
 
 
 

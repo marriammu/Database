@@ -87,20 +87,13 @@
 
 
         <div class="form-group">
-            <label class="control-label col-sm-3">Gender<span class="required">*</span></label>
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="radio">
-                        <div class="col-sm-4">
-                            <label><input type="radio" class="radio" name="PatientGender" value="Female" id="Female" >Female</label>
-                        </div>
-                    </div>
-                    <div class="radio">
-                        <div class="col-sm-4">
-                            <label><input type="radio" class="radio" name="PatientGender" value="Male" id="Male">Male</label>
-                        </div>
-                    </div>
-                </div>
+            <label for="PatientGender" class="col-sm-3 control-label">Gender<span class="required">*</span></label>
+            <div class="col-sm-9">
+                <select class="form-control  form-control-lg" name="PatientGender" id="PatientGender">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -161,7 +154,7 @@
 
 
         <div class="form-group">
-            <label for="PatientEmail" class="col-sm-3 control-label">Email </label>
+            <label for="PatientEmail" class="col-sm-3 control-label">Email <span class="required">*</span></label>
             <div class="col-sm-9">
                 <input type="email" name="PatientEmail" id="PatientEmail" placeholder="Email" class="form-control" required>
             </div>
@@ -175,7 +168,7 @@
         <div class="form-group">
             <label for="ConfirmPatientPass" class="col-sm-3 control-label">Confirm Password<span class="required">*</span></label>
             <div class="col-sm-9">
-                <input type="password" name="ConfirmPatientPass" id="ConrifmPatientPass" placeholder="Password" class="form-control" required>
+                <input type="password" name="ConfirmPatientPass" id="ConfirmPatientPass" placeholder="Password" class="form-control" required>
             </div>
         </div>
 
