@@ -233,6 +233,13 @@ h1 {
     text-align: center;
 }
 
+.wrapper4 {
+    margin: 0 auto !important;
+    padding: 0%;
+    text-align: center !important;
+    width: fit-content !important;
+}
+
 
 /* h1 {
     background-color: !important;

@@ -8,10 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}"> -->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -29,49 +29,49 @@
         <nav id="sidebar">
 
             <div class="sidebar-header">
-                <h3>Admin panel</h3>
+                <h3>Doctor panel</h3>
             </div>
             <ul class="lisst-unstyled components">
 
 
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/AdminPanel/PatientRecords">Patient Records</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/ViewDoctorProfile">View Profile</a>
                         </li>
                         <li>
-                            <a href="http://127.0.0.1:5000/AdminPanel/DoctorRecords">Doctor Records</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/UpdateDoctorProfile">Update Profile</a>
                         </li>
-                        <li>
-                            <a href="http://127.0.0.1:5000/AdminPanel/DeviceRecords">Device Records</a>
-                        </li>
+
 
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Records</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="http://127.0.0.1:5000/AdminPanel/AddDoctor">Add Doctor</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsPatientRecords">Patient Records</a>
                         </li>
 
                         <li>
-                            <a href="http://127.0.0.1:5000/AdminPanel/AddDevice">Add Device</a>
+                            <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsDeviceRecords">Device Records</a>
                         </li>
 
 
                     </ul>
                 </li>
+
                 <li>
-                    <a href="http://127.0.0.1:5000/AdminPanel/AdminUpdate">Update</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalHistory">Patients Medical History</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/AdminPanel/AdminAppointments">Appointments</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsTestResults">Patients Test Results</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/AdminPanel/StatisticalAnalysis">Statistical Analysis</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorViewAppoints">View Appointments</a>
                 </li>
+
                 <li>
                     <a href="http://127.0.0.1:5000/SignOut">Sign Out</a>
                 </li>
@@ -100,19 +100,20 @@
             <br>
             <div>
                 <br>
-                <br>
-                <div class="form-container12">
+
+                <div class="form-container18">
                     <div class=wrapper2>
-                        <h1>Doctor's Appointments</h1>
+                        <h1>Test Results</h1>
                         <div id=" no-more-tables">
                             <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Doctor Name</th>
                                         <th scope="col">Patient Name</th>
-                                        <th scope="col">Appointment Date</th>
-                                        <th scope="col">Appointment Time</th>
+                                        <th scope="col">Test Name</th>
+                                        <th scope="col">Test Date</th>
+                                        <th scope="col">Test File</th>
+
 
                                     </tr>
                                 </thead>
@@ -122,9 +123,21 @@
                                         <tr>
 
                                             <td>Ahmed</td>
-                                            <td>Mohamed</td>
                                             <td>8/12/2021</td>
                                             <td>4 PM</td>
+                                            <td>Ahmed</td>
+
+
+
+
+                                        </tr>
+                                        <tr>
+
+                                            <td>Ahmed</td>
+                                            <td>8/12/2021</td>
+                                            <td>4 PM</td>
+                                            <td>Ahmed</td>
+
 
 
 
@@ -138,6 +151,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 
 
@@ -146,7 +161,7 @@
 
 
 
-    <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script>
+    <!-- <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script> -->
     <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
     <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>

@@ -82,6 +82,7 @@
 
 
 
+
             </ul>
         </nav>
 
@@ -108,33 +109,31 @@
 
                     <br>
                     <div class="col-lg">
-                        <div class="form-container12">
+                        <div class="form-container7">
                             <div class="wrapper3">
-                                <h2>View Appointments</h2>
-                                <!-- <img src="../static/img/Appointment.svg" alt="Shift" class="center" height="80" width="90" /> -->
-                                <img src="{{url_for( 'static', filename='img/Appointment.svg' )}} " alt="Shift" class="center" height="87" width="100" />
+                                <h2>Doctors Shifts</h2>
+                                <!-- <img src="../static/img/shift.svg" alt="Shift" class="center" height="87" width="100" /> -->
+                                <img src="{{url_for( 'static', filename='img/shift.svg' )}} " alt="Shift" class="center" height="87" width="100" />
                                 <br>
-                                <div id=" no-more-tables">
-                                    <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
+                                <div class="tablewrap3">
+                                    <table class="table table-stripped table-light table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Appointment Day</th>
-                                                <th scope="col">Appointment Time</th>
-                                                <th scope="col">Doctors Name</th>
-                                                <!-- <th scope="col ">LastName</th> -->
-
+                                                <th scope="col">Doctor fname</th>
+                                                <th scope="col">Doctor lname</th>
+                                                <th scope="col">Shift</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for data in appoint %}
                                             <tr>
-                                                {% for data in app %}
                                                 <tr>
                                                     <td>{{data.0}}</td>
                                                     <td>{{data.1}}</td>
                                                     <td>{{data.2}}</td>
                                                 </tr>
-                                                {% endfor %}
                                             </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

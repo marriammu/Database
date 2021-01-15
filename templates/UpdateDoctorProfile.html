@@ -63,7 +63,10 @@
                 </li>
 
                 <li>
-                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalInfo">Patients Medical Info</a>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalHistory">Patients Medical History</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsTestResults">Patients Test Results</a>
                 </li>
                 <li>
                     <a href="http://127.0.0.1:5000/DoctorPanel/DoctorViewAppoints">View Appointments</a>
@@ -100,7 +103,7 @@
                 <br>
                 <div>
                     <div>
-                        <div class="form-container1">
+                        <form class="form-container1" role="form" method="POST" action="http://127.0.0.1:5000/DoctorPanel/UpdateDoctorProfile">
 
 
 
@@ -124,8 +127,8 @@
                             <br>
                             <div class="row">
                                 <div class="col-md">
-                                    <label for="DoctorLname" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Last Name" name="DoctorLname" id="DoctorLname">
+                                    <label for="DoctorLName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter Last Name" name="DoctorLName" id="DoctorLname">
                                 </div>
                                 <div class="col-md">
                                     <label for="DoctorAddress" class="form-label">Address</label>
@@ -222,7 +225,7 @@
                             <br>
                             <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
 
-                        </div>
+                        </form>
                         <br>
 
 
