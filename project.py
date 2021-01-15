@@ -3,15 +3,15 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 
-import os
+# import os
 import secrets
 import mysql.connector
 import datetime
 import pickle
-import os.path
-# from googleapiclient.discovery import build
-# from google_auth_oauthlib.flow import InstalledAppFlow
-# from google.auth.transport.requests import Request
+# import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 
 
 app = Flask(__name__)
@@ -256,8 +256,6 @@ def PatientAddTestResults():
             # print('wala 7aga')
             # print(data)
             filename = photos.save(request.files['photo'])
-            #return filename
-            session['photo'] = filename
             return render_template("PatientViewTestResults.html", image_name=filename)
            # return send_from_directory('static/img',filename ,as_attachment=True)
         else:
@@ -265,15 +263,6 @@ def PatientAddTestResults():
     else:    
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
-
-@app.route('/PatientPanel/PatientViewTestResults')
-def PatientViewTestResults():
-    if session['type']=='patient':
-        # mycursor.execute("SELECT *FROM testresults")
-        # data = mycursor.fetchall()
-        return render_template("PatientViewTestResults.html",image_name=session['photo'])
-    else:
-        return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
 # def save_file(f):
 #     hash_f=secrets.token_urlsafe(10)
