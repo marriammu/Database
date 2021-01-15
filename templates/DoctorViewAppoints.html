@@ -109,7 +109,8 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Patient Name</th>
+                                        <th scope="col">Patient Fname</th>
+                                        <th scope="col">Patient Lname</th>
                                         <th scope="col">Appointment day</th>
                                         <th scope="col">Appointment Time</th>
 
@@ -117,12 +118,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        {% for data in app %}
+                                        {% for data in myresult %}
                                         <tr>
 
                                             <td>{{data.0}}</td>
                                             <td>{{data.1}}</td>
                                             <td>{{data.2}}</td>
+                                            <td>{{data.3}}</td>
 
 
 

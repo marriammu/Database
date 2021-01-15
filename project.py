@@ -67,7 +67,7 @@ for x in mycursor:
     if x == ('appointments',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientEmail VARCHAR(50),DoctorEmail VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),Doctorname VARCHAR(50))")
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientEmail VARCHAR(50),DoctorEmail VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -92,7 +92,7 @@ for x in mycursor:
         y = False
 if y:
     mycursor.execute(
-        "CREATE TABLE testresults (TestName VARCHAR(50),TestDate VARCHAR(50),TestFile VARCHAR(333))")
+        "CREATE TABLE testresults (PatientFname VARCHAR(50),PatientLname VARCHAR(50),TestName VARCHAR(50),TestDate VARCHAR(50),TestFile VARCHAR(333))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -344,6 +344,7 @@ def PatientMedicalHistory():
     else:
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
+
 @app.route('/DoctorSignIn', methods=["GET", "POST"])
 def DoctorSignIn():
     if request.method == "POST":
@@ -392,25 +393,20 @@ def DoctorsDeviceRecords():
     return render_template('DoctorsDeviceRecords.html',DeviceRecords=data)
 
 
-@app.route('/DoctorPanel/DoctorsMedicalHistory')
-def medicalhistory():
-    mycursor.execute("SELECT* FROM medicalhistory")
-    data=mycursor.fetchall()
-    return render_template('DoctorsMedicalHistory.html',medicalhistory=data)
-
-
 @app.route('/DoctorPanel/DoctorsTestResults')
 def TestResults():
     mycursor.execute("SELECT* FROM testresults")
     data=mycursor.fetchall()
     return render_template('DoctorsTestResults.html',TestResults=data)
 
-
+###
 @app.route('/DoctorPanel/DoctorViewAppoints')
 def DoctorAppoints():
-    mycursor.execute("SELECT PatientFname,AppointmentDate,AppointmentTime FROM appointments")
+    mycursor.execute("SELECT DoctorFName,DoctorMName,DoctorLName FROM doctors WHERE DoctorEmail=%s",(session['username'],))
+    x=mycursor.fetchone()
+    mycursor.execute("SELECT PatientFname,PatientLname ,AppointmentDate,AppointmentTime FROM appointments WHERE DoctorFName='%s' AND DoctorMName='%s' AND DoctorLName=%s " %(x[0],x[1],x[2]))
     data=mycursor.fetchall()
-    return render_template('DoctorViewAppoints.html',app=data)
+    return render_template('DoctorViewAppoints.html', myresult=data)
 
 
 @app.route('/AdminSignIn', methods=['GET', 'POST'])
