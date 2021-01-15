@@ -3,6 +3,12 @@ from flask import Flask, request, render_template, url_for, redirect, session, f
 from werkzeug.utils import secure_filename
 #from flask_login import LoginManager
 import mysql.connector
+import datetime
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 
 #login_manager = LoginManager()
 
@@ -83,26 +89,6 @@ app.secret_key = 'mew'
 def index():
     return render_template('index.html')
 
-
-@app.route('/PatientSignIn', methods=["GET", "POST"])
-def PatientSignIn():
-    if request.method == "POST":
-        PatientUserName = request.form['SignInPatientUsername']
-        PatientPasswd = request.form['SignInPatientPassword']
-        mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",
-                         (PatientUserName, PatientPasswd))
-        email = mycursor.fetchone()
-        if email:
-            session['loggedin'] = True
-            session['id'] = PatientUserName
-            session['username'] = PatientUserName
-            return render_template('PatientPanel.html')
-        else:
-            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
-    else:
-        return render_template('PatientSignIn.html')
-
-
 @app.route('/PatientSignUp', methods=["GET", "POST"])
 def PatientSignUp():
     if request.method == "POST":
@@ -142,13 +128,34 @@ def PatientSignUp():
     else:
         return render_template('PatientSignUp.html')
 
+@app.route('/PatientSignIn', methods=["GET", "POST"])
+def PatientSignIn():
+    if request.method == "POST":
+        PatientUserName = request.form['SignInPatientUsername']
+        PatientPasswd = request.form['SignInPatientPassword']
+        mycursor.execute("SELECT * FROM patients WHERE PatientEmail = %s AND PatientPass = %s ",
+                         (PatientUserName, PatientPasswd))
+        email = mycursor.fetchone()
+        if email:
+            session['loggedin'] = True
+            session['id'] = PatientUserName
+            session['username'] = PatientUserName
+            session['type'] = "patient"
+            return render_template('PatientPanel.html')
+        else:
+            return render_template('PatientSignIn.html', er='Incorretct Email or Password')
+    else:
+        return render_template('PatientSignIn.html')
 
 @app.route('/PatientPanel/ViewPatientProfile')
 def PatientViewProfile():
-    mycursor.execute(
-        "SELECT * FROM  patients WHERE PatientEmail = %s ", (session['username'],))
-    email = mycursor.fetchone()
-    return render_template('ViewPatientProfile.html', data=email)
+    if 'type' in session =='patient':
+        mycursor.execute(
+            "SELECT * FROM  patients WHERE PatientEmail = %s ", (session['username'],))
+        email = mycursor.fetchone()
+        return render_template('ViewPatientProfile.html', data=email)
+    else:
+        return render_template('PatientSignIn.html',er='PLEASE SIGN IN')    
 
 
 @app.route('/PatientPanel/UpdatePatientProfile', methods=['POST', 'GET'])
@@ -255,6 +262,8 @@ def PatientAddAppoint():
                AppointmentTime, Doctorname, session['username'])
         mycursor.execute(sql, val)
         mydb.commit()
+ 
+        Calendar(AppointmentDate,AppointmentTime)
         return render_template('PatientViewAppoints.html')
     else:
         return render_template('PatientAddAppoint.html')
@@ -438,43 +447,82 @@ def PatientRecords():
 def StatisticalAnalysis():
     mycursor.execute("SELECT DoctorSSN FROM doctors" )
     DoctorSSNs = mycursor.fetchall()
+    DoctorsNum=len(DoctorSSNs)
     mycursor.execute("SELECT PatientSSN FROM patients" )
-    PatientSSNs = mycursor.fetchall()
+    PatientSSN = mycursor.fetchall()
+    PatientsNum=len(PatientSSN)
     mycursor.execute("SELECT DeviceSerialNo FROM devices" )
     DeviceSerialNum = mycursor.fetchall()
+    DevicesNumber=len(DeviceSerialNum)
     mycursor.execute("SELECT AppointmentTime FROM appointments" )
-    Appopintment = mycursor.fetchall()
-    # mycursor.execute("SELECT  FROM " )
-    # PatientSSNs = mycursor.fetchall()
-    DoctorsNumber=0
-    PatientsNumber=0
-    DevicesNumber=0
-    AppointmentsNumber=0
-    Feedback=0
-    Data=[]
-    for x in DoctorSSNs:
-        DoctorsNumber += 1   
-    Data.append(DoctorsNumber) 
-    for x in PatientSSNs:
-        PatientsNumber += 1
-    Data.append(PatientsNumber) 
-    for x in DeviceSerialNum:
-        DevicesNumber += 1
-    print(DevicesNumber)   
-    Data.append(DevicesNumber) 
-    print(Data)
-    for x in Appopintment:
-        AppointmentsNumber += 1
-    print(PatientsNumber)   
-    Data.append(AppointmentsNumber) 
-    print(Data)
-    return render_template('StatisticalAnalysis.html',DNUM=DoctorsNumber) 
+    Appointment = mycursor.fetchall()
+    Appointments =len(Appointment)
+    labels=['Doctors','Patients','Devices','Appointments']
+
+    values=[DoctorsNum,PatientsNum,DevicesNumber,Appointments]
+    return render_template('StatisticalAnalysis.html') 
    
 
 @app.route('/SignOut')
 def logout():
     session.clear()
     return render_template('index.html')
+
+
+
+
+def Calendar(date,time):
+    SCOPES = ['https://www.googleapis.com/auth/calendar']
+
+    """Shows basic usage of the Google Calendar API.
+    Prints the start and name of the next 10 events on the user's calendar.
+    """
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'secrets.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    event_date = date + 'T' + time + ':00'
+
+    event = {
+    'summary': 'Hemodialysis Session',
+    'location': '800 Howard St., San Francisco, CA 94103',
+    'description': '',
+    'start': {
+        'dateTime': event_date,
+        'timeZone': 'Africa/Cairo',
+    },
+    'end': {
+        'dateTime': event_date,
+        'timeZone': 'Africa/Cairo',
+    },
+    
+    'reminders': {
+        'useDefault': False,
+        'overrides': [
+        {'method': 'email', 'minutes': 24 * 60},
+        {'method': 'popup', 'minutes': 10},
+        ],
+    },
+    }
+    service = build('calendar', 'v3', credentials=creds)
+
+    service.events().insert(calendarId='primary', body=event).execute()
+
 
 
 app.run(port=5000, debug=True)
