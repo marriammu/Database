@@ -418,6 +418,8 @@ def AdminUpdate():
         mycursor.execute(sql, val)
         mydb.commit()
         return render_template('AdminUpdate.html')
+    else:
+        return render_template('AdminUpdate.html')    
 
 
 @app.route('/AdminPanel/DoctorRecords')
@@ -433,6 +435,48 @@ def PatientRecords():
     data = mycursor.fetchall()
     return render_template('PatientRecords.html', patientsdata=data)
 
+@app.route('/AdminPanel/StatisticalAnalysis')
+def StatisticalAnalysis():
+    mycursor.execute("SELECT DoctorSSN FROM doctors" )
+    DoctorSSNs = mycursor.fetchall()
+    mycursor.execute("SELECT PatientSSN FROM patients" )
+    PatientSSNs = mycursor.fetchall()
+    mycursor.execute("SELECT DeviceSerialNo FROM devices" )
+    DeviceSerialNum = mycursor.fetchall()
+    mycursor.execute("SELECT PatientApointTime FROM appointments" )
+    Appopintment = mycursor.fetchall()
+    # mycursor.execute("SELECT  FROM " )
+    # PatientSSNs = mycursor.fetchall()
+    DoctorsNumber=0
+    PatientsNumber=0
+    DevicesNumber=0
+    AppointmentsNumber=0
+    Feedback=0
+    Data=[]
+    for x in DoctorSSNs:
+        DoctorsNumber += 1   
+    Data.append(DoctorsNumber) 
+    for x in PatientSSNs:
+        PatientsNumber += 1
+    Data.append(PatientsNumber) 
+    for x in DeviceSerialNum:
+        DevicesNumber += 1
+    print(DevicesNumber)   
+    Data.append(DevicesNumber) 
+    print(Data)
+    for x in Appopintment:
+        AppointmentsNumber += 1
+    print(PatientsNumber)   
+    Data.append(PatientsNumber) 
+    print(Data)
+    # for x in PatientSSNs:
+    #     PatientsNumber += 1
+    # print(PatientsNumber)   
+    # Data.append(PatientsNumber) 
+    # print(Data)
+
+    return render_template('StatisticalAnalysis.html',DNUM=DoctorsNumber) 
+   
 
 @app.route('/SignOut')
 def logout():
