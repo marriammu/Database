@@ -71,9 +71,7 @@
                 <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientAddTestResults">Add Test Results</a>
                 </li>
-                <li>
-                    <a href="http://127.0.0.1:5000/PatientPanel/PatientViewTestResults">View Test Results</a>
-                </li>
+
                 <li>
                     <a href="http://127.0.0.1:5000/PatientPanel/PatientContactUs">Contact Us</a>
                 </li>
@@ -104,12 +102,14 @@
 
 
             <br>
+            <br>
+            <br>
 
             <div>
                 <div class="row">
                     <div class="col-lg">
                         <div>
-                            <form  enctype = "multipart/form-data" class="form-container11" method="POST" role="form" action="http://127.0.0.1:5000/PatientPanel/PatientAddTestResults">
+                            <form enctype="multipart/form-data" class="form-container11" method="POST" role="form" action="http://127.0.0.1:5000/PatientPanel/PatientAddTestResults">
 
 
 
@@ -120,49 +120,17 @@
                                 <img src="{{url_for('static', filename='img/addFile.svg')}}" alt="addTest" class="center" height="87" width="100" />
 
                                 <br>
+
+
                                 <div class="row">
                                     <div class="col-lg">
-                                        <label for="TestName" class="form-label">Test Type</label>
-                                        <select name="TestName" class="form-control" id="TestName" required>
-                                            <option value="Urea reduction ratio">Urea reduction ratio</option>
-                                            <option value="Kt/V">Kt/V</option>
-                                            <option value="Blood Urea Nitrogen">Blood Urea Nitrogen</option>
-                                            <option value="Hemoglobin">Hemoglobin</option>
-                                            <option value="Iron Saturation">Iron Saturation</option>
-                                            <option value="Nutrition">Nutrition</option>
-                                            <option value="Albumin">Albumin</option>
-                                            <option value="Potassium">Potassium</option>
-                                            <option value="Bone and Mineral Metabolism">Bone and Mineral Metabolism</option>
-                                          </select>
-                                    </div>
-
-
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg">
-                                        <label for="TestDate" class="form-label">Test Date</label>
-                                        <input type="Date" class="form-control" name="TestDate" id="TestDate" required>
-                                    </div>
-
-
-
-                                </div>
-                                <br>
-
-                                <div class="row">
-                                    <div class="col-lg"> 
                                         <input type="file" class="form-control" id="TestFile" name="photo" required>
 
                                     </div>
                                 </div>
 
+
                                 <br>
-
-
-
-
-
                                 <br>
                                 <button type="submit" class="btn btn-primary col-12">Submit Test</button>
 
