@@ -443,7 +443,7 @@ def StatisticalAnalysis():
     PatientSSNs = mycursor.fetchall()
     mycursor.execute("SELECT DeviceSerialNo FROM devices" )
     DeviceSerialNum = mycursor.fetchall()
-    mycursor.execute("SELECT PatientApointTime FROM appointments" )
+    mycursor.execute("SELECT AppointmentTime FROM appointments" )
     Appopintment = mycursor.fetchall()
     # mycursor.execute("SELECT  FROM " )
     # PatientSSNs = mycursor.fetchall()

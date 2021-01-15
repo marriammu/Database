@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="../static/css/style.css">
-    <link href="../static/css/style2.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
 
 
 
@@ -141,16 +141,14 @@
                             <input type="text" class="form-control" name="DoctorNationality" id="DoctorNationality" placeholder="Enter Nationality">
                         </div>
                         <div class="col-md">
-                            <br>
-                            <fieldset>
-                                <div class="some-class">
-
-                                    <input type="radio" class="radio" name="DoctorGender" value="Female" id="Female" />
-                                    <label for="Female">Female</label>
-                                    <input type="radio" class="radio" name="DoctorGender" value="Male" id="Male" />
-                                    <label for="Male">Male</label>
-                                </div>
-                            </fieldset>
+                            <label for="DoctorGender" class="form-label">Gender</label>
+                            <div class="col-md">
+                                <select class="form-control  form-control-md" name="DoctorGender" id="DoctorGender">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                            
+                                </select>
+                            </div>
                         </div>
                     </div><br>
                     <div class="row">
@@ -190,7 +188,7 @@
                         </div>
                         <div class="col-md">
                             <label for="DoctorEmploymentDate" class="form-label">Date of employment</label>
-                            <input type="date" class="form-control" name="DoctorEmploymentDate" id="DoctorEmploymentDate" >
+                            <input type="date" class="form-control" name="DoctorEmploymentDate" id="DoctorEmploymentDate">
                         </div>
                     </div>
                     <br>
@@ -225,7 +223,7 @@
                             <label for="DoctorEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="DoctorEmail" id="DoctorEmail" placeholder="Enter Email">
                         </div>
-                        
+
                         <div class="col-md">
                             <label for="DoctorPass" class="form-label">Password</label>
                             <input type="password" class="form-control" name="DoctorPass" id="DoctorPass" placeholder="Enter Password">
