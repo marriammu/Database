@@ -109,7 +109,8 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Patient Name</th>
+                                        <th scope="col">Patient Fname</th>
+                                        <th scope="col">Patient Lname</th>
                                         <th scope="col">Chronic Diseases</th>
                                         <th scope="col">Prescription Med</th>
                                         <th scope="col">Emergency Med</th>
@@ -122,36 +123,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-
+                                        {% for data in his %}
                                         <tr>
-
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-
-
-
+                                            <td>{{data.0}}</td>
+                                            <td>{{data.1}}</td>
+                                            <td>{{data.3}}</td>
+                                            <td>{{data.4}}</td>
+                                            <td>{{data.5}}</td>
+                                            <td>{{data.6}}</td>
+                                            <td>{{data.7}}</td>
+                                            <td>{{data.8}}</td>
                                         </tr>
-                                        <tr>
-
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-
-
-
-                                        </tr>
-
+                                        {% endfor %}
                                     </tr>
                                 </tbody>
                             </table>
@@ -172,7 +155,7 @@
 
     <!-- <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js "></script> -->
     <!-- <script src="../static/javascript/js/bootstrap.js"></script> -->
-    <script src="{{ url_for('static', filename='javascript/js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/js/bootstrap.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>

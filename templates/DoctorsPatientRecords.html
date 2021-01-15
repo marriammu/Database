@@ -105,7 +105,6 @@
                         <table class="table table-stripped table-light table-responsive col-lg-12 table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">FirstName</th>
                                     <th scope="col">LastName</th>
                                     <th scope="col">Gender</th>
@@ -123,7 +122,6 @@
                                 <tr>
                                     {% for data in patientsdata %}
                                     <tr>
-                                        <th scope="row">{{patientsdata.index(data)+1}}</th>
                                         <td>{{data.0}}</td>
                                         <td>{{data.1}}</td>
                                         <td>{{data.2}}</td>

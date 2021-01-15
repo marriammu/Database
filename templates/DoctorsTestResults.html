@@ -119,30 +119,19 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-
+                                        {% for data in TestResults %}
                                         <tr>
 
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
+                                            <td>{{data.0}}</td>
+                                            <td>{{data.1}}</td>
+                                            <td>{{data.2}}</td>
+                                            <td>{{data.3}}</td>
 
 
 
 
                                         </tr>
-                                        <tr>
-
-                                            <td>Ahmed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
-                                            <td>Ahmed</td>
-
-
-
-
-                                        </tr>
-
+                                        {% endfor %}
                                     </tr>
                                 </tbody>
                             </table>

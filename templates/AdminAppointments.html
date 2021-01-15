@@ -118,18 +118,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-
+                                        {% for data in app %}
                                         <tr>
 
-                                            <td>Ahmed</td>
-                                            <td>Mohamed</td>
-                                            <td>8/12/2021</td>
-                                            <td>4 PM</td>
+                                            <td>{{data.5}}</td>
+                                            <td>{{data.0}}</td>
+                                            <td>{{data.3}}</td>
+                                            <td>{{data.4}}</td>
 
 
 
                                         </tr>
-
+                                        {% endfor %}
                                     </tr>
                                 </tbody>
                             </table>
