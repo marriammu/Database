@@ -402,8 +402,7 @@ def AddDevice():
         return redirect(url_for('AdminPanel'))
     else:
         return render_template('AddDevice.html')
-
-
+        
 @app.route('/AdminPanel/AdminUpdate', methods=['POST', 'GET'])
 def AdminUpdate():
     if request.method == 'POST':
@@ -467,14 +466,8 @@ def StatisticalAnalysis():
     for x in Appopintment:
         AppointmentsNumber += 1
     print(PatientsNumber)   
-    Data.append(PatientsNumber) 
+    Data.append(AppointmentsNumber) 
     print(Data)
-    # for x in PatientSSNs:
-    #     PatientsNumber += 1
-    # print(PatientsNumber)   
-    # Data.append(PatientsNumber) 
-    # print(Data)
-
     return render_template('StatisticalAnalysis.html',DNUM=DoctorsNumber) 
    
 

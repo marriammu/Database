@@ -5,12 +5,12 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
 
-    // var DUNM = "{{DNUM}}";
+    var DUNM = '{{DNUM}}';
     var data = google.visualization.arrayToDataTable([
         ["name", "number", {
             role: "style"
         }],
-        ["Doctors", '{{DNUM}}', "#444444"],
+        ["Doctors", DUNM , "#444444"],
         ["Patients", 31, "#444444"],
         ["Devices", 20, "#444444"],
         ["Appoints", 10, "#444444"],
