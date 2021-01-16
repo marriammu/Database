@@ -70,7 +70,7 @@ for x in mycursor:
     if x == ('appointments',):
         y = False
 if y:
-    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientEmail VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50))")
+    mycursor.execute("CREATE TABLE appointments (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientEmail VARCHAR(50),AppointmentDate VARCHAR(50),AppointmentTime VARCHAR(50),DoctorFName VARCHAR(50),DoctorMName VARCHAR(50)")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -106,9 +106,11 @@ if y:
     mycursor.execute("CREATE TABLE medicalhistory (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientEmail VARCHAR(50),ChronicDisease VARCHAR(500),Prescription VARCHAR(500),EmergencyMed VARCHAR(500),Alergies VARCHAR(500),SurgicalHistory VARCHAR(500),Fracture VARCHAR(500),Smoker VARCHAR(500))")
 
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+    
 
 
 @app.route('/PatientSignUp', methods=["GET", "POST"])
@@ -232,16 +234,16 @@ def PatientAddAppoint():
             PatientApointTime = request.form['PatientApointTime']
             PatientApointDocF = request.form['PatientApointDocF']
             PatientApointDocM = request.form['PatientApointDocM']
-            PatientApointDocL = request.form['PatientApointDocL']
+            #PatientApointDocL = request.form['PatientApointDocL']
             mycursor.execute("SELECT PatientFname FROM patients WHERE PatientEmail = %s ", (session['username'],))
             PatientFname = mycursor.fetchone()
             mycursor.execute("SELECT PatientLname FROM patients WHERE PatientEmail = %s ", (session['username'],))
             PatientLname = mycursor.fetchone()
-            sql = "INSERT INTO appointments (PatientFname,PatientLname,AppointmentDate,AppointmentTime,DoctorFName,DoctorMName,DoctorLName,PatientEmail) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-            val = (PatientFname[0],PatientLname[0],PatientApointDay, PatientApointTime, PatientApointDocF,PatientApointDocM,PatientApointDocL,session['username'])
+            sql = "INSERT INTO appointments (PatientFname,PatientLname,PatientEmail,AppointmentDate,AppointmentTime,DoctorFName,DoctorMName) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+            val = (PatientFname[0],PatientLname[0],session['username'],PatientApointDay, PatientApointTime, PatientApointDocF,PatientApointDocM)
             mycursor.execute(sql, val)
             mydb.commit()
-            #Calendar(PatientApointDay,PatientApointTime)
+            Calendar(PatientApointDay,PatientApointTime)
             return render_template('PatientAddAppoint.html')
         else:
             return render_template('PatientAddAppoint.html')
@@ -327,7 +329,7 @@ def PatientMedicalHistory():
             val = (data1[0],data2[0],session['username'],ChronicDisease,Prescription,EmergencyMed,Alergies,SurgicalHistory,Fracture,Smoker)
             mycursor.execute(sql, val)
             mydb.commit()
-            return render_template('/PatientMedicalHistory.html')
+            return render_template('/PatientMedicalHistory.html',msg='YOUR ANSWERS ARE SUBMITTED SUCCESSFULLY')
         else:
             return render_template('/PatientMedicalHistory.html')
     else:
@@ -356,6 +358,7 @@ def DoctorSignIn():
 
 @app.route('/DoctorPanel/ViewDoctorProfile')
 def ViewDoctorProfile():
+    print(session['type'])
     if session['type'] == 'doctor':    
         mycursor.execute("SELECT* FROM doctors WHERE DoctorEmail= %s ",(session['username'],) )
         myresult=mycursor.fetchone()
