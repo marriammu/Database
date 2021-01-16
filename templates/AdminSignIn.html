@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIS</title>
+    <!-- <link rel="icon" href="../static/img/kidney.svg" type="image/x-icon"> -->
+    <link rel="icon" href="{{url_for('static', filename='img/kidney.svg')}}" type="image/x-icon" />
     <style type="text/css">
         @media only screen and (min-width: 768px) {
             .dropdown:hover .dropdown-menu {
                 display: block;
             }
+        }
+        
+        .form-container:hover {
+            background-color: rgb(255, 255, 255);
+            opacity: 0.9;
         }
     </style>
 
@@ -34,7 +41,9 @@
         <div class="myNav">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="img/logo.svg">HIS</a>
+
+                    <!-- <img src="../static/img/kidney.svg" class="navbar-brand" height="45px" width="45px" style="text-align: left !important;"> -->
+                    <img src="{{url_for('static', filename='img/kidney.svg')}}" class="navbar-brand" height="45px" width="45px" style="text-align: left !important;" />
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
@@ -98,9 +107,9 @@
                         </div>
                         <p class="alertMsg">{{error}}</p>
                         <br>
-                        <!-- <button type="submit" class="btn btn-primary co1-12">Sign In</button> -->
 
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+                        <button type="submit" class="btn btn-secondary btn-block">Sign In</button>
 
                     </form>
         </div>

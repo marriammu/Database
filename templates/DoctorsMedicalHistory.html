@@ -3,6 +3,8 @@
 
 <head>
     <title>HIS</title>
+    <!-- <link rel="icon" href="../static/img/kidney.svg" type="image/x-icon"> -->
+    <link rel="icon" href="{{url_for('static', filename='img/kidney.svg')}}" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
@@ -12,7 +14,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
     <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
     <!-- <link href="../static/css/style2.css" rel="stylesheet"> -->
-
+    <style>
+        .form-container9:hover {
+            background-color: rgb(255, 255, 255);
+            opacity: 0.9;
+        }
+        
+        .form-container9 {
+            background-color: #FDFDFE;
+        }
+    </style>
 
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -64,9 +75,6 @@
 
                 <li>
                     <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsMedicalHistory">Patients Medical History</a>
-                </li>
-                <li>
-                    <a href="http://127.0.0.1:5000/DoctorPanel/DoctorsTestResults">Patients Test Results</a>
                 </li>
                 <li>
                     <a href="http://127.0.0.1:5000/DoctorPanel/DoctorViewAppoints">View Appointments</a>
