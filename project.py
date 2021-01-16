@@ -88,14 +88,6 @@ for x in mycursor:
 if y:
     mycursor.execute("CREATE TABLE feedback (PatientFname VARCHAR(50),PatientLname VARCHAR(50),PatientEmail VARCHAR(50),PatientContactUs VARCHAR(3000))")
 
-mycursor.execute("SHOW TABLES")
-y = True
-for x in mycursor:
-    if x == ('testresults',):
-        y = False
-if y:
-    mycursor.execute(
-        "CREATE TABLE testresults (PatientFname VARCHAR(50),PatientLname VARCHAR(50),TestName VARCHAR(50),TestDate VARCHAR(50),TestFile VARCHAR(333))")
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -625,9 +617,12 @@ def StatisticalAnalysis():
         mycursor.execute("SELECT AppointmentTime FROM appointments")
         Appointment = mycursor.fetchall()
         Appointments = len(Appointment)
+        mycursor.execute("SELECT PatientContactUs FROM feedback")
+        feedback = mycursor.fetchall()
+        Feedbacks = len(feedback)
         # labels = ['Doctors', 'Patients', 'Devices', 'Appointments']
         # values = [DoctorsNum, PatientsNum, DevicesNumber, Appointments]
-        return render_template('StatisticalAnalysis.html',a=DoctorsNum,b=PatientsNum,c=DevicesNumber,d=Appointments)
+        return render_template('StatisticalAnalysis.html',a=DoctorsNum,b=PatientsNum,c=DevicesNumber,d=Appointments,e=Feedbacks)
     else:
         return render_template('AdminSignIn.html',er='PLEASE SIGN IN')
 
