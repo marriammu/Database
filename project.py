@@ -1,8 +1,14 @@
 from flask import Flask, request, render_template, url_for, redirect, session, send_from_directory
 
+<<<<<<< HEAD
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
+=======
+# from flask_uploads import UploadSet, configure_uploads, IMAGES
+#from werkzeug.utils import secure_filename
+#from werkzeug.datastructures import FileStorage
+>>>>>>> 0a0eecc14b49ff611179086bc3ca5b8f436b5f91
 
 # import os
 import secrets
@@ -17,11 +23,19 @@ from google.auth.transport.requests import Request
 
 app = Flask(__name__)
 app.secret_key = 'mew'
+<<<<<<< HEAD
 
 photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST']='static'
 configure_uploads(app,photos)
 
+=======
+
+# photos = UploadSet('photos',IMAGES)
+# app.config['UPLOADED_PHOTOS_DEST']='static'
+# configure_uploads(app,photos)
+
+>>>>>>> 0a0eecc14b49ff611179086bc3ca5b8f436b5f91
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -62,7 +76,11 @@ for x in mycursor:
     if x == ('doctors',):
         y = False
 if y:
+<<<<<<< HEAD
     mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN VARCHAR(50),DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmploymentDate VARCHAR(50),DoctorSalary INT,DoctorShift ENUM('12 PM','4 PM','8 PM','12 AM','4 AM','8 AM'),DoctorEmail VARCHAR(250),DoctorPass VARCHAR(50))")
+=======
+    mycursor.execute("CREATE TABLE doctors (DoctorFName VARCHAR(50),DoctorMName VARCHAR(50),DoctorLName VARCHAR(50),DoctorAddress VARCHAR(250),DoctorNationality VARCHAR(25),DoctorGender ENUM('Female','Male'),DoctorBD VARCHAR(50),DoctorSSN INT ,DoctorMaritalStat ENUM('Single','Married','Widowed','Divorced'),DoctorPhone VARCHAR(50),DoctorBankNum VARCHAR(50),DoctorEmploymentDate DATE,DoctorSalary INT,DoctorShift ENUM('12 PM','4 PM','8 PM','12 AM','4 AM','8 AM'),DoctorEmail VARCHAR(250),DoctorPass VARCHAR(50))")
+>>>>>>> 0a0eecc14b49ff611179086bc3ca5b8f436b5f91
 
 mycursor.execute("SHOW TABLES")
 y = True
@@ -259,6 +277,7 @@ def PatientViewMyAppoint():
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
 
 
+<<<<<<< HEAD
 @app.route('/PatientPanel/PatientAddTestResults',methods = ['GET','POST'])
 def PatientAddTestResults():
     if session['type'] == 'patient':
@@ -276,6 +295,25 @@ def PatientAddTestResults():
             return render_template('PatientAddTestResults.html')
     else:    
         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
+=======
+# @app.route('/PatientPanel/PatientAddTestResults',methods = ['GET','POST'])
+# def PatientAddTestResults():
+#     if session['type'] == 'patient':
+#         if request.method == 'POST' and 'photo' in request.files:
+#             # print('ay 7aga')
+#             # data = request.files
+#             # print('wala 7aga')
+#             # print(data)
+#             filename = photos.save(request.files['photo'])
+#             #return filename
+#             session['photo'] = filename
+#             return render_template("PatientViewTestResults.html", image_name=filename)
+#            # return send_from_directory('static/img',filename ,as_attachment=True)
+#         else:
+#             return render_template('PatientAddTestResults.html')
+#     else:    
+#         return render_template('PatientSignIn.html', er='PLEASE SIGN IN')
+>>>>>>> 0a0eecc14b49ff611179086bc3ca5b8f436b5f91
 
 
 # @app.route('/PatientPanel/PatientViewTestResults')
